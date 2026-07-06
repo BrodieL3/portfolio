@@ -91,6 +91,24 @@
   }
   .cta { margin-top: 1rem; display: flex; gap: 1.1rem; font-size: 0.92rem; font-weight: 500; }
   footer { margin-top: 3.5rem; color: var(--muted); font-size: 0.85rem; }
+
+  .live { margin-top: 1rem; border-top: 1px solid var(--border); padding-top: 0.85rem; }
+  .live-head {
+    display: flex; align-items: baseline; gap: 0.5rem; flex-wrap: wrap;
+    font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em;
+    color: var(--muted);
+  }
+  .live-dot {
+    width: 7px; height: 7px; border-radius: 50%; background: var(--accent);
+    align-self: center; animation: pulse 2.4s ease-in-out infinite;
+  }
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
+  @media (prefers-reduced-motion: reduce) { .live-dot { animation: none; } }
+  .live-stats { margin-left: auto; font-weight: 500; text-transform: none; letter-spacing: 0; font-variant-numeric: tabular-nums; }
+  .live-list { list-style: none; margin-top: 0.55rem; display: grid; gap: 0.45rem; }
+  .live-list a { color: var(--fg); font-size: 0.88rem; line-height: 1.4; display: block; }
+  .live-list a:hover { color: var(--accent); text-decoration: none; }
+  .live-list .meta { color: var(--muted); font-size: 0.78rem; font-variant-numeric: tabular-nums; }
 </style>
 </head>
 <body>
@@ -112,6 +130,10 @@
         <p>A personalized news feed for the defense and government-tech niche. Ingests 15 curated outlets over RSS, extracts entities and topics with an LLM pipeline, clusters related articles into stories with cited digests, and re-ranks the feed around what each user follows. A companion dashboard tracks DoD contract awards (USAspending), SAM.gov opportunities, and defense-sector market data.</p>
         <p class="pmf">The bet: defense professionals are a narrow, high-intent audience underserved by general news products — personalization plus procurement signals is the wedge.</p>
         <div class="tags"><span class="tag">Next.js</span><span class="tag">Supabase</span><span class="tag">LLM pipeline</span><span class="tag">Embeddings</span><span class="tag">USAspending / SAM.gov</span></div>
+        <div class="live" id="fb-live" hidden>
+          <div class="live-head"><span class="live-dot" aria-hidden="true"></span>Live from the feed<span class="live-stats" id="fb-stats"></span></div>
+          <ol class="live-list" id="fb-list"></ol>
+        </div>
         <div class="cta"><a href="https://desem.vercel.app">Live ↗</a><a href="https://github.com/BrodieL3/desem">Code ↗</a></div>
       </div>
     </article>
@@ -165,5 +187,50 @@
     Hosted on Vercel · Source on <a href="https://github.com/BrodieL3">GitHub</a>
   </footer>
 </div>
+<script>
+(async () => {
+  const box = document.getElementById('fb-live');
+  try {
+    const res = await fetch('https://desem.vercel.app/api/portfolio-feed', { signal: AbortSignal.timeout(6000) });
+    if (!res.ok) return;
+    const data = await res.json();
+    if (!Array.isArray(data.items) || data.items.length === 0) return;
+
+    const rel = (iso) => {
+      if (!iso) return '';
+      const m = Math.max(0, Math.round((Date.now() - new Date(iso)) / 60000));
+      if (m < 60) return m + 'm ago';
+      const h = Math.round(m / 60);
+      if (h < 24) return h + 'h ago';
+      return Math.round(h / 24) + 'd ago';
+    };
+
+    const list = document.getElementById('fb-list');
+    for (const item of data.items.slice(0, 4)) {
+      if (!item.title || !item.url) continue;
+      const li = document.createElement('li');
+      const a = document.createElement('a');
+      a.href = item.url;
+      a.textContent = item.title;
+      const meta = document.createElement('span');
+      meta.className = 'meta';
+      meta.textContent = ' — ' + [item.source, rel(item.publishedAt)].filter(Boolean).join(' · ');
+      a.appendChild(meta);
+      li.appendChild(a);
+      list.appendChild(li);
+    }
+    if (!list.children.length) return;
+
+    const s = data.stats || {};
+    const parts = [];
+    if (s.totalArticles != null) parts.push(s.totalArticles.toLocaleString() + ' articles ingested');
+    if (s.articlesLast24h != null) parts.push(s.articlesLast24h + ' today');
+    if (s.sourceCount != null) parts.push(s.sourceCount + ' sources');
+    document.getElementById('fb-stats').textContent = parts.join(' · ');
+
+    box.hidden = false;
+  } catch (_) { /* endpoint unreachable — card stays static */ }
+})();
+</script>
 </body>
 </html>
