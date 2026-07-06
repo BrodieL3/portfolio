@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Brodie Lee — Projects</title>
+<meta name="description" content="Brodie Lee builds products end-to-end: market assessment, data pipelines, and shipped software.">
+<style>
+  :root {
+    --bg: #fafaf8;
+    --fg: #1a1a1a;
+    --muted: #6b6b66;
+    --card: #ffffff;
+    --border: #e5e5e0;
+    --accent: #2456d6;
+    --tag-bg: #f0f0ec;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #111113;
+      --fg: #ededea;
+      --muted: #9a9a94;
+      --card: #1a1a1e;
+      --border: #2a2a2e;
+      --accent: #7aa2ff;
+      --tag-bg: #26262b;
+    }
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 880px; margin: 0 auto; padding: 4rem 1.5rem 3rem; }
+  header h1 { font-size: 2rem; letter-spacing: -0.02em; }
+  header .sub { color: var(--muted); margin-top: 0.4rem; max-width: 34rem; }
+  header .links { margin-top: 1rem; display: flex; gap: 1.25rem; font-size: 0.95rem; }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .grid { margin-top: 3rem; display: grid; gap: 1.25rem; }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem 1.5rem 1.35rem;
+  }
+  .card h2 { font-size: 1.2rem; letter-spacing: -0.01em; display: flex; align-items: baseline; gap: 0.6rem; flex-wrap: wrap; }
+  .card h2 .kind { font-size: 0.75rem; font-weight: 500; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+  .card p { margin-top: 0.55rem; color: var(--fg); font-size: 0.95rem; }
+  .card p.pmf { color: var(--muted); font-size: 0.9rem; margin-top: 0.5rem; }
+  .tags { margin-top: 0.85rem; display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .tag {
+    font-size: 0.75rem; color: var(--muted);
+    background: var(--tag-bg); border-radius: 999px; padding: 0.15rem 0.6rem;
+  }
+  .cta { margin-top: 1rem; display: flex; gap: 1.1rem; font-size: 0.92rem; font-weight: 500; }
+  footer { margin-top: 3.5rem; color: var(--muted); font-size: 0.85rem; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Brodie Lee</h1>
+    <p class="sub">Georgetown University. I build products end-to-end — from sizing up the market and the data that's available, to shipping the software and instrumenting whether it works.</p>
+    <div class="links">
+      <a href="https://github.com/BrodieL3">GitHub</a>
+      <a href="mailto:bsl54@georgetown.edu">bsl54@georgetown.edu</a>
+    </div>
+  </header>
+
+  <main class="grid">
+    <article class="card">
+      <h2>Field Brief <span class="kind">Defense-tech news intelligence</span></h2>
+      <p>A personalized news feed for the defense and government-tech niche. Ingests 15 curated outlets over RSS, extracts entities and topics with an LLM pipeline, clusters related articles into stories with cited digests, and re-ranks the feed around what each user follows. A companion dashboard tracks DoD contract awards (USAspending), SAM.gov opportunities, and defense-sector market data.</p>
+      <p class="pmf">The bet: defense professionals are a narrow, high-intent audience underserved by general news products — personalization plus procurement signals is the wedge.</p>
+      <div class="tags"><span class="tag">Next.js</span><span class="tag">Supabase</span><span class="tag">LLM pipeline</span><span class="tag">Embeddings</span><span class="tag">USAspending / SAM.gov</span></div>
+      <div class="cta"><a href="https://desem.vercel.app">Live ↗</a><a href="https://github.com/BrodieL3/desem">Code ↗</a></div>
+    </article>
+
+    <article class="card">
+      <h2>Rounds <span class="kind">Social nightlife discovery</span></h2>
+      <p>Rate the bars you visit, compare them head-to-head, and build a shareable personal ranking — powered by a per-user Bayesian Bradley–Terry model so sparse comparisons don't produce overconfident orderings. Friends-first social layer (DMs, group chats, polls, shared reviews) shipped before any public graph.</p>
+      <p class="pmf">Product decisions are documented as they were made: 10 ADRs including competitive assessments of event-data providers, a deliberately market-scoped beta (Boston/Cambridge), cohort-isolated rankings, and PostHog instrumentation from day one.</p>
+      <div class="tags"><span class="tag">React Native / Expo</span><span class="tag">Firebase</span><span class="tag">Bayesian ranking</span><span class="tag">PostHog</span></div>
+      <div class="cta"><a href="https://rounds-web-bice.vercel.app">Web preview ↗</a><a href="https://github.com/BrodieL3/rounds">Code ↗</a></div>
+    </article>
+
+    <article class="card">
+      <h2>HealthyHoyas <span class="kind">Campus nutrition tracking</span></h2>
+      <p>Nutrition tracking that actually works for Georgetown dining halls. A Python scraper ingests the daily HoyaEats menus and per-item nutrition facts for every dining location; the app turns them into a two-tap food diary with a nutrition dashboard.</p>
+      <p class="pmf">Generic trackers fail on campus food — it isn't in their databases. Building the data pipeline (scraper → API → app) for one known, reachable user base made the product viable where MyFitnessPal isn't.</p>
+      <div class="tags"><span class="tag">Next.js</span><span class="tag">Supabase</span><span class="tag">Python scraper</span><span class="tag">3-repo pipeline</span></div>
+      <div class="cta"><a href="https://healthy-hoyas.vercel.app">Live ↗</a><a href="https://github.com/BrodieL3/HealthyHoyas-Prod">Code ↗</a><a href="https://github.com/BrodieL3/scraper-hoyaeats">Scraper ↗</a></div>
+    </article>
+
+    <article class="card">
+      <h2>ATLAS <span class="kind">Multi-agent AI research system</span></h2>
+      <p>A trading-research collective of AI agents with specialized roles (market analyst, news analyst, quant researcher) that debate strategy under evidence-first rules — every claim must cite a source. An accountability ledger adjusts each agent's voting power based on outcomes, and agents compete in role elections. Executes against an Alpaca paper-trading account with strict risk guardrails.</p>
+      <p class="pmf">A systems-design exercise in making LLM agents accountable: merit-weighted governance instead of trusting any single model's output.</p>
+      <div class="tags"><span class="tag">Python</span><span class="tag">Claude API</span><span class="tag">Multi-agent</span><span class="tag">Alpaca</span><span class="tag">25k+ LOC</span></div>
+      <div class="cta"><a href="https://github.com/BrodieL3/atlas-trading">Code ↗</a></div>
+    </article>
+
+    <article class="card">
+      <h2>Photon <span class="kind">In-browser photo editor</span></h2>
+      <p>A single-page photo editor with crop/resize/filters, drawing tools, and one-click background removal — 100% client-side. No accounts, no uploads, no server processing.</p>
+      <p class="pmf">Zero-friction consumer utility: the entire product is one HTML file, and privacy (nothing leaves the browser) is the differentiator.</p>
+      <div class="tags"><span class="tag">Vanilla JS</span><span class="tag">Canvas</span><span class="tag">Client-side ML</span></div>
+      <div class="cta"><a href="https://photon-rho.vercel.app">Live ↗</a><a href="https://github.com/BrodieL3/photon">Code ↗</a></div>
+    </article>
+  </main>
+
+  <footer>
+    Hosted on Vercel · Source on <a href="https://github.com/BrodieL3">GitHub</a>
+  </footer>
+</div>
+</body>
+</html>
