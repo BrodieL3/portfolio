@@ -4,7 +4,19 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Brodie Lee — Projects</title>
-<meta name="description" content="Brodie Lee builds products end-to-end: market assessment, data pipelines, and shipped software.">
+<meta name="description" content="Five shipped products: defense-tech news intelligence, social nightlife rankings, campus nutrition, multi-agent AI research, in-browser photo editing.">
+<link rel="canonical" href="https://brodielee.vercel.app/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://brodielee.vercel.app/">
+<meta property="og:title" content="Brodie Lee — Projects">
+<meta property="og:description" content="Five shipped products: defense-tech news intelligence, social nightlife rankings, campus nutrition, multi-agent AI research, in-browser photo editing.">
+<meta property="og:image" content="https://brodielee.vercel.app/img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Brodie Lee — Projects">
+<meta name="twitter:description" content="Five shipped products: defense-tech news intelligence, social nightlife rankings, campus nutrition, multi-agent AI research, in-browser photo editing.">
+<meta name="twitter:image" content="https://brodielee.vercel.app/img/og.png">
 <style>
   :root {
     --bg: #fafaf8;
@@ -14,6 +26,7 @@
     --border: #e5e5e0;
     --accent: #2456d6;
     --tag-bg: #f0f0ec;
+    --thumb-bg: #14161d;
   }
   @media (prefers-color-scheme: dark) {
     :root {
@@ -45,7 +58,27 @@
     background: var(--card);
     border: 1px solid var(--border);
     border-radius: 12px;
-    padding: 1.5rem 1.5rem 1.35rem;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 236px 1fr;
+  }
+  .thumb {
+    background: var(--thumb-bg);
+    border-right: 1px solid var(--border);
+    position: relative;
+    min-height: 100%;
+  }
+  .thumb img {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .card .body { padding: 1.5rem 1.5rem 1.35rem; }
+  @media (max-width: 640px) {
+    .card { grid-template-columns: 1fr; }
+    .thumb { border-right: none; border-bottom: 1px solid var(--border); aspect-ratio: 16 / 8; min-height: 0; }
+    .thumb img { position: static; aspect-ratio: 16 / 8; }
   }
   .card h2 { font-size: 1.2rem; letter-spacing: -0.01em; display: flex; align-items: baseline; gap: 0.6rem; flex-wrap: wrap; }
   .card h2 .kind { font-size: 0.75rem; font-weight: 500; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
@@ -73,43 +106,58 @@
 
   <main class="grid">
     <article class="card">
-      <h2>Field Brief <span class="kind">Defense-tech news intelligence</span></h2>
-      <p>A personalized news feed for the defense and government-tech niche. Ingests 15 curated outlets over RSS, extracts entities and topics with an LLM pipeline, clusters related articles into stories with cited digests, and re-ranks the feed around what each user follows. A companion dashboard tracks DoD contract awards (USAspending), SAM.gov opportunities, and defense-sector market data.</p>
-      <p class="pmf">The bet: defense professionals are a narrow, high-intent audience underserved by general news products — personalization plus procurement signals is the wedge.</p>
-      <div class="tags"><span class="tag">Next.js</span><span class="tag">Supabase</span><span class="tag">LLM pipeline</span><span class="tag">Embeddings</span><span class="tag">USAspending / SAM.gov</span></div>
-      <div class="cta"><a href="https://desem.vercel.app">Live ↗</a><a href="https://github.com/BrodieL3/desem">Code ↗</a></div>
+      <div class="thumb"><img src="img/fieldbrief.jpg" alt="Field Brief front page: dark editorial layout with story clusters and a geopolitical risk index" loading="lazy" style="object-position: 0 0;"></div>
+      <div class="body">
+        <h2>Field Brief <span class="kind">Defense-tech news intelligence</span></h2>
+        <p>A personalized news feed for the defense and government-tech niche. Ingests 15 curated outlets over RSS, extracts entities and topics with an LLM pipeline, clusters related articles into stories with cited digests, and re-ranks the feed around what each user follows. A companion dashboard tracks DoD contract awards (USAspending), SAM.gov opportunities, and defense-sector market data.</p>
+        <p class="pmf">The bet: defense professionals are a narrow, high-intent audience underserved by general news products — personalization plus procurement signals is the wedge.</p>
+        <div class="tags"><span class="tag">Next.js</span><span class="tag">Supabase</span><span class="tag">LLM pipeline</span><span class="tag">Embeddings</span><span class="tag">USAspending / SAM.gov</span></div>
+        <div class="cta"><a href="https://desem.vercel.app">Live ↗</a><a href="https://github.com/BrodieL3/desem">Code ↗</a></div>
+      </div>
     </article>
 
     <article class="card">
-      <h2>Rounds <span class="kind">Social nightlife discovery</span></h2>
-      <p>Rate the bars you visit, compare them head-to-head, and build a shareable personal ranking — powered by a per-user Bayesian Bradley–Terry model so sparse comparisons don't produce overconfident orderings. Friends-first social layer (DMs, group chats, polls, shared reviews) shipped before any public graph.</p>
-      <p class="pmf">Product decisions are documented as they were made: 10 ADRs including competitive assessments of event-data providers, a deliberately market-scoped beta (Boston/Cambridge), cohort-isolated rankings, and PostHog instrumentation from day one.</p>
-      <div class="tags"><span class="tag">React Native / Expo</span><span class="tag">Firebase</span><span class="tag">Bayesian ranking</span><span class="tag">PostHog</span></div>
-      <div class="cta"><a href="https://rounds-web-bice.vercel.app">Web preview ↗</a><a href="https://github.com/BrodieL3/rounds">Code ↗</a></div>
+      <div class="thumb"><img src="img/rounds.jpg" alt="Rounds app: personal ranking of Boston cocktail bars with loved/fine ratings" loading="lazy" style="object-position: 50% 18%;"></div>
+      <div class="body">
+        <h2>Rounds <span class="kind">Social nightlife discovery</span></h2>
+        <p>Rate the bars you visit, compare them head-to-head, and build a shareable personal ranking — powered by a per-user Bayesian Bradley–Terry model so sparse comparisons don't produce overconfident orderings. Friends-first social layer (DMs, group chats, polls, shared reviews) shipped before any public graph.</p>
+        <p class="pmf">Product decisions are documented as they were made: 10 ADRs including competitive assessments of event-data providers, a deliberately market-scoped beta (Boston/Cambridge), cohort-isolated rankings, and PostHog instrumentation from day one.</p>
+        <div class="tags"><span class="tag">React Native / Expo</span><span class="tag">Firebase</span><span class="tag">Bayesian ranking</span><span class="tag">PostHog</span></div>
+        <div class="cta"><a href="https://rounds-web-bice.vercel.app">Web preview ↗</a><a href="https://github.com/BrodieL3/rounds">Code ↗</a></div>
+      </div>
     </article>
 
     <article class="card">
-      <h2>HealthyHoyas <span class="kind">Campus nutrition tracking</span></h2>
-      <p>Nutrition tracking that actually works for Georgetown dining halls. A Python scraper ingests the daily HoyaEats menus and per-item nutrition facts for every dining location; the app turns them into a two-tap food diary with a nutrition dashboard.</p>
-      <p class="pmf">Generic trackers fail on campus food — it isn't in their databases. Building the data pipeline (scraper → API → app) for one known, reachable user base made the product viable where MyFitnessPal isn't.</p>
-      <div class="tags"><span class="tag">Next.js</span><span class="tag">Supabase</span><span class="tag">Python scraper</span><span class="tag">3-repo pipeline</span></div>
-      <div class="cta"><a href="https://www.healthyhoyas.com">Live ↗</a><a href="https://github.com/BrodieL3/HealthyHoyas-Prod">Code ↗</a><a href="https://github.com/BrodieL3/scraper-hoyaeats">Scraper ↗</a></div>
+      <div class="thumb"><img src="img/healthyhoyas.jpg" alt="HealthyHoyas landing page: nutrition tracking built for Georgetown dining halls" loading="lazy" style="object-position: 20% 40%;"></div>
+      <div class="body">
+        <h2>HealthyHoyas <span class="kind">Campus nutrition tracking</span></h2>
+        <p>Nutrition tracking that actually works for Georgetown dining halls. A Python scraper ingests the daily HoyaEats menus and per-item nutrition facts for every dining location; the app turns them into a two-tap food diary with a nutrition dashboard.</p>
+        <p class="pmf">Generic trackers fail on campus food — it isn't in their databases. Building the data pipeline (scraper → API → app) for one known, reachable user base made the product viable where MyFitnessPal isn't.</p>
+        <div class="tags"><span class="tag">Next.js</span><span class="tag">Supabase</span><span class="tag">Python scraper</span><span class="tag">3-repo pipeline</span></div>
+        <div class="cta"><a href="https://www.healthyhoyas.com">Live ↗</a><a href="https://github.com/BrodieL3/HealthyHoyas-Prod">Code ↗</a><a href="https://github.com/BrodieL3/scraper-hoyaeats">Scraper ↗</a></div>
+      </div>
     </article>
 
     <article class="card">
-      <h2>ATLAS <span class="kind">Multi-agent AI research system</span></h2>
-      <p>A trading-research collective of AI agents with specialized roles (market analyst, news analyst, quant researcher) that debate strategy under evidence-first rules — every claim must cite a source. An accountability ledger adjusts each agent's voting power based on outcomes, and agents compete in role elections. Executes against an Alpaca paper-trading account with strict risk guardrails.</p>
-      <p class="pmf">A systems-design exercise in making LLM agents accountable: merit-weighted governance instead of trusting any single model's output.</p>
-      <div class="tags"><span class="tag">Python</span><span class="tag">Claude API</span><span class="tag">Multi-agent</span><span class="tag">Alpaca</span><span class="tag">25k+ LOC</span></div>
-      <div class="cta"><a href="https://github.com/BrodieL3/atlas-trading">Code ↗</a></div>
+      <div class="thumb"><img src="img/atlas.jpg" alt="ATLAS terminal: seven AI agents deliberating a trade with citations and outcome-weighted votes" loading="lazy" style="object-position: 0 0;"></div>
+      <div class="body">
+        <h2>ATLAS <span class="kind">Multi-agent AI research system</span></h2>
+        <p>A trading-research collective of AI agents with specialized roles (market analyst, news analyst, quant researcher) that debate strategy under evidence-first rules — every claim must cite a source. An accountability ledger adjusts each agent's voting power based on outcomes, and agents compete in role elections. Executes against an Alpaca paper-trading account with strict risk guardrails.</p>
+        <p class="pmf">A systems-design exercise in making LLM agents accountable: merit-weighted governance instead of trusting any single model's output.</p>
+        <div class="tags"><span class="tag">Python</span><span class="tag">Claude API</span><span class="tag">Multi-agent</span><span class="tag">Alpaca</span><span class="tag">25k+ LOC</span></div>
+        <div class="cta"><a href="https://github.com/BrodieL3/atlas-trading">Code ↗</a></div>
+      </div>
     </article>
 
     <article class="card">
-      <h2>Photon <span class="kind">In-browser photo editor</span></h2>
-      <p>A single-page photo editor with crop/resize/filters, drawing tools, and one-click background removal — 100% client-side. No accounts, no uploads, no server processing.</p>
-      <p class="pmf">Zero-friction consumer utility: the entire product is one HTML file, and privacy (nothing leaves the browser) is the differentiator.</p>
-      <div class="tags"><span class="tag">Vanilla JS</span><span class="tag">Canvas</span><span class="tag">Client-side ML</span></div>
-      <div class="cta"><a href="https://photon-rho.vercel.app">Live ↗</a><a href="https://github.com/BrodieL3/photon">Code ↗</a></div>
+      <div class="thumb"><img src="img/photon.jpg" alt="Photon editor with a photo open: layers panel, filters, and drawing tools" loading="lazy" style="object-position: 32% 0;"></div>
+      <div class="body">
+        <h2>Photon <span class="kind">In-browser photo editor</span></h2>
+        <p>A single-page photo editor with crop/resize/filters, drawing tools, and one-click background removal — 100% client-side. No accounts, no uploads, no server processing.</p>
+        <p class="pmf">Zero-friction consumer utility: the entire product is one HTML file, and privacy (nothing leaves the browser) is the differentiator.</p>
+        <div class="tags"><span class="tag">Vanilla JS</span><span class="tag">Canvas</span><span class="tag">Client-side ML</span></div>
+        <div class="cta"><a href="https://photon-rho.vercel.app">Live ↗</a><a href="https://github.com/BrodieL3/photon">Code ↗</a></div>
+      </div>
     </article>
   </main>
 
