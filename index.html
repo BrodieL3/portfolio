@@ -17,219 +17,765 @@
 <meta name="twitter:title" content="Brodie Lee — Projects">
 <meta name="twitter:description" content="Five shipped products: defense-tech news intelligence, social nightlife rankings, campus nutrition, multi-agent AI research, in-browser photo editing.">
 <meta name="twitter:image" content="https://brodielee.vercel.app/img/og.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg: #fafaf8;
     --fg: #1a1a1a;
-    --muted: #6b6b66;
-    --card: #ffffff;
+    --muted: #62625d;
     --border: #e5e5e0;
     --accent: #2456d6;
-    --tag-bg: #f0f0ec;
-    --thumb-bg: #14161d;
+    --edge: rgba(0, 0, 0, 0.14);
+    --ease: cubic-bezier(0.22, 1, 0.36, 1);
   }
   @media (prefers-color-scheme: dark) {
     :root {
       --bg: #111113;
       --fg: #ededea;
       --muted: #9a9a94;
-      --card: #1a1a1e;
       --border: #2a2a2e;
       --accent: #7aa2ff;
-      --tag-bg: #26262b;
+      --edge: rgba(255, 255, 255, 0.12);
     }
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
+  @media (prefers-reduced-motion: no-preference) {
+    html { scroll-behavior: smooth; }
+  }
   body {
     background: var(--bg);
     color: var(--fg);
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-family: "Bricolage Grotesque", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
   }
-  .wrap { max-width: 880px; margin: 0 auto; padding: 4rem 1.5rem 3rem; }
-  header h1 { font-size: 2rem; letter-spacing: -0.02em; }
-  header .sub { color: var(--muted); margin-top: 0.4rem; max-width: 34rem; }
-  header .links { margin-top: 1rem; display: flex; gap: 1.25rem; font-size: 0.95rem; }
+  .inner { max-width: 1080px; margin: 0 auto; padding-inline: clamp(1.25rem, 4vw, 2rem); }
+
   a { color: var(--accent); text-decoration: none; }
   a:hover { text-decoration: underline; }
-  .grid { margin-top: 3rem; display: grid; gap: 1.25rem; }
-  .card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    overflow: hidden;
-    display: grid;
-    grid-template-columns: 236px 1fr;
+  a:focus, button:focus { outline: none; }
+  a:focus-visible, button:focus-visible, .ba:has(:focus-visible) {
+    outline: 2px solid var(--w-accent, var(--accent));
+    outline-offset: 2px;
   }
-  .thumb {
-    background: var(--thumb-bg);
-    border-right: 1px solid var(--border);
-    position: relative;
-    min-height: 100%;
-  }
-  .thumb img {
-    position: absolute; inset: 0;
-    width: 100%; height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-  .card .body { padding: 1.5rem 1.5rem 1.35rem; }
-  @media (max-width: 640px) {
-    .card { grid-template-columns: 1fr; }
-    .thumb { border-right: none; border-bottom: 1px solid var(--border); aspect-ratio: 16 / 8; min-height: 0; }
-    .thumb img { position: static; aspect-ratio: 16 / 8; }
-  }
-  .card h2 { font-size: 1.2rem; letter-spacing: -0.01em; display: flex; align-items: baseline; gap: 0.6rem; flex-wrap: wrap; }
-  .card h2 .kind { font-size: 0.75rem; font-weight: 500; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
-  .card p { margin-top: 0.55rem; color: var(--fg); font-size: 0.95rem; }
-  .card p.pmf { color: var(--muted); font-size: 0.9rem; margin-top: 0.5rem; }
-  .tags { margin-top: 0.85rem; display: flex; flex-wrap: wrap; gap: 0.4rem; }
-  .tag {
-    font-size: 0.75rem; color: var(--muted);
-    background: var(--tag-bg); border-radius: 999px; padding: 0.15rem 0.6rem;
-  }
-  .cta { margin-top: 1rem; display: flex; gap: 1.1rem; font-size: 0.92rem; font-weight: 500; }
-  footer { margin-top: 3.5rem; color: var(--muted); font-size: 0.85rem; }
 
-  .live { margin-top: 1rem; border-top: 1px solid var(--border); padding-top: 0.85rem; }
-  .live-head {
+  /* ---------- Hero (shell world) ---------- */
+  .hero { padding-block: clamp(3.5rem, 10vh, 6.5rem) clamp(2.5rem, 6vh, 4rem); }
+  .hero h1 {
+    font-size: clamp(3rem, 9vw, 5.5rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    text-wrap: balance;
+  }
+  .hero .sub {
+    margin-top: 1.2rem;
+    max-width: 42rem;
+    font-size: clamp(1.05rem, 2.2vw, 1.3rem);
+    line-height: 1.55;
+    text-wrap: pretty;
+  }
+  .hero .links { margin-top: 1.2rem; display: flex; gap: 1.4rem; font-size: 1rem; font-weight: 600; }
+  .worlds { margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 0.55rem; list-style: none; }
+  .worlds a {
+    display: inline-block;
+    padding: 0.45rem 1rem;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    font-weight: 650;
+    background: var(--p-bg);
+    color: var(--p-fg);
+    border: 1px solid var(--edge);
+    transition: transform 0.25s var(--ease);
+  }
+  .worlds a:hover { text-decoration: none; transform: translateY(-2px); }
+  .worlds .p-fb     { --p-bg: #0f1626; --p-fg: #9db9ff; }
+  .worlds .p-rounds { --p-bg: #0b0c0e; --p-fg: #c8f169; }
+  .worlds .p-hh     { --p-bg: #0a2a4e; --p-fg: #85b8f8; }
+  .worlds .p-atlas  { --p-bg: #081009; --p-fg: #4ee38a; }
+  .worlds .p-photon { --p-bg: #ffffff; --p-fg: #c21b74; }
+
+  @keyframes rise { from { opacity: 0; transform: translateY(16px); } }
+  .hero .inner > :not(.worlds) { animation: rise 0.65s var(--ease) backwards; }
+  .hero h1 { animation-delay: 0s; }
+  .hero .sub { animation-delay: 0.08s; }
+  .hero .links { animation-delay: 0.14s; }
+  .hero .worlds li { animation: rise 0.55s var(--ease) backwards; animation-delay: calc(0.2s + var(--i, 0) * 45ms); }
+
+  /* ---------- Worlds (full-bleed sections) ---------- */
+  .world {
+    background: var(--w-bg);
+    color: var(--w-ink);
+    padding-block: clamp(3rem, 8vh, 5rem);
+    margin-block-end: clamp(2.5rem, 6vh, 4rem);
+    scroll-margin-top: 1rem;
+  }
+  .world h2 {
+    font-size: clamp(2rem, 5vw, 2.9rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+    display: flex; align-items: baseline; gap: 0.8rem; flex-wrap: wrap;
+    text-wrap: balance;
+  }
+  .world h2 .kind { font-size: 1rem; font-weight: 600; letter-spacing: 0; color: var(--w-accent); }
+  .world p { margin-top: 0.9rem; font-size: 1rem; max-width: 62ch; text-wrap: pretty; }
+  .world p.pmf { color: var(--w-muted); font-size: 0.93rem; margin-top: 0.7rem; }
+  .world a { color: var(--w-accent); }
+
+  .w-fb     { --w-bg: #0f1626; --w-ink: #e9eef7; --w-muted: #a3b1c9; --w-accent: #9db9ff; --w-live: #ff5c4d; }
+  .w-rounds { --w-bg: #0b0c0e; --w-ink: #f0f2e9; --w-muted: #a6ab9c; --w-accent: #c8f169; }
+  .w-hh     { --w-bg: #0a2a4e; --w-ink: #edf4fc; --w-muted: #a4c0de; --w-accent: #85b8f8; }
+  .w-atlas  { --w-bg: #081009; --w-ink: #d6ecd9; --w-muted: #8fb397; --w-accent: #4ee38a; }
+  .w-photon { --w-bg: #ffffff; --w-ink: #17181a; --w-muted: #5c5c60; --w-accent: #c21b74;
+              border-block: 1px solid var(--border); }
+
+  .tags { margin-top: 1rem; display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .tag {
+    font-size: 0.76rem; font-weight: 550;
+    color: var(--w-muted);
+    background: color-mix(in srgb, var(--w-ink) 9%, transparent);
+    border-radius: 999px; padding: 0.18rem 0.65rem;
+  }
+  .w-atlas .tag { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.72rem; }
+  .cta { margin-top: 1.15rem; display: flex; flex-wrap: wrap; gap: 1.2rem; font-size: 0.96rem; font-weight: 700; }
+
+  .panel {
+    background: color-mix(in srgb, var(--w-ink) 6%, transparent);
+    border: 1px solid color-mix(in srgb, var(--w-ink) 15%, transparent);
+    border-radius: 14px;
+  }
+  .shot { border-radius: 12px; border: 1px solid color-mix(in srgb, var(--w-ink) 18%, transparent); display: block; max-width: 100%; }
+  .demo-note { margin-top: 0.7rem; color: var(--w-muted); font-size: 0.82rem; max-width: 48ch; }
+  .demo-head { font-weight: 750; font-size: 1.02rem; }
+  .demo-sub { color: var(--w-muted); font-size: 0.85rem; margin-top: 0.15rem; }
+
+  .cols { display: grid; gap: clamp(1.5rem, 4vw, 3rem); align-items: start; margin-top: 1.6rem; }
+  @media (min-width: 880px) {
+    .cols-fb { grid-template-columns: 1.1fr 0.9fr; }
+    .cols-rounds { grid-template-columns: 1fr 1.05fr; }
+    .cols-photon { grid-template-columns: 1.05fr 0.95fr; }
+  }
+  /* below 880px the demo column stacks after the project's text */
+  @media (max-width: 879.98px) {
+    .cols .demo-col { order: 2; }
+  }
+
+  /* ---------- Field Brief: the wire ---------- */
+  .wire { margin-top: clamp(1.5rem, 4vw, 2.25rem); padding: 1.15rem 1.3rem 1.25rem; }
+  .wire-head {
     display: flex; align-items: baseline; gap: 0.5rem; flex-wrap: wrap;
-    font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em;
-    color: var(--muted);
+    font-size: 0.74rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em;
+    color: var(--w-muted);
   }
   .live-dot {
-    width: 7px; height: 7px; border-radius: 50%; background: var(--accent);
+    width: 7px; height: 7px; border-radius: 50%; background: var(--w-live);
     align-self: center; animation: pulse 2.4s ease-in-out infinite;
   }
   @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
-  @media (prefers-reduced-motion: reduce) { .live-dot { animation: none; } }
-  .live-stats { margin-left: auto; font-weight: 500; text-transform: none; letter-spacing: 0; font-variant-numeric: tabular-nums; }
-  .live-list { list-style: none; margin-top: 0.55rem; display: grid; gap: 0.45rem; }
-  .live-list a { color: var(--fg); font-size: 0.88rem; line-height: 1.4; display: block; }
-  .live-list a:hover { color: var(--accent); text-decoration: none; }
-  .live-list .meta { color: var(--muted); font-size: 0.78rem; font-variant-numeric: tabular-nums; }
+  .wire-stats { margin-left: auto; font-weight: 550; text-transform: none; letter-spacing: 0; font-variant-numeric: tabular-nums; }
+  .wire ol { list-style: none; margin-top: 0.7rem; display: grid; gap: 0.5rem; }
+  .wire ol a { color: var(--w-ink); font-size: 0.92rem; line-height: 1.45; display: block; }
+  .wire ol a:hover { color: var(--w-accent); text-decoration: none; }
+  .wire .meta { color: var(--w-muted); font-size: 0.8rem; font-variant-numeric: tabular-nums; }
+  .wire.arrive { animation: rise 0.5s var(--ease) backwards; }
+  .wire.arrive ol li { animation: rise 0.45s var(--ease) backwards; animation-delay: calc(120ms + var(--i, 0) * 60ms); }
+
+  /* ---------- Rounds: head-to-head demo ---------- */
+  .duel { padding: 1.2rem 1.3rem 1.3rem; }
+  .duel-pair { display: grid; grid-template-columns: 1fr auto 1fr; gap: 0.7rem; align-items: stretch; margin-top: 0.9rem; }
+  .duel-pair .vs { align-self: center; color: var(--w-muted); font-weight: 700; font-size: 0.8rem; }
+  .duel button {
+    font: inherit; color: var(--w-ink);
+    background: color-mix(in srgb, var(--w-ink) 7%, transparent);
+    border: 1.5px solid color-mix(in srgb, var(--w-ink) 25%, transparent);
+    border-radius: 12px;
+    padding: 0.8rem 0.9rem;
+    min-height: 44px;
+    cursor: pointer;
+    text-align: left;
+    transition: border-color 0.2s var(--ease), background 0.2s var(--ease), transform 0.15s var(--ease);
+  }
+  .duel button:hover { border-color: var(--w-accent); background: color-mix(in srgb, var(--w-accent) 12%, transparent); }
+  .duel button:active { transform: scale(0.98); }
+  .duel button .b-name { font-weight: 750; display: block; }
+  .duel button .b-meta { color: var(--w-muted); font-size: 0.8rem; }
+  .ranking { list-style: none; margin-top: 1.1rem; display: grid; gap: 0.35rem; }
+  .ranking li {
+    display: grid; grid-template-columns: 1.6rem 1fr auto; gap: 0.6rem; align-items: baseline;
+    padding: 0.45rem 0.65rem;
+    border-radius: 9px;
+    background: color-mix(in srgb, var(--w-ink) 5%, transparent);
+    font-size: 0.92rem;
+  }
+  .ranking .rk { color: var(--w-muted); font-weight: 700; font-variant-numeric: tabular-nums; }
+  .ranking .nm { font-weight: 650; }
+  .ranking .nm small { color: var(--w-muted); font-weight: 450; font-size: 0.8rem; margin-left: 0.4rem; }
+  .ranking .sc {
+    font-variant-numeric: tabular-nums; font-size: 0.8rem; font-weight: 700;
+    color: #0b0c0e; background: var(--w-accent); border-radius: 999px; padding: 0.05rem 0.55rem;
+  }
+  .ranking li.moved { animation: won 0.9s var(--ease); }
+  @keyframes won {
+    from { background: color-mix(in srgb, var(--w-accent) 26%, transparent); }
+    to   { background: color-mix(in srgb, var(--w-ink) 5%, transparent); }
+  }
+  .duel button.swap .b-name, .duel button.swap .b-meta { animation: refade 0.22s ease-out; }
+  @keyframes refade { from { opacity: 0.35; } }
+  .rounds-shot { margin-top: 1.5rem; }
+  .rounds-shot img { max-height: 190px; width: 100%; object-fit: cover; object-position: 50% 32%; }
+
+  /* ---------- HealthyHoyas: plate demo ---------- */
+  .w-hh .lead { max-width: 62ch; }
+  .plate-grid { display: grid; gap: clamp(1.25rem, 3vw, 2rem); margin-top: 1.7rem; }
+  @media (min-width: 880px) { .plate-grid { grid-template-columns: 1.1fr 0.9fr; } }
+  .menu-panel, .macro-panel { padding: 1.15rem 1.25rem 1.25rem; }
+  .menu-list { list-style: none; margin-top: 0.8rem; display: grid; gap: 0.45rem; }
+  .menu-list button {
+    font: inherit; color: var(--w-ink);
+    width: 100%;
+    display: grid; grid-template-columns: 1fr auto; gap: 0.6rem; align-items: baseline;
+    background: color-mix(in srgb, var(--w-ink) 6%, transparent);
+    border: 1.5px solid color-mix(in srgb, var(--w-ink) 22%, transparent);
+    border-radius: 10px;
+    padding: 0.6rem 0.8rem;
+    min-height: 44px;
+    cursor: pointer;
+    text-align: left;
+    transition: border-color 0.2s var(--ease), background 0.2s var(--ease);
+  }
+  .menu-list button:hover { border-color: var(--w-accent); }
+  .menu-list button[aria-pressed="true"] {
+    border-color: var(--w-accent);
+    background: color-mix(in srgb, var(--w-accent) 16%, transparent);
+  }
+  .menu-list .m-name { font-weight: 650; font-size: 0.92rem; }
+  .menu-list .m-cal { color: var(--w-muted); font-size: 0.8rem; font-variant-numeric: tabular-nums; }
+  .menu-list button[aria-pressed="true"] .m-cal::after { content: " ✓"; color: var(--w-accent); }
+  .macro { margin-top: 1rem; }
+  .macro .m-row { display: flex; justify-content: space-between; align-items: baseline; font-size: 0.88rem; font-weight: 650; }
+  .macro .m-row span:last-child { font-variant-numeric: tabular-nums; color: var(--w-muted); font-weight: 550; }
+  .macro .bar {
+    margin-top: 0.35rem; height: 9px; border-radius: 999px;
+    background: color-mix(in srgb, var(--w-ink) 14%, transparent);
+    overflow: hidden;
+  }
+  .macro .fill {
+    display: block; height: 100%; border-radius: inherit;
+    background: var(--w-accent);
+    transform-origin: left center; transform: scaleX(0);
+    transition: transform 0.5s var(--ease);
+  }
+  .hh-shot { margin-top: 1.7rem; }
+  .hh-shot img { width: 100%; max-height: 230px; object-fit: cover; object-position: 20% 30%; }
+
+  /* ---------- ATLAS: terminal ---------- */
+  .term {
+    margin-top: 1.7rem;
+    background: #050a06;
+    border: 1px solid color-mix(in srgb, var(--w-ink) 18%, transparent);
+    border-radius: 14px;
+    overflow: hidden;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.83rem;
+    line-height: 1.55;
+  }
+  .term-bar {
+    display: flex; align-items: center; gap: 0.5rem;
+    padding: 0.55rem 0.9rem;
+    background: color-mix(in srgb, var(--w-ink) 8%, transparent);
+    border-bottom: 1px solid color-mix(in srgb, var(--w-ink) 14%, transparent);
+    color: var(--w-muted); font-size: 0.74rem;
+  }
+  .term-bar .dots { display: flex; gap: 5px; }
+  .term-bar .dots i { width: 9px; height: 9px; border-radius: 50%; background: color-mix(in srgb, var(--w-ink) 25%, transparent); }
+  .term-body { padding: 1rem 1.1rem 1.1rem; overflow-x: auto; }
+  .tl { white-space: pre; min-height: 1.55em; }
+  .t-sys { color: var(--w-accent); font-weight: 700; }
+  .t-agent { color: var(--w-ink); font-weight: 700; }
+  .t-agent .role { color: var(--w-muted); font-weight: 400; }
+  .t-claim { color: var(--w-ink); }
+  .t-cite { color: var(--w-muted); }
+  .term.armed .tl { visibility: hidden; }
+  .term.armed .tl.on { visibility: visible; }
+  .t-caret { color: var(--w-accent); animation: blink 1.1s steps(1) infinite; }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  /* ---------- Photon: before/after ---------- */
+  .ba {
+    position: relative;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    aspect-ratio: 492 / 460;
+    max-width: 560px;
+  }
+  .ba img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; user-select: none; -webkit-user-drag: none; }
+  .ba .after { filter: saturate(1.5) contrast(1.14) brightness(1.04); clip-path: inset(0 50% 0 0); }
+  .ba .divider {
+    position: absolute; top: 0; bottom: 0; left: 50%; width: 2px;
+    background: #fff; box-shadow: 0 0 8px rgba(0,0,0,0.55);
+    pointer-events: none;
+  }
+  .ba .divider::after {
+    content: "⟷";
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 38px; height: 38px; border-radius: 50%;
+    background: #fff; color: #17181a;
+    display: grid; place-items: center;
+    font-size: 1rem; font-weight: 700;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.35);
+  }
+  .ba input[type="range"] {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    opacity: 0; cursor: ew-resize; margin: 0;
+  }
+  .ba .lab {
+    position: absolute; bottom: 0.7rem;
+    background: rgba(10, 10, 12, 0.72); color: #fff;
+    font-size: 0.72rem; font-weight: 700; letter-spacing: 0.04em;
+    padding: 0.2rem 0.6rem; border-radius: 999px;
+    pointer-events: none;
+  }
+  .ba .lab-l { left: 0.7rem; }
+  .ba .lab-r { right: 0.7rem; }
+  .photon-shot { margin-top: 1.4rem; }
+  .photon-shot img { width: 100%; max-height: 210px; object-fit: cover; object-position: 0 0; }
+
+  footer { padding-block: 0.5rem clamp(2.5rem, 6vh, 4rem); color: var(--muted); font-size: 0.85rem; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero .inner > *, .hero .worlds li, .live-dot, .t-caret,
+    .wire.arrive, .wire.arrive ol li, .ranking li.moved, .duel button.swap .b-name, .duel button.swap .b-meta { animation: none; }
+    .worlds a, .duel button, .macro .fill, .menu-list button { transition: none; }
+    .term.armed .tl { visibility: visible; }
+  }
 </style>
 </head>
 <body>
-<div class="wrap">
-  <header>
+<header class="hero">
+  <div class="inner">
     <h1>Brodie Lee</h1>
     <p class="sub">Georgetown University. I build products end-to-end — from sizing up the market and the data that's available, to shipping the software and instrumenting whether it works.</p>
     <div class="links">
       <a href="https://github.com/BrodieL3">GitHub</a>
       <a href="mailto:bsl54@georgetown.edu">bsl54@georgetown.edu</a>
     </div>
-  </header>
+    <ul class="worlds" aria-label="Jump to a project">
+      <li style="--i:0"><a class="p-fb" href="#fieldbrief">Field Brief</a></li>
+      <li style="--i:1"><a class="p-rounds" href="#rounds">Rounds</a></li>
+      <li style="--i:2"><a class="p-hh" href="#healthyhoyas">HealthyHoyas</a></li>
+      <li style="--i:3"><a class="p-atlas" href="#atlas">ATLAS</a></li>
+      <li style="--i:4"><a class="p-photon" href="#photon">Photon</a></li>
+    </ul>
+  </div>
+</header>
 
-  <main class="grid">
-    <article class="card">
-      <div class="thumb"><img src="img/fieldbrief.jpg" alt="Field Brief front page: dark editorial layout with story clusters and a geopolitical risk index" loading="lazy" style="object-position: 0 0;"></div>
-      <div class="body">
-        <h2>Field Brief <span class="kind">Defense-tech news intelligence</span></h2>
-        <p>A personalized news feed for the defense and government-tech niche. Ingests 15 curated outlets over RSS, extracts entities and topics with an LLM pipeline, clusters related articles into stories with cited digests, and re-ranks the feed around what each user follows. A companion dashboard tracks DoD contract awards (USAspending), SAM.gov opportunities, and defense-sector market data.</p>
-        <p class="pmf">The bet: defense professionals are a narrow, high-intent audience underserved by general news products — personalization plus procurement signals is the wedge.</p>
-        <div class="tags"><span class="tag">Next.js</span><span class="tag">Supabase</span><span class="tag">LLM pipeline</span><span class="tag">Embeddings</span><span class="tag">USAspending / SAM.gov</span></div>
-        <div class="live" id="fb-live" hidden>
-          <div class="live-head"><span class="live-dot" aria-hidden="true"></span>Live from the feed<span class="live-stats" id="fb-stats"></span></div>
-          <ol class="live-list" id="fb-list"></ol>
+<main>
+  <!-- ============ Field Brief ============ -->
+  <section class="world w-fb" id="fieldbrief" aria-label="Field Brief">
+    <div class="inner">
+      <div class="cols cols-fb">
+        <div>
+          <h2>Field Brief <span class="kind">Defense-tech news intelligence</span></h2>
+          <p>A personalized news feed for the defense and government-tech niche. Ingests 15 curated outlets over RSS, extracts entities and topics with an LLM pipeline, clusters related articles into stories with cited digests, and re-ranks the feed around what each user follows. A companion dashboard tracks DoD contract awards (USAspending), SAM.gov opportunities, and defense-sector market data.</p>
+          <p class="pmf">The bet: defense professionals are a narrow, high-intent audience underserved by general news products — personalization plus procurement signals is the wedge.</p>
+          <div class="tags"><span class="tag">Next.js</span><span class="tag">Supabase</span><span class="tag">LLM pipeline</span><span class="tag">Embeddings</span><span class="tag">USAspending / SAM.gov</span></div>
+          <div class="cta"><a href="https://desem.vercel.app">Live ↗</a><a href="https://github.com/BrodieL3/desem">Code ↗</a></div>
         </div>
-        <div class="cta"><a href="https://desem.vercel.app">Live ↗</a><a href="https://github.com/BrodieL3/desem">Code ↗</a></div>
+        <img class="shot" src="img/fieldbrief.jpg" alt="Field Brief front page: dark editorial layout with story clusters and a geopolitical risk index" loading="lazy">
       </div>
-    </article>
-
-    <article class="card">
-      <div class="thumb"><img src="img/rounds.jpg" alt="Rounds app: personal ranking of Boston cocktail bars with loved/fine ratings" loading="lazy" style="object-position: 50% 18%;"></div>
-      <div class="body">
-        <h2>Rounds <span class="kind">Social nightlife discovery</span></h2>
-        <p>Rate the bars you visit, compare them head-to-head, and build a shareable personal ranking — powered by a per-user Bayesian Bradley–Terry model so sparse comparisons don't produce overconfident orderings. Friends-first social layer (DMs, group chats, polls, shared reviews) shipped before any public graph.</p>
-        <p class="pmf">Product decisions are documented as they were made: 10 ADRs including competitive assessments of event-data providers, a deliberately market-scoped beta (Boston/Cambridge), cohort-isolated rankings, and PostHog instrumentation from day one.</p>
-        <div class="tags"><span class="tag">React Native / Expo</span><span class="tag">Firebase</span><span class="tag">Bayesian ranking</span><span class="tag">PostHog</span></div>
-        <div class="cta"><a href="https://rounds-web-bice.vercel.app">Site ↗</a><a href="https://github.com/BrodieL3/rounds">Code ↗</a></div>
+      <div class="wire panel" id="fb-live" hidden>
+        <div class="wire-head"><span class="live-dot" aria-hidden="true"></span>Live from the feed<span class="wire-stats" id="fb-stats"></span></div>
+        <ol id="fb-list"></ol>
+        <p class="demo-note">These headlines are being served right now by Field Brief's public API — the same pipeline the product runs on.</p>
       </div>
-    </article>
+    </div>
+  </section>
 
-    <article class="card">
-      <div class="thumb"><img src="img/healthyhoyas.jpg" alt="HealthyHoyas landing page: nutrition tracking built for Georgetown dining halls" loading="lazy" style="object-position: 20% 40%;"></div>
-      <div class="body">
-        <h2>HealthyHoyas <span class="kind">Campus nutrition tracking</span></h2>
-        <p>Nutrition tracking that actually works for Georgetown dining halls. A Python scraper ingests the daily HoyaEats menus and per-item nutrition facts for every dining location; the app turns them into a two-tap food diary with a nutrition dashboard.</p>
-        <p class="pmf">Generic trackers fail on campus food — it isn't in their databases. Building the data pipeline (scraper → API → app) for one known, reachable user base made the product viable where MyFitnessPal isn't.</p>
-        <div class="tags"><span class="tag">Next.js</span><span class="tag">Supabase</span><span class="tag">Python scraper</span><span class="tag">3-repo pipeline</span></div>
-        <div class="cta"><a href="https://www.healthyhoyas.com">Live ↗</a><a href="https://github.com/BrodieL3/HealthyHoyas-Prod">Code ↗</a><a href="https://github.com/BrodieL3/scraper-hoyaeats">Scraper ↗</a></div>
+  <!-- ============ Rounds ============ -->
+  <section class="world w-rounds" id="rounds" aria-label="Rounds">
+    <div class="inner">
+      <div class="cols cols-rounds">
+        <div class="demo-col">
+          <div class="duel panel">
+            <div class="demo-head">Which bar wins?</div>
+            <div class="demo-sub">Tap to vote — watch the ranking re-fit.</div>
+            <div class="duel-pair">
+              <button type="button" id="duel-a" aria-label="Pick The Hawthorne"><span class="b-name">The Hawthorne</span><span class="b-meta">Cocktail Bar · Kenmore</span></button>
+              <span class="vs" aria-hidden="true">VS</span>
+              <button type="button" id="duel-b" aria-label="Pick Backbar"><span class="b-name">Backbar</span><span class="b-meta">Cocktail Bar · Somerville</span></button>
+            </div>
+            <ol class="ranking" id="duel-rank">
+              <li><span class="rk">1</span><span class="nm">The Hawthorne<small>Cocktail Bar · Kenmore</small></span><span class="sc">1520</span></li>
+              <li><span class="rk">2</span><span class="nm">Backbar<small>Cocktail Bar · Somerville</small></span><span class="sc">1505</span></li>
+              <li><span class="rk">3</span><span class="nm">Yvonne's<small>Cocktail Bar · Downtown</small></span><span class="sc">1495</span></li>
+              <li><span class="rk">4</span><span class="nm">Drink<small>Cocktail Bar · Fort Point</small></span><span class="sc">1490</span></li>
+              <li><span class="rk">5</span><span class="nm">State Park<small>Dive Bar · Kendall</small></span><span class="sc">1480</span></li>
+            </ol>
+            <p class="demo-note">A toy of the real thing: the app fits a per-user Bayesian Bradley–Terry model, so sparse comparisons don't produce overconfident orderings.</p>
+            <div class="sr-status" id="duel-status" aria-live="polite" style="position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);"></div>
+          </div>
+        </div>
+        <div>
+          <h2>Rounds <span class="kind">Social nightlife discovery</span></h2>
+          <p>Rate the bars you visit, compare them head-to-head, and build a shareable personal ranking — powered by a per-user Bayesian Bradley–Terry model so sparse comparisons don't produce overconfident orderings. Friends-first social layer (DMs, group chats, polls, shared reviews) shipped before any public graph.</p>
+          <p class="pmf">Product decisions are documented as they were made: 10 ADRs including competitive assessments of event-data providers, a deliberately market-scoped beta (Boston/Cambridge), cohort-isolated rankings, and PostHog instrumentation from day one.</p>
+          <div class="tags"><span class="tag">React Native / Expo</span><span class="tag">Firebase</span><span class="tag">Bayesian ranking</span><span class="tag">PostHog</span></div>
+          <div class="cta"><a href="https://rounds-web-bice.vercel.app">Site ↗</a><a href="https://github.com/BrodieL3/rounds">Code ↗</a></div>
+          <div class="rounds-shot">
+            <img class="shot" src="img/rounds.jpg" alt="Rounds app: personal ranking of Boston cocktail bars with loved/fine ratings" loading="lazy">
+          </div>
+        </div>
       </div>
-    </article>
+    </div>
+  </section>
 
-    <article class="card">
-      <div class="thumb"><img src="img/atlas.jpg" alt="ATLAS terminal: seven AI agents deliberating a trade with citations and outcome-weighted votes" loading="lazy" style="object-position: 0 0;"></div>
-      <div class="body">
-        <h2>ATLAS <span class="kind">Multi-agent AI research system</span></h2>
-        <p>A trading-research collective of AI agents with specialized roles (market analyst, news analyst, quant researcher) that debate strategy under evidence-first rules — every claim must cite a source. An accountability ledger adjusts each agent's voting power based on outcomes, and agents compete in role elections. Executes against an Alpaca paper-trading account with strict risk guardrails.</p>
-        <p class="pmf">A systems-design exercise in making LLM agents accountable: merit-weighted governance instead of trusting any single model's output.</p>
-        <div class="tags"><span class="tag">Python</span><span class="tag">Claude API</span><span class="tag">Multi-agent</span><span class="tag">Alpaca</span><span class="tag">25k+ LOC</span></div>
-        <div class="cta"><a href="https://github.com/BrodieL3/atlas-trading">Code ↗</a></div>
+  <!-- ============ HealthyHoyas ============ -->
+  <section class="world w-hh" id="healthyhoyas" aria-label="HealthyHoyas">
+    <div class="inner">
+      <h2>HealthyHoyas <span class="kind">Campus nutrition tracking</span></h2>
+      <p class="lead">Nutrition tracking that actually works for Georgetown dining halls. A Python scraper ingests the daily HoyaEats menus and per-item nutrition facts for every dining location; the app turns them into a two-tap food diary with a nutrition dashboard.</p>
+      <p class="pmf">Generic trackers fail on campus food — it isn't in their databases. Building the data pipeline (scraper → API → app) for one known, reachable user base made the product viable where MyFitnessPal isn't.</p>
+      <div class="tags"><span class="tag">Next.js</span><span class="tag">Supabase</span><span class="tag">Python scraper</span><span class="tag">3-repo pipeline</span></div>
+      <div class="cta"><a href="https://www.healthyhoyas.com">Live ↗</a><a href="https://github.com/BrodieL3/HealthyHoyas-Prod">Code ↗</a><a href="https://github.com/BrodieL3/scraper-hoyaeats">Scraper ↗</a></div>
+
+      <div class="plate-grid">
+        <div class="menu-panel panel">
+          <div class="demo-head">Build a plate from Leo's</div>
+          <div class="demo-sub">Tap items — the diary fills in like the app.</div>
+          <ul class="menu-list" id="hh-menu">
+            <li><button type="button" aria-pressed="false"><span class="m-name">Grilled Chicken Breast</span><span class="m-cal">230 cal</span></button></li>
+            <li><button type="button" aria-pressed="false"><span class="m-name">Garlic Herb Potatoes</span><span class="m-cal">180 cal</span></button></li>
+            <li><button type="button" aria-pressed="false"><span class="m-name">Steamed Broccoli</span><span class="m-cal">55 cal</span></button></li>
+            <li><button type="button" aria-pressed="false"><span class="m-name">Cheese Pizza Slice</span><span class="m-cal">320 cal</span></button></li>
+            <li><button type="button" aria-pressed="false"><span class="m-name">Black Bean Bowl</span><span class="m-cal">260 cal</span></button></li>
+            <li><button type="button" aria-pressed="false"><span class="m-name">Soft Serve Cone</span><span class="m-cal">210 cal</span></button></li>
+          </ul>
+        </div>
+        <div class="macro-panel panel">
+          <div class="demo-head">Today's lunch</div>
+          <div class="demo-sub" id="hh-count">Nothing logged yet</div>
+          <div class="macro">
+            <div class="m-row"><span>Calories</span><span><b id="hh-cal">0</b> / 800</span></div>
+            <div class="bar"><span class="fill" id="hh-cal-bar"></span></div>
+          </div>
+          <div class="macro">
+            <div class="m-row"><span>Protein</span><span><b id="hh-pro">0</b> / 45g</span></div>
+            <div class="bar"><span class="fill" id="hh-pro-bar"></span></div>
+          </div>
+          <div class="macro">
+            <div class="m-row"><span>Carbs</span><span><b id="hh-carb">0</b> / 90g</span></div>
+            <div class="bar"><span class="fill" id="hh-carb-bar"></span></div>
+          </div>
+          <p class="demo-note">Sample items from a scraped HoyaEats menu — the real app serves every dining hall, every day.</p>
+        </div>
       </div>
-    </article>
-
-    <article class="card">
-      <div class="thumb"><img src="img/photon.jpg" alt="Photon editor with a photo open: layers panel, filters, and drawing tools" loading="lazy" style="object-position: 32% 0;"></div>
-      <div class="body">
-        <h2>Photon <span class="kind">In-browser photo editor</span></h2>
-        <p>A single-page photo editor with crop/resize/filters, drawing tools, and one-click background removal — 100% client-side. No accounts, no uploads, no server processing.</p>
-        <p class="pmf">Zero-friction consumer utility: the entire product is one HTML file, and privacy (nothing leaves the browser) is the differentiator.</p>
-        <div class="tags"><span class="tag">Vanilla JS</span><span class="tag">Canvas</span><span class="tag">Client-side ML</span></div>
-        <div class="cta"><a href="https://photon-rho.vercel.app">Live ↗</a><a href="https://github.com/BrodieL3/photon">Code ↗</a></div>
+      <div class="hh-shot">
+        <img class="shot" src="img/healthyhoyas.jpg" alt="HealthyHoyas landing page: nutrition tracking built for Georgetown dining halls" loading="lazy">
       </div>
-    </article>
-  </main>
+    </div>
+  </section>
 
-  <footer>
-    Hosted on Vercel · Source on <a href="https://github.com/BrodieL3">GitHub</a>
-  </footer>
-</div>
+  <!-- ============ ATLAS ============ -->
+  <section class="world w-atlas" id="atlas" aria-label="ATLAS">
+    <div class="inner">
+      <h2>ATLAS <span class="kind">Multi-agent AI research system</span></h2>
+      <p>A trading-research collective of AI agents with specialized roles (market analyst, news analyst, quant researcher) that debate strategy under evidence-first rules — every claim must cite a source. An accountability ledger adjusts each agent's voting power based on outcomes, and agents compete in role elections. Executes against an Alpaca paper-trading account with strict risk guardrails.</p>
+      <p class="pmf">A systems-design exercise in making LLM agents accountable: merit-weighted governance instead of trusting any single model's output.</p>
+      <div class="tags"><span class="tag">Python</span><span class="tag">Claude API</span><span class="tag">Multi-agent</span><span class="tag">Alpaca</span><span class="tag">25k+ LOC</span></div>
+      <div class="cta"><a href="https://github.com/BrodieL3/atlas-trading">Code ↗</a></div>
+
+      <div class="term" id="term">
+        <div class="term-bar"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>atlas — deliberation · paper account · representative transcript</div>
+        <div class="term-body">
+          <div class="tl t-sys" data-d="420">[atlas] convening deliberation — 7 agents · topic: semiconductor momentum</div>
+          <div class="tl t-agent" data-d="300">MERLIN <span class="role">· market analyst · weight 0.19</span></div>
+          <div class="tl t-claim" data-d="140">  SMH up 3.2% this week on above-average volume; breadth is narrow</div>
+          <div class="tl t-cite" data-d="90">  ↳ cite: alpaca:bars/SMH/1D 2025-10-21..10-27</div>
+          <div class="tl t-agent" data-d="300">IRIS <span class="role">· news analyst · weight 0.14</span></div>
+          <div class="tl t-claim" data-d="140">  Two fab-capacity headlines contradict the momentum read</div>
+          <div class="tl t-cite" data-d="90">  ↳ cite: newsapi:reuters 2025-10-27T14:02Z</div>
+          <div class="tl t-agent" data-d="300">GAUSS <span class="role">· quant researcher · weight 0.17</span></div>
+          <div class="tl t-claim" data-d="140">  10-day realized vol 31.4 vs implied 27.9 — vol is underpriced</div>
+          <div class="tl t-cite" data-d="90">  ↳ cite: fred:VIXCLS 2025-10-27</div>
+          <div class="tl t-agent" data-d="300">AEGIS <span class="role">· risk · weight 0.16</span></div>
+          <div class="tl t-claim" data-d="140">  Position would breach the 12% sector cap after Friday's drift</div>
+          <div class="tl t-cite" data-d="90">  ↳ cite: ledger:positions 2025-10-28T09:30Z</div>
+          <div class="tl t-sys" data-d="500">[atlas] challenge phase — IRIS contests MERLIN's breadth claim</div>
+          <div class="tl t-sys" data-d="500">[atlas] vote (outcome-weighted) — TRIM to sector cap · 5–2</div>
+          <div class="tl t-sys" data-d="400">[atlas] orders → alpaca:paper · ledger updated · outcomes pending <span class="t-caret">▮</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ Photon ============ -->
+  <section class="world w-photon" id="photon" aria-label="Photon">
+    <div class="inner">
+      <div class="cols cols-photon">
+        <div class="demo-col">
+          <div class="ba" id="ba">
+            <img src="img/photo-demo.jpg" alt="Georgetown rugby team celebrating with a trophy — original photo" loading="lazy">
+            <img class="after" src="img/photo-demo.jpg" alt="" aria-hidden="true" loading="lazy">
+            <div class="divider" id="ba-divider"></div>
+            <span class="lab lab-l">EDITED</span>
+            <span class="lab lab-r">ORIGINAL</span>
+            <input type="range" id="ba-range" min="0" max="100" value="50" aria-label="Compare original and edited photo">
+          </div>
+          <p class="demo-note">Drag the handle — the edit is a live filter chain running in your browser, the same idea Photon runs on canvas.</p>
+        </div>
+        <div>
+          <h2>Photon <span class="kind">In-browser photo editor</span></h2>
+          <p>A single-page photo editor with crop/resize/filters, drawing tools, and one-click background removal — 100% client-side. No accounts, no uploads, no server processing.</p>
+          <p class="pmf">Zero-friction consumer utility: the entire product is one HTML file, and privacy (nothing leaves the browser) is the differentiator.</p>
+          <div class="tags"><span class="tag">Vanilla JS</span><span class="tag">Canvas</span><span class="tag">Client-side ML</span></div>
+          <div class="cta"><a href="https://photon-rho.vercel.app">Live ↗</a><a href="https://github.com/BrodieL3/photon">Code ↗</a></div>
+          <div class="photon-shot">
+            <img class="shot" src="img/photon.jpg" alt="Photon editor with a photo open: layers panel, filters, and drawing tools" loading="lazy">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="inner">Hosted on Vercel · Source on <a href="https://github.com/BrodieL3">GitHub</a></div>
+</footer>
+
 <script>
-(async () => {
-  const box = document.getElementById('fb-live');
-  try {
-    const res = await fetch('https://desem.vercel.app/api/portfolio-feed', { signal: AbortSignal.timeout(6000) });
-    if (!res.ok) return;
-    const data = await res.json();
-    if (!Array.isArray(data.items) || data.items.length === 0) return;
+(() => {
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    const rel = (iso) => {
-      if (!iso) return '';
-      const m = Math.max(0, Math.round((Date.now() - new Date(iso)) / 60000));
-      if (m < 60) return m + 'm ago';
-      const h = Math.round(m / 60);
-      if (h < 24) return h + 'h ago';
-      return Math.round(h / 24) + 'd ago';
+  /* ---------- Field Brief live wire ---------- */
+  (async () => {
+    const box = document.getElementById('fb-live');
+    try {
+      const res = await fetch('https://desem.vercel.app/api/portfolio-feed', { signal: AbortSignal.timeout(6000) });
+      if (!res.ok) return;
+      const data = await res.json();
+      if (!Array.isArray(data.items) || data.items.length === 0) return;
+      const rel = (iso) => {
+        if (!iso) return '';
+        const m = Math.max(0, Math.round((Date.now() - new Date(iso)) / 60000));
+        if (m < 60) return m + 'm ago';
+        const h = Math.round(m / 60);
+        if (h < 24) return h + 'h ago';
+        return Math.round(h / 24) + 'd ago';
+      };
+      const list = document.getElementById('fb-list');
+      let idx = 0;
+      for (const item of data.items.slice(0, 4)) {
+        if (!item.title || !item.url) continue;
+        const li = document.createElement('li');
+        li.style.setProperty('--i', idx++);
+        const a = document.createElement('a');
+        a.href = item.url;
+        a.textContent = item.title;
+        const meta = document.createElement('span');
+        meta.className = 'meta';
+        meta.textContent = ' — ' + [item.source, rel(item.publishedAt)].filter(Boolean).join(' · ');
+        a.appendChild(meta);
+        li.appendChild(a);
+        list.appendChild(li);
+      }
+      if (!list.children.length) return;
+      const s = data.stats || {};
+      const parts = [];
+      if (s.totalArticles != null) parts.push(s.totalArticles.toLocaleString() + ' articles ingested');
+      if (s.articlesLast24h != null) parts.push(s.articlesLast24h + ' today');
+      if (s.sourceCount != null) parts.push(s.sourceCount + ' sources');
+      document.getElementById('fb-stats').textContent = parts.join(' · ');
+      box.classList.add('arrive');
+      box.hidden = false;
+    } catch (_) { /* endpoint unreachable — section stays static */ }
+  })();
+
+  /* ---------- Rounds: head-to-head Elo demo ---------- */
+  (() => {
+    const rankEl = document.getElementById('duel-rank');
+    const btnA = document.getElementById('duel-a');
+    const btnB = document.getElementById('duel-b');
+    const status = document.getElementById('duel-status');
+    if (!rankEl || !btnA || !btnB) return;
+    const bars = [
+      { name: 'The Hawthorne', meta: 'Cocktail Bar · Kenmore', elo: 1520 },
+      { name: 'Backbar', meta: 'Cocktail Bar · Somerville', elo: 1505 },
+      { name: "Yvonne's", meta: 'Cocktail Bar · Downtown', elo: 1495 },
+      { name: 'Drink', meta: 'Cocktail Bar · Fort Point', elo: 1490 },
+      { name: 'State Park', meta: 'Dive Bar · Kendall', elo: 1480 },
+    ];
+    const els = new Map();
+    [...rankEl.children].forEach((li, i) => els.set(bars[i], li));
+    const render = () => {
+      bars.sort((a, b) => b.elo - a.elo);
+      bars.forEach((b, i) => {
+        const li = els.get(b);
+        li.querySelector('.rk').textContent = (i + 1);
+        li.querySelector('.sc').textContent = Math.round(b.elo);
+        rankEl.appendChild(li);
+      });
     };
+    const flip = (mutate) => {
+      if (reduced) { mutate(); return; }
+      const first = new Map([...els.values()].map(el => [el, el.getBoundingClientRect().top]));
+      mutate();
+      for (const el of els.values()) {
+        const d = first.get(el) - el.getBoundingClientRect().top;
+        if (d) {
+          el.style.transition = 'none';
+          el.style.transform = 'translateY(' + d + 'px)';
+          requestAnimationFrame(() => {
+            el.style.transition = 'transform 0.45s cubic-bezier(0.22,1,0.36,1)';
+            el.style.transform = '';
+          });
+        }
+      }
+    };
+    let pair = [];
+    const newPair = (animateSwap) => {
+      let a = bars[Math.floor(Math.random() * bars.length)], b;
+      do { b = bars[Math.floor(Math.random() * bars.length)]; } while (b === a);
+      pair = [a, b];
+      for (const [btn, bar] of [[btnA, a], [btnB, b]]) {
+        btn.querySelector('.b-name').textContent = bar.name;
+        btn.querySelector('.b-meta').textContent = bar.meta;
+        btn.setAttribute('aria-label', 'Pick ' + bar.name);
+        if (animateSwap) {
+          btn.classList.remove('swap');
+          void btn.offsetWidth;
+          btn.classList.add('swap');
+        }
+      }
+    };
+    const pick = (winIdx) => {
+      const [w, l] = winIdx === 0 ? pair : [pair[1], pair[0]];
+      const exp = 1 / (1 + Math.pow(10, (l.elo - w.elo) / 400));
+      const delta = 32 * (1 - exp);
+      w.elo += delta; l.elo -= delta;
+      flip(render);
+      const wEl = els.get(w);
+      wEl.classList.remove('moved');
+      void wEl.offsetWidth;
+      wEl.classList.add('moved');
+      status.textContent = w.name + ' beats ' + l.name + '. Ranking updated.';
+      newPair(true);
+    };
+    btnA.addEventListener('click', () => pick(0));
+    btnB.addEventListener('click', () => pick(1));
+    render();
+    newPair();
+  })();
 
-    const list = document.getElementById('fb-list');
-    for (const item of data.items.slice(0, 4)) {
-      if (!item.title || !item.url) continue;
-      const li = document.createElement('li');
-      const a = document.createElement('a');
-      a.href = item.url;
-      a.textContent = item.title;
-      const meta = document.createElement('span');
-      meta.className = 'meta';
-      meta.textContent = ' — ' + [item.source, rel(item.publishedAt)].filter(Boolean).join(' · ');
-      a.appendChild(meta);
-      li.appendChild(a);
-      list.appendChild(li);
+  /* ---------- HealthyHoyas: plate demo ---------- */
+  (() => {
+    const menuEl = document.getElementById('hh-menu');
+    if (!menuEl) return;
+    const items = [
+      { name: 'Grilled Chicken Breast', cal: 230, pro: 42, carb: 0 },
+      { name: 'Garlic Herb Potatoes', cal: 180, pro: 3, carb: 30 },
+      { name: 'Steamed Broccoli', cal: 55, pro: 4, carb: 10 },
+      { name: 'Cheese Pizza Slice', cal: 320, pro: 14, carb: 38 },
+      { name: 'Black Bean Bowl', cal: 260, pro: 15, carb: 42 },
+      { name: 'Soft Serve Cone', cal: 210, pro: 5, carb: 33 },
+    ];
+    const goals = { cal: 800, pro: 45, carb: 90 };
+    const picked = new Set();
+    [...menuEl.querySelectorAll('button')].forEach((btn, i) => {
+      const it = items[i];
+      if (!it) return;
+      btn.addEventListener('click', () => {
+        picked.has(it) ? picked.delete(it) : picked.add(it);
+        btn.setAttribute('aria-pressed', picked.has(it) ? 'true' : 'false');
+        update();
+      });
+    });
+    const tween = (el, to, suffix) => {
+      if (reduced) { el.textContent = to + suffix; return; }
+      const from = parseInt(el.textContent, 10) || 0;
+      if (from === to) { el.textContent = to + suffix; return; }
+      const t0 = performance.now(), dur = 280;
+      const frame = (t) => {
+        const p = Math.min(1, (t - t0) / dur);
+        const e = 1 - Math.pow(1 - p, 3);
+        el.textContent = Math.round(from + (to - from) * e) + suffix;
+        if (p < 1) requestAnimationFrame(frame);
+      };
+      requestAnimationFrame(frame);
+    };
+    const update = () => {
+      const t = { cal: 0, pro: 0, carb: 0 };
+      for (const it of picked) { t.cal += it.cal; t.pro += it.pro; t.carb += it.carb; }
+      tween(document.getElementById('hh-cal'), t.cal, '');
+      tween(document.getElementById('hh-pro'), t.pro, 'g');
+      tween(document.getElementById('hh-carb'), t.carb, 'g');
+      document.getElementById('hh-count').textContent = picked.size
+        ? picked.size + ' item' + (picked.size > 1 ? 's' : '') + ' logged'
+        : 'Nothing logged yet';
+      for (const [k, id] of [['cal', 'hh-cal-bar'], ['pro', 'hh-pro-bar'], ['carb', 'hh-carb-bar']]) {
+        document.getElementById(id).style.transform = 'scaleX(' + Math.min(1, t[k] / goals[k]) + ')';
+      }
+    };
+  })();
+
+  /* ---------- ATLAS: terminal typewriter ---------- */
+  (() => {
+    const term = document.getElementById('term');
+    if (!term || reduced || !('IntersectionObserver' in window)) return;
+    const lines = [...term.querySelectorAll('.tl')];
+    term.classList.add('armed');
+    const io = new IntersectionObserver((entries) => {
+      if (!entries.some(e => e.isIntersecting)) return;
+      io.disconnect();
+      let i = 0;
+      (function step() {
+        if (i >= lines.length) return;
+        const line = lines[i];
+        line.classList.add('on');
+        i++;
+        setTimeout(step, Number(line.dataset.d) || 120);
+      })();
+    }, { threshold: 0.35 });
+    io.observe(term);
+  })();
+
+  /* ---------- Photon: before/after ---------- */
+  (() => {
+    const range = document.getElementById('ba-range');
+    const after = document.querySelector('#ba .after');
+    const divider = document.getElementById('ba-divider');
+    if (!range || !after || !divider) return;
+    const set = (v) => {
+      after.style.clipPath = 'inset(0 ' + (100 - v) + '% 0 0)';
+      divider.style.left = v + '%';
+    };
+    let touched = false;
+    range.addEventListener('input', () => { touched = true; set(range.value); });
+    set(range.value);
+    /* one-time drag hint: the handle dips and returns when the demo scrolls into view */
+    if (!reduced && 'IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries) => {
+        if (!entries.some(e => e.isIntersecting)) return;
+        io.disconnect();
+        if (touched) return;
+        const t0 = performance.now(), dur = 1100;
+        const frame = (t) => {
+          if (touched) { set(range.value); return; }
+          const p = Math.min(1, (t - t0) / dur);
+          const v = 50 - 9 * Math.sin(p * Math.PI);
+          range.value = Math.round(v);
+          set(v);
+          if (p < 1) requestAnimationFrame(frame);
+        };
+        requestAnimationFrame(frame);
+      }, { threshold: 0.6 });
+      io.observe(document.getElementById('ba'));
     }
-    if (!list.children.length) return;
-
-    const s = data.stats || {};
-    const parts = [];
-    if (s.totalArticles != null) parts.push(s.totalArticles.toLocaleString() + ' articles ingested');
-    if (s.articlesLast24h != null) parts.push(s.articlesLast24h + ' today');
-    if (s.sourceCount != null) parts.push(s.sourceCount + ' sources');
-    document.getElementById('fb-stats').textContent = parts.join(' · ');
-
-    box.hidden = false;
-  } catch (_) { /* endpoint unreachable — card stays static */ }
+  })();
 })();
 </script>
 </body>
