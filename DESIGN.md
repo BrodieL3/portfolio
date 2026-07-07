@@ -160,7 +160,7 @@ Every world also defines its own ink and muted (e.g. #f0edf7 / #a79fbd in Wire B
 - **Mono** (400, 0.83rem, lh 1.55): ATLAS terminal only.
 
 ### Named Rules
-**The One Family Rule.** Bricolage Grotesque in weights 400–800 is the entire typographic system. The mono stack is permitted solely inside terminal chrome — mono as "technical" costume anywhere else is prohibited.
+**The One Family Rule.** Bricolage Grotesque in weights 400–800 is the entire typographic system. Two scoped exceptions exist, both for depiction: the mono stack solely inside terminal chrome, and product-native type (the Georgia serif stack for Field Brief's masthead and HealthyHoyas' display) solely inside lifted product miniatures. Type as costume anywhere else is prohibited.
 
 **The Inline Category Rule.** Project categories sit inline after the headline in the world accent color. Never stack a small tracked-uppercase label above a heading.
 
@@ -200,6 +200,9 @@ Component character: **hands-on and sturdy**. Controls look pressable and honest
 
 ### CTAs
 - **Style:** plain text links in the world accent, 700 weight, with a trailing ↗; underline on hover. Never buttons — the sturdy chrome is reserved for things that *do* something on the page.
+
+### Lifted Product Miniatures (signature components)
+Product UI is never shown as a raster screenshot — it is rebuilt as a small, crisp HTML/CSS recreation (`.lift-*`): Field Brief's front page (serif masthead, risk index with SVG sparklines), Rounds' ranking card (lime Loved/Fine badges), HealthyHoyas' landing (serif display + fanned nutrition-label cards), and Photon's editor chrome (toolbar, sliders, layers, real photo on canvas). Miniatures are decorative depictions: `role="img"` with a descriptive `aria-label`, `pointer-events: none`, fixed product-true colors in both themes. **The Vector Chrome Rule.** If a product's UI appears on this page, it is lifted as markup, not pasted as pixels — the ATLAS terminal set the precedent.
 
 ### The Demos (signature components)
 Each world contains exactly one working artifact: the live wire (Field Brief), the head-to-head ranker with FLIP reorder + decaying winner highlight (Rounds), the build-a-plate macro counter with 280ms count-up tweens (HealthyHoyas), the self-typing terminal (ATLAS), and the before/after filter slider with a one-time drag-hint nudge (Photon). Demos are honest: real data where possible, labeled "representative" or "toy of the real thing" where not. All content prerenders in HTML; JS only adds behavior. Motion timing: feedback ≤300ms, entrances 550–650ms, all on `cubic-bezier(0.22, 1, 0.36, 1)`, all with reduced-motion alternatives.

@@ -303,11 +303,456 @@
         border: 1px solid color-mix(in srgb, var(--w-ink) 15%, transparent);
         border-radius: 14px;
       }
-      .shot {
+      /* ---------- Lifted UI miniatures (real markup instead of screenshots) ---------- */
+      .lift {
         border-radius: 12px;
         border: 1px solid color-mix(in srgb, var(--w-ink) 18%, transparent);
+        overflow: hidden;
+        pointer-events: none;
+        user-select: none;
+      }
+      .lift .cap {
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        font-size: 0.56rem;
+        font-weight: 650;
+      }
+      .lift .track {
+        display: inline-block;
+        position: relative;
+        height: 3px;
+        border-radius: 999px;
+        vertical-align: middle;
+      }
+      .lift .track i {
+        position: absolute;
+        top: 50%;
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      /* Field Brief front page */
+      .lift-fb {
+        background: #060608;
+        color: #f0edf7;
+        font-size: 0.68rem;
+        line-height: 1.4;
+      }
+      .lift-fb .fb-mast {
+        padding: 0.8rem 0.95rem 0.6rem;
+        border-bottom: 1px solid rgba(240, 237, 247, 0.14);
+      }
+      .lift-fb .fb-logo {
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 1.35rem;
+        letter-spacing: -0.01em;
+      }
+      .lift-fb .fb-logo em {
+        font-style: normal;
+        color: #bf81fe;
+      }
+      .lift-fb .fb-mast .cap {
         display: block;
+        margin-top: 0.15rem;
+        color: #8f87a3;
+      }
+      .lift-fb .fb-cols {
+        display: grid;
+        grid-template-columns: 1.55fr 1fr;
+        gap: 0.9rem;
+        padding: 0.75rem 0.95rem 0.95rem;
+      }
+      .lift-fb .fb-side {
+        border-left: 1px solid rgba(240, 237, 247, 0.14);
+        padding-left: 0.9rem;
+      }
+      .lift-fb .cap {
+        color: #8f87a3;
+        display: block;
+        margin-bottom: 0.25rem;
+      }
+      .lift-fb .fb-hed {
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 1.02rem;
+        line-height: 1.22;
+        margin-bottom: 0.3rem;
+      }
+      .lift-fb .fb-hed-sm {
+        font-size: 0.82rem;
+      }
+      .lift-fb .fb-dek {
+        color: #a79fbd;
+        font-size: 0.64rem;
+        margin-bottom: 0.7rem;
+      }
+      .lift-fb .fb-flag {
+        background: #bf81fe;
+        color: #060608;
+        border-radius: 999px;
+        padding: 0 0.4em;
+        font-size: 0.52rem;
+        letter-spacing: 0.02em;
+      }
+      .lift-fb .fb-num {
+        font-weight: 750;
+        font-size: 0.95rem;
+        font-variant-numeric: tabular-nums;
+      }
+      .lift-fb .fb-num small {
+        color: #a79fbd;
+        font-weight: 450;
+        font-size: 0.58rem;
+      }
+      .lift-fb .fb-spark {
+        display: block;
+        width: 100%;
+        height: 26px;
+        margin: 0.3rem 0 0.8rem;
+      }
+      .lift-fb .fb-quote {
+        display: flex;
+        align-items: center;
+        gap: 0.45rem;
+        font-variant-numeric: tabular-nums;
+        font-size: 0.68rem;
+      }
+      .lift-fb .fb-quote svg {
+        flex: 1;
+        height: 14px;
+        min-width: 0;
+      }
+      .lift-fb .fb-quote b {
+        color: #bf81fe;
+      }
+
+      /* Rounds app card */
+      .lift-rounds {
+        background: #131417;
+        color: #f0f2e9;
+        font-size: 0.78rem;
+        padding: 0.9rem 0.95rem 0.95rem;
+      }
+      .lift-rounds .rd-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 0.6rem;
+      }
+      .lift-rounds .rd-top b {
+        font-weight: 750;
+      }
+      .lift-rounds .rd-top span {
+        color: #a6ab9c;
+        font-size: 0.66rem;
+      }
+      .lift-rounds .rd-log {
+        margin-top: 0.6rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.45rem;
+        border: 1px solid rgba(240, 242, 233, 0.2);
+        border-radius: 999px;
+        padding: 0.45rem 0.8rem;
+        font-weight: 650;
+        font-size: 0.74rem;
+      }
+      .lift-rounds .rd-log i {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: #c8f169;
+      }
+      .lift-rounds .rd-list {
+        list-style: none;
+        margin-top: 0.7rem;
+        display: grid;
+        gap: 0.55rem;
+      }
+      .lift-rounds .rd-list li {
+        display: grid;
+        grid-template-columns: 1.1rem 1fr auto;
+        gap: 0.55rem;
+        align-items: center;
+      }
+      .lift-rounds .rd-rk {
+        color: #6f7566;
+        font-weight: 700;
+        font-variant-numeric: tabular-nums;
+      }
+      .lift-rounds .rd-list b {
+        display: block;
+        font-weight: 700;
+        font-size: 0.8rem;
+        line-height: 1.25;
+      }
+      .lift-rounds .rd-list small {
+        color: #a6ab9c;
+        font-size: 0.64rem;
+      }
+      .lift-rounds .rd-badge {
+        background: #c8f169;
+        color: #0b0c0e;
+        border-radius: 999px;
+        padding: 0.12rem 0.6rem;
+        font-size: 0.64rem;
+        font-weight: 700;
+      }
+      .lift-rounds .rd-badge.rd-fine {
+        background: rgba(240, 242, 233, 0.14);
+        color: #a6ab9c;
+      }
+
+      /* HealthyHoyas landing */
+      .lift-hh {
+        background: #ffffff;
+        color: #0a2a4e;
+        display: grid;
+        gap: 1rem;
+        padding: 1.2rem 1.25rem;
+        align-items: center;
+      }
+      @media (min-width: 640px) {
+        .lift-hh {
+          grid-template-columns: 1.25fr 1fr;
+        }
+      }
+      .lift-hh .cap {
+        color: #2563eb;
+        display: block;
+        margin-bottom: 0.3rem;
+      }
+      .lift-hh .hhl-display {
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: clamp(1.15rem, 2.4vw, 1.5rem);
+        line-height: 1.15;
+        letter-spacing: -0.01em;
+      }
+      .lift-hh .hhl-line {
+        margin-top: 0.4rem;
+        color: #47617e;
+        font-size: 0.7rem;
+        max-width: 34ch;
+      }
+      .lift-hh .hhl-row {
+        margin-top: 0.65rem;
+        display: flex;
+        align-items: center;
+        gap: 0.7rem;
+        flex-wrap: wrap;
+      }
+      .lift-hh .hhl-cta {
+        background: #2563eb;
+        color: #fff;
+        border-radius: 999px;
+        padding: 0.32rem 0.8rem;
+        font-size: 0.66rem;
+        font-weight: 700;
+      }
+      .lift-hh .hhl-stats {
+        color: #47617e;
+        font-size: 0.62rem;
+        font-variant-numeric: tabular-nums;
+      }
+      .lift-hh .hhl-cards {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        padding: 0.4rem 0;
+      }
+      .lift-hh .hhl-card {
+        background: #fff;
+        border: 1px solid #d5dde7;
+        border-radius: 8px;
+        padding: 0.6rem 0.7rem 0.7rem;
+        width: min(11.5rem, 60%);
+        box-shadow: none;
+        font-size: 0.62rem;
+      }
+      .lift-hh .hhl-card.r1 {
+        transform: rotate(-3.5deg);
+      }
+      .lift-hh .hhl-card.r2 {
+        transform: rotate(3deg) translateY(0.5rem);
+        margin-left: -2.2rem;
+      }
+      .lift-hh .hhl-card b {
+        font-size: 0.72rem;
+        display: block;
+        line-height: 1.2;
+      }
+      .lift-hh .hhl-serving {
+        color: #47617e;
+        font-size: 0.56rem;
+      }
+      .lift-hh .hhl-cal {
+        border-top: 3px solid #0a2a4e;
+        border-bottom: 1px solid #d5dde7;
+        margin-top: 0.35rem;
+        padding: 0.2rem 0;
+        font-weight: 800;
+        font-size: 0.95rem;
+        font-variant-numeric: tabular-nums;
+      }
+      .lift-hh .hhl-cal small {
+        font-size: 0.52rem;
+        font-weight: 650;
+        letter-spacing: 0.06em;
+        margin-left: 0.3rem;
+      }
+      .lift-hh .hhl-macro {
+        display: flex;
+        justify-content: space-between;
+        padding: 0.18rem 0;
+        border-bottom: 1px solid #e8edf3;
+        font-variant-numeric: tabular-nums;
+      }
+      .lift-hh .hhl-macro:last-child {
+        border-bottom: none;
+      }
+
+      /* Photon editor */
+      .lift-photon {
+        background: #0d0e12;
+        color: #d7d9e0;
+        font-size: 0.6rem;
+      }
+      .lift-photon .ph-top {
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        padding: 0.5rem 0.7rem;
+        border-bottom: 1px solid rgba(215, 217, 224, 0.12);
+      }
+      .lift-photon .ph-logo {
+        font-weight: 750;
+        font-size: 0.72rem;
+        margin-right: 0.3rem;
+      }
+      .lift-photon .ph-chip {
+        background: #1a1c22;
+        border: 1px solid rgba(215, 217, 224, 0.14);
+        border-radius: 5px;
+        padding: 0.14rem 0.45rem;
+      }
+      .lift-photon .ph-zoom {
+        margin-left: auto;
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        color: #9a9daa;
+      }
+      .lift-photon .ph-zoom .track {
+        width: 3.2rem;
+        background: #2a2d36;
+      }
+      .lift-photon .ph-zoom .track i {
+        left: 70%;
+        background: #3b82f6;
+      }
+      .lift-photon .ph-body {
+        display: grid;
+        grid-template-columns: 5.4rem 1fr 7.6rem;
+      }
+      @media (max-width: 560px) {
+        .lift-photon .ph-body {
+          grid-template-columns: 5.4rem 1fr;
+        }
+        .lift-photon .ph-rail-r {
+          display: none;
+        }
+      }
+      .lift-photon .ph-rail {
+        padding: 0.55rem 0.6rem;
+        display: grid;
+        gap: 0.45rem;
+        align-content: start;
+        border-right: 1px solid rgba(215, 217, 224, 0.12);
+      }
+      .lift-photon .ph-rail-r {
+        border-right: none;
+        border-left: 1px solid rgba(215, 217, 224, 0.12);
+      }
+      .lift-photon .cap {
+        color: #9a9daa;
+      }
+      .lift-photon .ph-tools {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0.25rem;
+      }
+      .lift-photon .ph-tools i {
+        aspect-ratio: 1;
+        border-radius: 4px;
+        background: #1a1c22;
+        border: 1px solid rgba(215, 217, 224, 0.12);
+      }
+      .lift-photon .ph-tools i.on {
+        border-color: #3b82f6;
+      }
+      .lift-photon .ph-slider {
+        display: flex;
+        align-items: center;
+        gap: 0.35rem;
+        color: #9a9daa;
+      }
+      .lift-photon .ph-slider .track {
+        flex: 1;
+        background: #2a2d36;
+      }
+      .lift-photon .ph-slider .track i {
+        background: #3b82f6;
+      }
+      .lift-photon .ph-canvas {
+        background: #16171c;
+        display: grid;
+        place-items: center;
+        padding: 0.55rem;
+      }
+      .lift-photon .ph-canvas img {
         max-width: 100%;
+        max-height: 11rem;
+        display: block;
+        border-radius: 3px;
+      }
+      .lift-photon .ph-layer {
+        display: flex;
+        align-items: center;
+        gap: 0.35rem;
+        background: #1a1c22;
+        border: 1px solid rgba(215, 217, 224, 0.12);
+        border-radius: 5px;
+        padding: 0.24rem 0.4rem;
+      }
+      .lift-photon .ph-layer.on {
+        border-color: #3b82f6;
+      }
+      .lift-photon .ph-layer i {
+        width: 0.55rem;
+        height: 0.55rem;
+        border-radius: 2px;
+        background: #3b82f6;
+      }
+      .lift-photon .ph-layer span {
+        margin-left: auto;
+        color: #9a9daa;
+        font-size: 0.52rem;
+      }
+      .lift-photon .ph-layer,
+      .lift-photon .ph-field {
+        min-width: 0;
+        white-space: nowrap;
+      }
+      .lift-photon .ph-field {
+        display: flex;
+        justify-content: space-between;
+        background: #1a1c22;
+        border: 1px solid rgba(215, 217, 224, 0.12);
+        border-radius: 5px;
+        padding: 0.24rem 0.4rem;
+        font-variant-numeric: tabular-nums;
       }
       .demo-note {
         margin-top: 0.7rem;
@@ -527,12 +972,6 @@
       .rounds-shot {
         margin-top: 1.5rem;
       }
-      .rounds-shot img {
-        max-height: 190px;
-        width: 100%;
-        object-fit: cover;
-        object-position: 50% 32%;
-      }
 
       /* ---------- HealthyHoyas: plate demo ---------- */
       .w-hh .lead {
@@ -630,12 +1069,6 @@
       }
       .hh-shot {
         margin-top: 1.7rem;
-      }
-      .hh-shot img {
-        width: 100%;
-        max-height: 230px;
-        object-fit: cover;
-        object-position: 20% 30%;
       }
 
       /* ---------- ATLAS: terminal ---------- */
@@ -791,12 +1224,6 @@
       .photon-shot {
         margin-top: 1.4rem;
       }
-      .photon-shot img {
-        width: 100%;
-        max-height: 210px;
-        object-fit: cover;
-        object-position: 0 0;
-      }
 
       footer {
         padding-block: 0.5rem clamp(2.5rem, 6vh, 4rem);
@@ -834,10 +1261,12 @@
         <h1>Brodie Lee</h1>
         <p class="sub">
           I can help you get more out of your Claude subscription. I like
-          solving problems with AI and sometimes building them into products
-          end-to-end. Email me at
+          solving problems with AI and building end-to-end products.
         </p>
-        <span class="email">bsl54 [ @ ] georgetown [ dot ] edu</span>
+        <p class="sub">
+          Reach me at
+          <span style="color: #ff5050">bsl54 [ @ ] georgetown [ dot ] edu</span>
+        </p>
         <div class="links">
           <a href="https://github.com/BrodieL3">GitHub</a>
         </div>
@@ -890,12 +1319,28 @@
                 ><a href="https://github.com/BrodieL3/desem">Code ↗</a>
               </div>
             </div>
-            <img
-              class="shot"
-              src="img/fieldbrief.jpg"
-              alt="Field Brief front page: dark editorial layout with story clusters and a geopolitical risk index"
-              loading="lazy"
-            />
+            <div class="lift lift-fb" role="img" aria-label="Field Brief front page: dark editorial layout with story clusters and a geopolitical risk index">
+              <div class="fb-mast">
+                <span class="fb-logo">Field <em>Brief</em></span>
+                <span class="cap">International Defense Desk · 75 stories in today's briefing</span>
+              </div>
+              <div class="fb-cols">
+                <div>
+                  <span class="cap">U.S. Department of Defense News · 4:54 PM</span>
+                  <div class="fb-hed">Retired Submariner Commemorates Both Bicentennial, Semiquincentennial in Guam</div>
+                  <div class="fb-dek">Fifty years after raising the national colors in Guam for America's bicentennial, a retired Navy commander returns.</div>
+                  <span class="cap">Breaking Defense · 4:45 PM</span>
+                  <div class="fb-hed fb-hed-sm">Lockheed Martin to purchase Ultra Maritime in $3.5B deal</div>
+                </div>
+                <div class="fb-side">
+                  <span class="cap">Geopolitical Risk <span class="fb-flag">High</span></span>
+                  <div class="fb-num">163.7 <small>+31.5 vs prior month</small></div>
+                  <svg class="fb-spark" viewBox="0 0 100 28" preserveAspectRatio="none" aria-hidden="true"><polyline points="0,23 11,20 22,24 33,17 44,19 56,12 68,15 80,9 90,11 100,4" fill="none" stroke="#bf81fe" stroke-width="1.6"/></svg>
+                  <span class="cap">Prime Sparklines · 30d</span>
+                  <div class="fb-quote">LMT <svg viewBox="0 0 60 14" preserveAspectRatio="none" aria-hidden="true"><polyline points="0,10 10,11 20,7 30,9 40,5 50,6 60,2" fill="none" stroke="#bf81fe" stroke-width="1.4"/></svg> <b>+6.33%</b></div>
+                </div>
+              </div>
+            </div>
           </div>
           <div class="wire panel" id="fb-live" hidden>
             <div class="wire-head">
@@ -1016,12 +1461,15 @@
                 ><a href="https://github.com/BrodieL3/rounds">Code ↗</a>
               </div>
               <div class="rounds-shot">
-                <img
-                  class="shot"
-                  src="img/rounds.jpg"
-                  alt="Rounds app: personal ranking of Boston cocktail bars with loved/fine ratings"
-                  loading="lazy"
-                />
+                <div class="lift lift-rounds" role="img" aria-label="Rounds app: personal ranking of Boston cocktail bars with loved and fine ratings">
+                  <div class="rd-top"><b>Boston · Cambridge</b><span>Your list · 12 logged</span></div>
+                  <div class="rd-log"><i></i>Log the bar I'm at</div>
+                  <ol class="rd-list">
+                    <li><span class="rd-rk">1</span><div><b>The Hawthorne</b><small>Cocktail Bar · Kenmore · 0.4 mi</small></div><span class="rd-badge">Loved</span></li>
+                    <li><span class="rd-rk">2</span><div><b>Backbar</b><small>Cocktail Bar · Somerville · 1.2 mi</small></div><span class="rd-badge">Loved</span></li>
+                    <li><span class="rd-rk">3</span><div><b>Yvonne's</b><small>Cocktail Bar · Downtown · 0.8 mi</small></div><span class="rd-badge rd-fine">Fine</span></li>
+                  </ol>
+                </div>
               </div>
             </div>
           </div>
@@ -1138,12 +1586,30 @@
             </div>
           </div>
           <div class="hh-shot">
-            <img
-              class="shot"
-              src="img/healthyhoyas.jpg"
-              alt="HealthyHoyas landing page: nutrition tracking built for Georgetown dining halls"
-              loading="lazy"
-            />
+            <div class="lift lift-hh" role="img" aria-label="HealthyHoyas landing page: Know exactly what you're eating at Leo's, with real nutrition-label cards">
+              <div>
+                <span class="cap">Built for Georgetown</span>
+                <div class="hhl-display">Know exactly what you're eating at Leo's.</div>
+                <div class="hhl-line">Every item served on campus, with full nutrition facts. No barcode scanning, no guessing portions.</div>
+                <div class="hhl-row"><span class="hhl-cta">Start tracking free →</span><span class="hhl-stats">12 dining locations · 253 menu items</span></div>
+              </div>
+              <div class="hhl-cards">
+                <div class="hhl-card r1">
+                  <b>Herb Baked Chicken</b><span class="hhl-serving">1 serving</span>
+                  <div class="hhl-cal">440<small>CALORIES</small></div>
+                  <div class="hhl-macro"><span>Protein</span><b>46g</b></div>
+                  <div class="hhl-macro"><span>Carbs</span><b>0.7g</b></div>
+                  <div class="hhl-macro"><span>Fat</span><b>27g</b></div>
+                </div>
+                <div class="hhl-card r2">
+                  <b>Pepperoni Pizza</b><span class="hhl-serving">1 slice</span>
+                  <div class="hhl-cal">340<small>CALORIES</small></div>
+                  <div class="hhl-macro"><span>Protein</span><b>15g</b></div>
+                  <div class="hhl-macro"><span>Carbs</span><b>36g</b></div>
+                  <div class="hhl-macro"><span>Fat</span><b>15g</b></div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -1294,12 +1760,35 @@
                 ><a href="https://github.com/BrodieL3/photon">Code ↗</a>
               </div>
               <div class="photon-shot">
-                <img
-                  class="shot"
-                  src="img/photon.jpg"
-                  alt="Photon editor with a photo open: layers panel, filters, and drawing tools"
-                  loading="lazy"
-                />
+                <div class="lift lift-photon" role="img" aria-label="Photon editor with a photo open: toolbar, tools and filters panels, layers, and canvas">
+                  <div class="ph-top">
+                    <b class="ph-logo">Photon</b>
+                    <span class="ph-chip">New</span><span class="ph-chip">Open</span><span class="ph-chip">Export</span>
+                    <span class="ph-zoom"><span class="track"><i></i></span>100%</span>
+                  </div>
+                  <div class="ph-body">
+                    <div class="ph-rail">
+                      <span class="cap">Tools</span>
+                      <div class="ph-tools"><i></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+                      <span class="cap">Filters</span>
+                      <div class="ph-slider">Bright<span class="track"><i style="left: 55%"></i></span></div>
+                      <div class="ph-slider">Contr<span class="track"><i style="left: 48%"></i></span></div>
+                      <div class="ph-slider">Satur<span class="track"><i style="left: 62%"></i></span></div>
+                    </div>
+                    <div class="ph-canvas">
+                      <img src="img/photo-demo.jpg" alt="" loading="lazy" />
+                    </div>
+                    <div class="ph-rail ph-rail-r">
+                      <span class="cap">Layers</span>
+                      <div class="ph-layer on"><i></i>P1.jpg<span>100%</span></div>
+                      <div class="ph-layer"><i></i>Layer 1<span>100%</span></div>
+                      <div class="ph-layer"><i></i>Background<span>100%</span></div>
+                      <span class="cap">Document</span>
+                      <div class="ph-field"><span>W</span><b>1200</b></div>
+                      <div class="ph-field"><span>H</span><b>800</b></div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
