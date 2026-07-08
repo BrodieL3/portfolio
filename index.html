@@ -6,7 +6,7 @@
     <title>Brodie Lee — Projects</title>
     <meta
       name="description"
-      content="Five shipped products: defense-tech news intelligence, social nightlife rankings, campus nutrition, multi-agent AI research, in-browser photo editing."
+      content="Five shipped products: multi-agent AI research, defense-tech news intelligence, social nightlife rankings, campus nutrition, in-browser photo editing."
     />
     <link rel="canonical" href="https://brodielee.vercel.app/" />
     <meta property="og:type" content="website" />
@@ -14,7 +14,7 @@
     <meta property="og:title" content="Brodie Lee — Projects" />
     <meta
       property="og:description"
-      content="Five shipped products: defense-tech news intelligence, social nightlife rankings, campus nutrition, multi-agent AI research, in-browser photo editing."
+      content="Five shipped products: multi-agent AI research, defense-tech news intelligence, social nightlife rankings, campus nutrition, in-browser photo editing."
     />
     <meta
       property="og:image"
@@ -26,7 +26,7 @@
     <meta name="twitter:title" content="Brodie Lee — Projects" />
     <meta
       name="twitter:description"
-      content="Five shipped products: defense-tech news intelligence, social nightlife rankings, campus nutrition, multi-agent AI research, in-browser photo editing."
+      content="Five shipped products: multi-agent AI research, defense-tech news intelligence, social nightlife rankings, campus nutrition, in-browser photo editing."
     />
     <meta
       name="twitter:image"
@@ -173,6 +173,56 @@
       .worlds .p-photon {
         --p-bg: #ffffff;
         --p-fg: #c21b74;
+      }
+
+      /* ---------- About: paying off the subscription ---------- */
+      .about {
+        padding-block: clamp(1.5rem, 4vh, 2.5rem) clamp(2.5rem, 6vh, 4rem);
+      }
+      .about h2 {
+        font-size: clamp(1.7rem, 4.2vw, 2.4rem);
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        line-height: 1.05;
+        text-wrap: balance;
+      }
+      .about p {
+        margin-top: 0.9rem;
+        max-width: 62ch;
+        text-wrap: pretty;
+      }
+      .prompt-box {
+        margin-top: 1.5rem;
+        max-width: 46rem;
+      }
+      .prompt-input {
+        display: flex;
+        gap: 0.7rem;
+        align-items: flex-start;
+        padding: 0.9rem 1.1rem;
+        border: 1px solid var(--edge);
+        border-radius: 14px;
+        background: color-mix(in srgb, var(--fg) 4%, var(--bg));
+        font-family:
+          ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono",
+          monospace;
+      }
+      .prompt-input p {
+        margin-top: 0;
+        max-width: none;
+        font-size: 0.82rem;
+        line-height: 1.6;
+      }
+      .prompt-caret {
+        color: var(--accent);
+        font-weight: 700;
+        font-size: 0.82rem;
+        line-height: 1.6;
+      }
+      .prompt-box figcaption {
+        margin-top: 0.6rem;
+        font-size: 0.8rem;
+        color: var(--muted);
       }
 
       @keyframes rise {
@@ -1277,20 +1327,167 @@
           >
         </div>
         <ul class="worlds" aria-label="Jump to a project">
-          <li style="--i: 0">
+          <li style="--i: 0"><a class="p-atlas" href="#atlas">ATLAS</a></li>
+          <li style="--i: 1">
             <a class="p-fb" href="#fieldbrief">Field Brief</a>
           </li>
-          <li style="--i: 1"><a class="p-rounds" href="#rounds">Rounds</a></li>
-          <li style="--i: 2">
+          <li style="--i: 2"><a class="p-rounds" href="#rounds">Rounds</a></li>
+          <li style="--i: 3">
             <a class="p-hh" href="#healthyhoyas">HealthyHoyas</a>
           </li>
-          <li style="--i: 3"><a class="p-atlas" href="#atlas">ATLAS</a></li>
           <li style="--i: 4"><a class="p-photon" href="#photon">Photon</a></li>
         </ul>
       </div>
     </header>
 
     <main>
+      <!-- ============ About ============ -->
+      <section class="about" id="about" aria-label="About that subscription">
+        <div class="inner">
+          <h2>About that subscription</h2>
+          <p>
+            "Maximizing my Claude subscription" started as a joke. I was paying
+            for Claude anyway, so I decided to see how far I could actually push
+            it. The answer turned out to be five shipped products — and a whole
+            way of working I didn't expect to build.
+          </p>
+          <p>
+            Because here's the thing: I don't "use AI." I run it like an
+            engineering org. Every project starts as product and design docs the
+            agents build against. The toolchain is customized — skills I've
+            installed and written that make Claude interview <em>me</em>, one
+            question at a time, before it writes a line of code; planning maps
+            that slice work into agent-sized tickets; review gates so nothing
+            ships until it survives a code review and a security pass. Claude
+            writes most of the code. I make it earn the merge.
+          </p>
+          <p>
+            Don't take my word for it — this page is the proof. Below is the
+            actual, verbatim prompt that kicked off the rewrite you're reading
+            right now.
+          </p>
+          <figure class="prompt-box">
+            <div class="prompt-input">
+              <span class="prompt-caret" aria-hidden="true">&#10095;</span>
+              <p>
+                the project descriptions should loosely follow the format of
+                "Made this because [some personal non technical reason if any,
+                tell a story, don't be a robot] and because I wanted to learn
+                [the technologies used to make it]. Biggest accomplishment was
+                [something you're proud of achieving, for example 1000+ API
+                requests, stars on GitHub]. Biggest obstacle was [ideally
+                something technical, for example CORS was being a bitch] and I
+                overcame it by [however you did it]." Talk about how I came up
+                with the project idea. The first section of the page should be a
+                personal one talking about how I use Claude Code to make these
+                projects, so I want you to /grill-me on how to present that
+                information. Very briefly, I think ATLAS ought to be the hero
+                project as well.
+              </p>
+            </div>
+            <figcaption>verbatim — the prompt that wrote this page.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- ============ ATLAS ============ -->
+      <section class="world w-atlas" id="atlas" aria-label="ATLAS">
+        <div class="inner">
+          <h2>
+            ATLAS <span class="kind">Multi-agent AI research system</span>
+          </h2>
+          <p>
+            Made this because I fell down the rabbit hole of Together's
+            Mixture-of-Agents paper and got stuck on one thought: everyone
+            claims a team of models beats a single model, and nobody's demo has
+            a scoreboard. Stock trading has a scoreboard — the number goes up or
+            it doesn't. So I built a research collective to settle it for
+            myself, and to learn real multi-agent orchestration along the way:
+            eight named agents with specialized roles, a nine-phase
+            deliberation, evidence-first rules where every claim has to cite a
+            source. Plus the Claude API and Alpaca's paper-trading API.
+          </p>
+          <p>
+            The thing I'm proudest of is the accountability ledger: being wrong
+            costs you here. Every agent's voting power gets reweighted by its
+            track record, and roles are up for election — a quant that keeps
+            missing gets outvoted, then unseated. Biggest obstacle was the first
+            real run dying with a 429. The morning data brief — 240 news
+            articles plus raw JSON of every price bar — came out to 32K tokens
+            against a 30K request limit. My agents' reading list was literally
+            too long for them to read. I fixed it with a brief summarizer that
+            compresses the raw dumps into tight text digests, so all eight
+            agents can deliberate without blowing the context budget.
+          </p>
+          <div class="tags">
+            <span class="tag">Python</span><span class="tag">Claude API</span
+            ><span class="tag">Multi-agent</span><span class="tag">Alpaca</span>
+          </div>
+          <div class="cta">
+            <a href="https://github.com/BrodieL3/atlas-trading">Code ↗</a>
+          </div>
+
+          <div class="term" id="term">
+            <div class="term-bar">
+              <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span
+              >atlas — deliberation · paper account · representative transcript
+            </div>
+            <div class="term-body">
+              <div class="tl t-sys" data-d="420">
+                [atlas] convening deliberation — 7 agents · topic: semiconductor
+                momentum
+              </div>
+              <div class="tl t-agent" data-d="300">
+                MERLIN <span class="role">· market analyst · weight 0.19</span>
+              </div>
+              <div class="tl t-claim" data-d="140">
+                SMH up 3.2% this week on above-average volume; breadth is narrow
+              </div>
+              <div class="tl t-cite" data-d="90">
+                ↳ cite: alpaca:bars/SMH/1D 2025-10-21..10-27
+              </div>
+              <div class="tl t-agent" data-d="300">
+                IRIS <span class="role">· news analyst · weight 0.14</span>
+              </div>
+              <div class="tl t-claim" data-d="140">
+                Two fab-capacity headlines contradict the momentum read
+              </div>
+              <div class="tl t-cite" data-d="90">
+                ↳ cite: newsapi:reuters 2025-10-27T14:02Z
+              </div>
+              <div class="tl t-agent" data-d="300">
+                GAUSS <span class="role">· quant researcher · weight 0.17</span>
+              </div>
+              <div class="tl t-claim" data-d="140">
+                10-day realized vol 31.4 vs implied 27.9 — vol is underpriced
+              </div>
+              <div class="tl t-cite" data-d="90">
+                ↳ cite: fred:VIXCLS 2025-10-27
+              </div>
+              <div class="tl t-agent" data-d="300">
+                AEGIS <span class="role">· risk · weight 0.16</span>
+              </div>
+              <div class="tl t-claim" data-d="140">
+                Position would breach the 12% sector cap after Friday's drift
+              </div>
+              <div class="tl t-cite" data-d="90">
+                ↳ cite: ledger:positions 2025-10-28T09:30Z
+              </div>
+              <div class="tl t-sys" data-d="500">
+                [atlas] challenge phase — IRIS contests MERLIN's breadth claim
+              </div>
+              <div class="tl t-sys" data-d="500">
+                [atlas] vote (outcome-weighted) — TRIM to sector cap · 5–2
+              </div>
+              <div class="tl t-sys" data-d="400">
+                [atlas] orders → alpaca:paper · ledger updated · outcomes
+                pending <span class="t-caret">▮</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <!-- ============ Field Brief ============ -->
       <section class="world w-fb" id="fieldbrief" aria-label="Field Brief">
         <div class="inner">
@@ -1301,18 +1498,28 @@
                 <span class="kind">Defense-tech news intelligence</span>
               </h2>
               <p>
-                A personalized news feed for the defense and government-tech
-                niche. Ingests 15 curated outlets over RSS, extracts entities
-                and topics with an LLM pipeline, clusters related articles into
-                stories with cited digests, and re-ranks the feed around what
-                each user follows. A companion dashboard tracks DoD contract
-                awards (USAspending), SAM.gov opportunities, and defense-sector
-                market data.
+                I wanted to learn more about the defense-tech industry, and the
+                fastest way to learn an industry is to ship something for it. So
+                I built the product I'd want on my own desk: a news feed that
+                reads fifteen niche defense outlets, clusters the coverage into
+                stories, and pairs it with the money — DoD contract awards,
+                SAM.gov opportunities, prime-contractor market data. I also had
+                two things I wanted to learn: how to render seriously data-dense
+                pages in React, and how to run Sanity as a real editorial
+                surface with review queues and a curation workflow.
               </p>
-              <p class="pmf">
-                The bet: defense professionals are a narrow, high-intent
-                audience underserved by general news products — personalization
-                plus procurement signals is the wedge.
+              <p>
+                The accomplishment I keep coming back to: the paper assembles
+                itself. One cron fires every morning and the whole cycle runs —
+                feed pull, entity extraction, clustering, digest writing,
+                publish. A newspaper with zero staff, live at desem.vercel.app,
+                and the headlines below are being served by its public API right
+                now. The big fight was story clustering: pure embedding
+                similarity kept fusing unrelated coverage into one mega-story
+                while splitting a single contract award into five. I fixed it
+                with a hybrid score — lexical overlap plus embeddings — and
+                union-find to build the clusters, and stories finally snapped
+                into shape.
               </p>
               <div class="tags">
                 <span class="tag">Next.js</span><span class="tag">Supabase</span
@@ -1402,10 +1609,7 @@
               feed<span class="wire-stats" id="fb-stats"></span>
             </div>
             <ol id="fb-list"></ol>
-            <p class="demo-note">
-              These headlines are being served right now by Field Brief's public
-              API — the same pipeline the product runs on.
-            </p>
+            <p class="demo-note">Same pipeline the product runs on.</p>
           </div>
         </div>
       </section>
@@ -1491,18 +1695,29 @@
                 Rounds <span class="kind">Social nightlife discovery</span>
               </h2>
               <p>
-                Rate the bars you visit, compare them head-to-head, and build a
-                shareable personal ranking — powered by a per-user Bayesian
-                Bradley–Terry model so sparse comparisons don't produce
-                overconfident orderings. Friends-first social layer (DMs, group
-                chats, polls, shared reviews) shipped before any public graph.
+                My friends and I could never decide where to go out in Boston.
+                Everyone had opinions about every bar, and the apps that rank
+                places only cared about restaurants — so I built the thing we
+                actually needed: rate the bars you visit, compare them
+                head-to-head, and let an algorithm work out what you like and
+                where the group should go tonight. I wanted to learn React
+                Native, and I wanted to learn how to code algorithmic
+                suggestions for real — the kind that hold up when the data is a
+                dozen bar visits, sparse and noisy.
               </p>
-              <p class="pmf">
-                Product decisions are documented as they were made: 10 ADRs
-                including competitive assessments of event-data providers, a
-                deliberately market-scoped beta (Boston/Cambridge),
-                cohort-isolated rankings, and PostHog instrumentation from day
-                one.
+              <p>
+                I shipped the beta on a simple Elo engine because it was tested
+                and safe, then built a Monte Carlo simulation to check it —
+                which showed Elo was mostly noise at our data sizes. So once the
+                beta was out the door, I swapped in a per-user Bayesian
+                Bradley–Terry model ranked by a conservative lower bound, with
+                the ADR trail to show the reasoning. Biggest obstacle was mobile
+                itself. This was my first React Native app, and the Expo
+                ecosystem — dev clients, native modules, EAS builds — fought me
+                the whole way, with Firebase's trust model as the boss fight:
+                client-side security rules couldn't safely handle group
+                membership, so I moved that logic into trusted Cloud Functions
+                and put every rule under an emulator test suite.
               </p>
               <div class="tags">
                 <span class="tag">React Native / Expo</span
@@ -1564,16 +1779,27 @@
             HealthyHoyas <span class="kind">Campus nutrition tracking</span>
           </h2>
           <p class="lead">
-            Nutrition tracking that actually works for Georgetown dining halls.
-            A Python scraper ingests the daily HoyaEats menus and per-item
-            nutrition facts for every dining location; the app turns them into a
-            two-tap food diary with a nutrition dashboard.
+            Made this because I was trying to hit my macros while eating every
+            meal at a Georgetown dining hall, and MyFitnessPal had no idea what
+            Leo's was serving. Logging a dining-hall meal meant guessing at food
+            that wasn't in anyone's database, so my friend Alex and I started
+            building the tracker we actually needed. This was my first real
+            project — the one where I learned full-stack development: Next.js
+            and Supabase up front, Python scraping in the back, and how to move
+            data through a real pipeline.
           </p>
-          <p class="pmf">
-            Generic trackers fail on campus food — it isn't in their databases.
-            Building the data pipeline (scraper → API → app) for one known,
-            reachable user base made the product viable where MyFitnessPal
-            isn't.
+          <p>
+            That first project grew into a three-repo production system: a
+            scraper that reads every Georgetown dining menu daily, an API that
+            serves it, and the app on top — and it's now earning an iOS port,
+            which I'm actively building. The hard part was the scraping itself.
+            The menus weren't sitting in clean HTML; the data was buried in a
+            pile of JavaScript, nutrition facts were scattered across hundreds
+            of per-item fetches, and the site failed at random. I dug the data
+            out of the JS payloads, put a 700+ item nutrition cache in front so
+            nothing gets fetched twice, and wrapped the whole thing in cleaning
+            passes and retry logic. It's been quietly shipping menus every
+            morning since.
           </p>
           <div class="tags">
             <span class="tag">Next.js</span><span class="tag">Supabase</span
@@ -1710,95 +1936,6 @@
         </div>
       </section>
 
-      <!-- ============ ATLAS ============ -->
-      <section class="world w-atlas" id="atlas" aria-label="ATLAS">
-        <div class="inner">
-          <h2>
-            ATLAS <span class="kind">Multi-agent AI research system</span>
-          </h2>
-          <p>
-            A trading-research collective of AI agents with specialized roles
-            (market analyst, news analyst, quant researcher) that debate
-            strategy under evidence-first rules — every claim must cite a
-            source. An accountability ledger adjusts each agent's voting power
-            based on outcomes, and agents compete in role elections. Executes
-            against an Alpaca paper-trading account with strict risk guardrails.
-          </p>
-          <p class="pmf">
-            A systems-design exercise in making LLM agents accountable:
-            merit-weighted governance instead of trusting any single model's
-            output.
-          </p>
-          <div class="tags">
-            <span class="tag">Python</span><span class="tag">Claude API</span
-            ><span class="tag">Multi-agent</span><span class="tag">Alpaca</span
-            ><span class="tag">25k+ LOC</span>
-          </div>
-          <div class="cta">
-            <a href="https://github.com/BrodieL3/atlas-trading">Code ↗</a>
-          </div>
-
-          <div class="term" id="term">
-            <div class="term-bar">
-              <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span
-              >atlas — deliberation · paper account · representative transcript
-            </div>
-            <div class="term-body">
-              <div class="tl t-sys" data-d="420">
-                [atlas] convening deliberation — 7 agents · topic: semiconductor
-                momentum
-              </div>
-              <div class="tl t-agent" data-d="300">
-                MERLIN <span class="role">· market analyst · weight 0.19</span>
-              </div>
-              <div class="tl t-claim" data-d="140">
-                SMH up 3.2% this week on above-average volume; breadth is narrow
-              </div>
-              <div class="tl t-cite" data-d="90">
-                ↳ cite: alpaca:bars/SMH/1D 2025-10-21..10-27
-              </div>
-              <div class="tl t-agent" data-d="300">
-                IRIS <span class="role">· news analyst · weight 0.14</span>
-              </div>
-              <div class="tl t-claim" data-d="140">
-                Two fab-capacity headlines contradict the momentum read
-              </div>
-              <div class="tl t-cite" data-d="90">
-                ↳ cite: newsapi:reuters 2025-10-27T14:02Z
-              </div>
-              <div class="tl t-agent" data-d="300">
-                GAUSS <span class="role">· quant researcher · weight 0.17</span>
-              </div>
-              <div class="tl t-claim" data-d="140">
-                10-day realized vol 31.4 vs implied 27.9 — vol is underpriced
-              </div>
-              <div class="tl t-cite" data-d="90">
-                ↳ cite: fred:VIXCLS 2025-10-27
-              </div>
-              <div class="tl t-agent" data-d="300">
-                AEGIS <span class="role">· risk · weight 0.16</span>
-              </div>
-              <div class="tl t-claim" data-d="140">
-                Position would breach the 12% sector cap after Friday's drift
-              </div>
-              <div class="tl t-cite" data-d="90">
-                ↳ cite: ledger:positions 2025-10-28T09:30Z
-              </div>
-              <div class="tl t-sys" data-d="500">
-                [atlas] challenge phase — IRIS contests MERLIN's breadth claim
-              </div>
-              <div class="tl t-sys" data-d="500">
-                [atlas] vote (outcome-weighted) — TRIM to sector cap · 5–2
-              </div>
-              <div class="tl t-sys" data-d="400">
-                [atlas] orders → alpaca:paper · ledger updated · outcomes
-                pending <span class="t-caret">▮</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       <!-- ============ Photon ============ -->
       <section class="world w-photon" id="photon" aria-label="Photon">
         <div class="inner">
@@ -1837,19 +1974,20 @@
             <div>
               <h2>Photon <span class="kind">In-browser photo editor</span></h2>
               <p>
-                A single-page photo editor with crop/resize/filters, drawing
-                tools, and one-click background removal — 100% client-side. No
-                accounts, no uploads, no server processing.
-              </p>
-              <p class="pmf">
-                Zero-friction consumer utility: the entire product is one HTML
-                file, and privacy (nothing leaves the browser) is the
-                differentiator.
+                I kept needing two dumb-simple things — knock the background out
+                of an image and convert it to SVG — and every site that does
+                them wants an account, an upload, or a subscription. So Photon
+                is the editor that just opens: crop, filters, drawing, one-click
+                background removal, everything running in your browser and
+                nothing uploaded anywhere. Full honesty: it took one prompt to
+                GPT-5, which came back with a single HTML file — 2,266 lines,
+                zero dependencies, works offline, magic-wand flood fill
+                included.
               </p>
               <div class="tags">
                 <span class="tag">Vanilla JS</span
                 ><span class="tag">Canvas</span
-                ><span class="tag">Client-side ML</span>
+                ><span class="tag">Single HTML file</span>
               </div>
               <div class="cta">
                 <a href="https://photon-rho.vercel.app">Live ↗</a
