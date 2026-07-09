@@ -45,6 +45,7 @@
         --muted: #62625d;
         --border: #e5e5e0;
         --accent: #2456d6;
+        --email: #8b2fc9;
         --edge: rgba(0, 0, 0, 0.14);
         --ease: cubic-bezier(0.22, 1, 0.36, 1);
       }
@@ -55,6 +56,7 @@
           --muted: #9a9a94;
           --border: #2a2a2e;
           --accent: #7aa2ff;
+          --email: #d988fc;
           --edge: rgba(255, 255, 255, 0.12);
         }
       }
@@ -87,6 +89,13 @@
         max-width: 1080px;
         margin: 0 auto;
         padding-inline: clamp(1.25rem, 4vw, 2rem);
+      }
+      .sr-status {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip-path: inset(50%);
       }
 
       a {
@@ -124,6 +133,9 @@
         font-size: clamp(1.05rem, 2.2vw, 1.3rem);
         line-height: 1.55;
         text-wrap: pretty;
+      }
+      .email {
+        color: var(--email);
       }
       .hero .links {
         margin-top: 1.2rem;
@@ -225,6 +237,31 @@
         color: var(--muted);
       }
 
+      /* ---------- Outro: the closing pitch ---------- */
+      .outro {
+        padding-block: 0 clamp(2.5rem, 6vh, 4rem);
+      }
+      .outro h2 {
+        font-size: clamp(1.7rem, 4.2vw, 2.4rem);
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        line-height: 1.05;
+        text-wrap: balance;
+      }
+      .outro p {
+        margin-top: 0.9rem;
+        max-width: 62ch;
+        text-wrap: pretty;
+      }
+      .outro .big-links {
+        margin-top: 1.4rem;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.6rem;
+        font-size: clamp(1.05rem, 2.2vw, 1.25rem);
+        font-weight: 700;
+      }
+
       @keyframes rise {
         from {
           opacity: 0;
@@ -239,6 +276,9 @@
       }
       .hero .sub {
         animation-delay: 0.08s;
+      }
+      .hero .sub + .sub {
+        animation-delay: 0.11s;
       }
       .hero .links {
         animation-delay: 0.14s;
@@ -278,11 +318,6 @@
         font-size: 1rem;
         max-width: 62ch;
         text-wrap: pretty;
-      }
-      .world p.pmf {
-        color: var(--w-muted);
-        font-size: 0.93rem;
-        margin-top: 0.7rem;
       }
       .world a {
         color: var(--w-accent);
@@ -346,6 +381,23 @@
         gap: 1.2rem;
         font-size: 0.96rem;
         font-weight: 700;
+      }
+      /* invisible hit-area expansion so text links and pills reach ~44px on touch */
+      .hero .links a,
+      .cta a,
+      .worlds a {
+        position: relative;
+      }
+      .hero .links a::after,
+      .cta a::after {
+        content: "";
+        position: absolute;
+        inset: -13px -8px;
+      }
+      .worlds a::after {
+        content: "";
+        position: absolute;
+        inset: -6px -4px;
       }
 
       .panel {
@@ -477,84 +529,6 @@
         color: #bf81fe;
       }
 
-      /* Rounds app card */
-      .lift-rounds {
-        background: #131417;
-        color: #f0f2e9;
-        font-size: 0.78rem;
-        padding: 0.9rem 0.95rem 0.95rem;
-      }
-      .lift-rounds .rd-top {
-        display: flex;
-        justify-content: space-between;
-        align-items: baseline;
-        gap: 0.6rem;
-      }
-      .lift-rounds .rd-top b {
-        font-weight: 750;
-      }
-      .lift-rounds .rd-top span {
-        color: #a6ab9c;
-        font-size: 0.66rem;
-      }
-      .lift-rounds .rd-log {
-        margin-top: 0.6rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 0.45rem;
-        border: 1px solid rgba(240, 242, 233, 0.2);
-        border-radius: 999px;
-        padding: 0.45rem 0.8rem;
-        font-weight: 650;
-        font-size: 0.74rem;
-      }
-      .lift-rounds .rd-log i {
-        width: 6px;
-        height: 6px;
-        border-radius: 50%;
-        background: #c8f169;
-      }
-      .lift-rounds .rd-list {
-        list-style: none;
-        margin-top: 0.7rem;
-        display: grid;
-        gap: 0.55rem;
-      }
-      .lift-rounds .rd-list li {
-        display: grid;
-        grid-template-columns: 1.1rem 1fr auto;
-        gap: 0.55rem;
-        align-items: center;
-      }
-      .lift-rounds .rd-rk {
-        color: #6f7566;
-        font-weight: 700;
-        font-variant-numeric: tabular-nums;
-      }
-      .lift-rounds .rd-list b {
-        display: block;
-        font-weight: 700;
-        font-size: 0.8rem;
-        line-height: 1.25;
-      }
-      .lift-rounds .rd-list small {
-        color: #a6ab9c;
-        font-size: 0.64rem;
-      }
-      .lift-rounds .rd-badge {
-        background: #c8f169;
-        color: #0b0c0e;
-        border-radius: 999px;
-        padding: 0.12rem 0.6rem;
-        font-size: 0.64rem;
-        font-weight: 700;
-      }
-      .lift-rounds .rd-badge.rd-fine {
-        background: rgba(240, 242, 233, 0.14);
-        color: #a6ab9c;
-      }
-
       /* HealthyHoyas landing */
       .lift-hh {
         background: #ffffff;
@@ -618,7 +592,6 @@
         border-radius: 8px;
         padding: 0.6rem 0.7rem 0.7rem;
         width: min(11.5rem, 60%);
-        box-shadow: none;
         font-size: 0.62rem;
       }
       .lift-hh .hhl-card.r1 {
@@ -837,12 +810,6 @@
           grid-template-columns: 1.05fr 0.95fr;
         }
       }
-      /* below 880px the demo column stacks after the project's text */
-      @media (max-width: 879.98px) {
-        .cols .demo-col {
-          order: 2;
-        }
-      }
 
       /* ---------- Field Brief: the wire ---------- */
       .wire {
@@ -972,7 +939,7 @@
         gap: 0.6rem;
         align-items: baseline;
         padding: 0.45rem 0.65rem;
-        border-radius: 9px;
+        border-radius: 10px;
         background: color-mix(in srgb, var(--w-ink) 5%, transparent);
         font-size: 0.92rem;
       }
@@ -1019,10 +986,6 @@
           opacity: 0.35;
         }
       }
-      .rounds-shot {
-        margin-top: 1.5rem;
-      }
-
       /* ---------- HealthyHoyas: plate demo ---------- */
       .w-hh .lead {
         max-width: 62ch;
@@ -1158,7 +1121,11 @@
         overflow-x: auto;
       }
       .tl {
-        white-space: pre;
+        /* no white-space: pre here — the source markup is Prettier-wrapped,
+           so preserved whitespace renders stray indents and blank lines.
+           Long lines wrap with a hanging indent instead. */
+        padding-left: 2ch;
+        text-indent: -2ch;
         min-height: 1.55em;
       }
       .t-sys {
@@ -1252,6 +1219,8 @@
         opacity: 0;
         cursor: ew-resize;
         margin: 0;
+        /* vertical swipes keep scrolling the page; horizontal drags work the slider */
+        touch-action: pan-y;
       }
       .ba .lab {
         position: absolute;
@@ -1310,15 +1279,12 @@
       <div class="inner">
         <h1>Brodie Lee</h1>
         <p class="sub">
-          Maximizing my Claude subscription. I build end-to-end products and the
-          systems to implement them.
+          ClaudeMaxxing. Claude writes the code, I run it like an engineering
+          org, and the five products below all shipped.
         </p>
         <p class="sub">
           Reach me at
-          <span style="color: #d988fc"
-            >bsl54 [ @ ] georgetown [ dot ] edu
-          </span>
-          .
+          <span class="email">bsl54 [ @ ] georgetown [ dot ] edu</span>.
         </p>
         <div class="links">
           <a href="https://github.com/BrodieL3">GitHub</a>
@@ -1346,23 +1312,20 @@
         <div class="inner">
           <h2>About that subscription</h2>
           <p>
-            "Maximizing my Claude subscription" started as a joke. I was paying
-            for Claude anyway, so I decided to see how far I could actually push
-            it. The answer turned out to be five shipped products — and a whole
-            way of working I didn't expect to build.
+            I don't "use AI." I run it like an engineering org. Every project
+            starts as product and design docs the agents build against. The
+            toolchain is customized: skills I've installed and written that make
+            Claude interview <em>me</em>, one question at a time, before it
+            writes a line of code; planning maps that slice work into
+            agent-sized tickets; review gates so nothing ships until it survives
+            a code review and a security pass. Claude writes most of the code. I
+            make it earn the merge.
           </p>
           <p>
-            Because here's the thing: I don't "use AI." I run it like an
-            engineering org. Every project starts as product and design docs the
-            agents build against. The toolchain is customized — skills I've
-            installed and written that make Claude interview <em>me</em>, one
-            question at a time, before it writes a line of code; planning maps
-            that slice work into agent-sized tickets; review gates so nothing
-            ships until it survives a code review and a security pass. Claude
-            writes most of the code. I make it earn the merge.
+            We're ClaudeMaxxing brah. Slop factory that. Claude gets it done.
           </p>
           <p>
-            Don't take my word for it — this page is the proof. Below is the
+            Don't take my word for it: this page is the proof. Below is the
             actual, verbatim prompt that kicked off the rewrite you're reading
             right now.
           </p>
@@ -1385,7 +1348,7 @@
                 project as well.
               </p>
             </div>
-            <figcaption>verbatim — the prompt that wrote this page.</figcaption>
+            <figcaption>verbatim: the prompt that wrote this page.</figcaption>
           </figure>
         </div>
       </section>
@@ -1398,33 +1361,38 @@
           </h2>
           <p>
             Made this because I fell down the rabbit hole of Together's
-            Mixture-of-Agents paper and got stuck on one thought: everyone
-            claims a team of models beats a single model, and nobody's demo has
-            a scoreboard. Stock trading has a scoreboard — the number goes up or
-            it doesn't. So I built a research collective to settle it for
-            myself, and to learn real multi-agent orchestration along the way:
-            eight named agents with specialized roles, a nine-phase
-            deliberation, evidence-first rules where every claim has to cite a
-            source. Plus the Claude API and Alpaca's paper-trading API.
+            Mixture-of-Agents paper and got stuck on one thought:
+            <strong
+              >everyone claims a team of models beats a single model, and
+              nobody's demo has a scoreboard.</strong
+            >
+            Stock trading has a scoreboard: the number goes up or it doesn't. So
+            I built a research collective to settle it for myself, and to learn
+            real multi-agent orchestration along the way: eight named agents
+            with specialized roles, a nine-phase deliberation, evidence-first
+            rules where every claim has to cite a source. Plus the Claude API
+            and Alpaca's paper-trading API.
           </p>
           <p>
             The thing I'm proudest of is the accountability ledger: being wrong
-            costs you here. Every agent's voting power gets reweighted by its
-            track record, and roles are up for election — a quant that keeps
-            missing gets outvoted, then unseated. Biggest obstacle was the first
-            real run dying with a 429. The morning data brief — 240 news
-            articles plus raw JSON of every price bar — came out to 32K tokens
-            against a 30K request limit. My agents' reading list was literally
-            too long for them to read. I fixed it with a brief summarizer that
-            compresses the raw dumps into tight text digests, so all eight
-            agents can deliberate without blowing the context budget.
+            costs you here. Voting power gets reweighted by track record, and
+            roles are up for election. A quant that keeps missing gets outvoted,
+            then unseated. Biggest obstacle was the first real run dying with a
+            429: the morning data brief came out to 32K tokens against a 30K
+            limit, so my agents' reading list was literally too long for them to
+            read. A summarizer now compresses the raw dumps into tight digests
+            all eight agents can afford to read.
           </p>
           <div class="tags">
             <span class="tag">Python</span><span class="tag">Claude API</span
             ><span class="tag">Multi-agent</span><span class="tag">Alpaca</span>
           </div>
           <div class="cta">
-            <a href="https://github.com/BrodieL3/atlas-trading">Code ↗</a>
+            <a href="https://github.com/BrodieL3/atlas-trading">Code ↗</a
+            ><a
+              href="https://github.com/BrodieL3/atlas-trading/blob/master/docs/TOKEN_OPTIMIZATION.md"
+              >The 429 postmortem ↗</a
+            >
           </div>
 
           <div class="term" id="term">
@@ -1434,8 +1402,8 @@
             </div>
             <div class="term-body">
               <div class="tl t-sys" data-d="420">
-                [atlas] convening deliberation — 7 agents · topic: semiconductor
-                momentum
+                [atlas] convening deliberation — 7 specialists · topic:
+                semiconductor momentum
               </div>
               <div class="tl t-agent" data-d="300">
                 MERLIN <span class="role">· market analyst · weight 0.19</span>
@@ -1500,26 +1468,27 @@
               <p>
                 I wanted to learn more about the defense-tech industry, and the
                 fastest way to learn an industry is to ship something for it. So
-                I built the product I'd want on my own desk: a news feed that
-                reads fifteen niche defense outlets, clusters the coverage into
-                stories, and pairs it with the money — DoD contract awards,
-                SAM.gov opportunities, prime-contractor market data. I also had
-                two things I wanted to learn: how to render seriously data-dense
-                pages in React, and how to run Sanity as a real editorial
-                surface with review queues and a curation workflow.
+                I built the product I'd want on my own desk:
+                <strong
+                  >a news feed that reads fifteen niche defense outlets,
+                  clusters the coverage into stories, and pairs it with the
+                  money</strong
+                >: DoD contract awards, SAM.gov opportunities, prime-contractor
+                market data. I also had two things I wanted to learn: how to
+                render seriously data-dense pages in React, and how to run
+                Sanity as a real editorial surface with review queues and a
+                curation workflow.
               </p>
               <p>
                 The accomplishment I keep coming back to: the paper assembles
-                itself. One cron fires every morning and the whole cycle runs —
-                feed pull, entity extraction, clustering, digest writing,
-                publish. A newspaper with zero staff, live at desem.vercel.app,
-                and the headlines below are being served by its public API right
-                now. The big fight was story clustering: pure embedding
-                similarity kept fusing unrelated coverage into one mega-story
-                while splitting a single contract award into five. I fixed it
-                with a hybrid score — lexical overlap plus embeddings — and
-                union-find to build the clusters, and stories finally snapped
-                into shape.
+                itself. One cron fires every morning and the whole cycle runs,
+                from feed pull to entity extraction to clustering to publish. A
+                newspaper with zero staff, live at desem.vercel.app, and the
+                headlines below are served by its public API right now. The big
+                fight was story clustering: pure embedding similarity kept
+                fusing unrelated coverage into one mega-story while splitting a
+                single contract award into five. A hybrid score, word overlap
+                plus embeddings, finally snapped stories into shape.
               </p>
               <div class="tags">
                 <span class="tag">Next.js</span><span class="tag">Supabase</span
@@ -1622,7 +1591,7 @@
               <div class="duel panel">
                 <div class="demo-head">Which bar wins?</div>
                 <div class="demo-sub">
-                  Tap to vote — watch the ranking re-fit.
+                  Tap to vote and watch the ranking re-fit.
                 </div>
                 <div class="duel-pair">
                   <button
@@ -1672,21 +1641,13 @@
                   </li>
                 </ol>
                 <p class="demo-note">
-                  A toy of the real thing: the app fits a per-user Bayesian
-                  Bradley–Terry model, so sparse comparisons don't produce
-                  overconfident orderings.
+                  A toy of the real thing: this demo runs the plain Elo the beta
+                  shipped on.
                 </p>
                 <div
                   class="sr-status"
                   id="duel-status"
                   aria-live="polite"
-                  style="
-                    position: absolute;
-                    width: 1px;
-                    height: 1px;
-                    overflow: hidden;
-                    clip-path: inset(50%);
-                  "
                 ></div>
               </div>
             </div>
@@ -1697,27 +1658,28 @@
               <p>
                 My friends and I could never decide where to go out in Boston.
                 Everyone had opinions about every bar, and the apps that rank
-                places only cared about restaurants — so I built the thing we
-                actually needed: rate the bars you visit, compare them
-                head-to-head, and let an algorithm work out what you like and
-                where the group should go tonight. I wanted to learn React
-                Native, and I wanted to learn how to code algorithmic
-                suggestions for real — the kind that hold up when the data is a
-                dozen bar visits, sparse and noisy.
+                places only cared about restaurants. So I built the thing we
+                actually needed:
+                <strong
+                  >rate the bars you visit, compare them head-to-head, and let
+                  an algorithm work out what you like and where the group should
+                  go tonight.</strong
+                >
+                I wanted to learn React Native, and I wanted to learn how to
+                code algorithmic suggestions for real: the kind that hold up
+                when the data is a dozen bar visits, sparse and noisy.
               </p>
               <p>
                 I shipped the beta on a simple Elo engine because it was tested
-                and safe, then built a Monte Carlo simulation to check it —
-                which showed Elo was mostly noise at our data sizes. So once the
-                beta was out the door, I swapped in a per-user Bayesian
-                Bradley–Terry model ranked by a conservative lower bound, with
-                the ADR trail to show the reasoning. Biggest obstacle was mobile
-                itself. This was my first React Native app, and the Expo
-                ecosystem — dev clients, native modules, EAS builds — fought me
-                the whole way, with Firebase's trust model as the boss fight:
-                client-side security rules couldn't safely handle group
-                membership, so I moved that logic into trusted Cloud Functions
-                and put every rule under an emulator test suite.
+                and safe, then built a Monte Carlo simulation to check it. The
+                simulation showed Elo was mostly noise at our data sizes, so I
+                swapped in a per-user Bayesian ranking model, with a written
+                decision log to show the reasoning. Biggest obstacle was mobile
+                itself: my first React Native app, and the Expo ecosystem fought
+                me the whole way. Firebase's trust model was the boss fight.
+                Client-side security rules couldn't safely handle group
+                membership, so that logic moved into trusted Cloud Functions,
+                with every rule under an emulator test suite.
               </p>
               <div class="tags">
                 <span class="tag">React Native / Expo</span
@@ -1726,46 +1688,8 @@
                 ><span class="tag">PostHog</span>
               </div>
               <div class="cta">
-                <a href="https://rounds-web-bice.vercel.app">Site ↗</a
+                <a href="https://rounds-web-bice.vercel.app">Website ↗</a
                 ><a href="https://github.com/BrodieL3/rounds">Code ↗</a>
-              </div>
-              <div class="rounds-shot">
-                <div
-                  class="lift lift-rounds"
-                  role="img"
-                  aria-label="Rounds app: personal ranking of Boston cocktail bars with loved and fine ratings"
-                >
-                  <div class="rd-top">
-                    <b>Boston · Cambridge</b><span>Your list · 12 logged</span>
-                  </div>
-                  <div class="rd-log"><i></i>Log the bar I'm at</div>
-                  <ol class="rd-list">
-                    <li>
-                      <span class="rd-rk">1</span>
-                      <div>
-                        <b>The Hawthorne</b
-                        ><small>Cocktail Bar · Kenmore · 0.4 mi</small>
-                      </div>
-                      <span class="rd-badge">Loved</span>
-                    </li>
-                    <li>
-                      <span class="rd-rk">2</span>
-                      <div>
-                        <b>Backbar</b
-                        ><small>Cocktail Bar · Somerville · 1.2 mi</small>
-                      </div>
-                      <span class="rd-badge">Loved</span>
-                    </li>
-                    <li>
-                      <span class="rd-rk">3</span>
-                      <div>
-                        <b>Yvonne's</b
-                        ><small>Cocktail Bar · Downtown · 0.8 mi</small>
-                      </div>
-                      <span class="rd-badge rd-fine">Fine</span>
-                    </li>
-                  </ol>
-                </div>
               </div>
             </div>
           </div>
@@ -1782,23 +1706,24 @@
             Made this because I was trying to hit my macros while eating every
             meal at a Georgetown dining hall, and MyFitnessPal had no idea what
             Leo's was serving. Logging a dining-hall meal meant guessing at food
-            that wasn't in anyone's database, so my friend Alex and I started
-            building the tracker we actually needed. This was my first real
-            project — the one where I learned full-stack development: Next.js
-            and Supabase up front, Python scraping in the back, and how to move
-            data through a real pipeline.
+            that wasn't in anyone's database, so
+            <strong
+              >my friend Alex and I started building the tracker we actually
+              needed.</strong
+            >
+            This was my first real project, the one where I learned full-stack
+            development: Next.js and Supabase up front, Python scraping in the
+            back, and how to move data through a real pipeline.
           </p>
           <p>
             That first project grew into a three-repo production system: a
             scraper that reads every Georgetown dining menu daily, an API that
-            serves it, and the app on top — and it's now earning an iOS port,
-            which I'm actively building. The hard part was the scraping itself.
-            The menus weren't sitting in clean HTML; the data was buried in a
-            pile of JavaScript, nutrition facts were scattered across hundreds
-            of per-item fetches, and the site failed at random. I dug the data
-            out of the JS payloads, put a 700+ item nutrition cache in front so
-            nothing gets fetched twice, and wrapped the whole thing in cleaning
-            passes and retry logic. It's been quietly shipping menus every
+            serves it, and the app on top. It's now earning an iOS port, which
+            I'm actively building. The hard part was the scraping. The menus
+            weren't sitting in clean HTML; the data was buried in JavaScript
+            payloads, scattered across hundreds of per-item fetches, and the
+            site failed at random. A 700+ item nutrition cache, cleaning passes,
+            and retry logic tamed it, and it's been quietly shipping menus every
             morning since.
           </p>
           <div class="tags">
@@ -1818,7 +1743,7 @@
             <div class="menu-panel panel">
               <div class="demo-head">Build a plate from Leo's</div>
               <div class="demo-sub">
-                Tap items — the diary fills in like the app.
+                Tap items and the diary fills in like the app.
               </div>
               <ul class="menu-list" id="hh-menu">
                 <li>
@@ -1887,7 +1812,7 @@
                 </div>
               </div>
               <p class="demo-note">
-                Sample items from a scraped HoyaEats menu — the real app serves
+                Sample items from a scraped HoyaEats menu; the real app serves
                 every dining hall, every day.
               </p>
             </div>
@@ -1967,22 +1892,22 @@
                 />
               </div>
               <p class="demo-note">
-                Drag the handle — the edit is a live filter chain running in
-                your browser, the same idea Photon runs on canvas.
+                Drag the handle: the edit is a live filter chain running in your
+                browser, the same idea Photon runs on canvas.
               </p>
             </div>
             <div>
               <h2>Photon <span class="kind">In-browser photo editor</span></h2>
               <p>
-                I kept needing two dumb-simple things — knock the background out
-                of an image and convert it to SVG — and every site that does
-                them wants an account, an upload, or a subscription. So Photon
-                is the editor that just opens: crop, filters, drawing, one-click
-                background removal, everything running in your browser and
-                nothing uploaded anywhere. Full honesty: it took one prompt to
-                GPT-5, which came back with a single HTML file — 2,266 lines,
-                zero dependencies, works offline, magic-wand flood fill
-                included.
+                I kept needing two dumb-simple things, background removal and
+                image-to-SVG, and every site that does them wants an account, an
+                upload, or a subscription. So
+                <strong>Photon is the editor that just opens</strong>: crop,
+                filters, drawing, one-click background removal, everything
+                running in your browser and nothing uploaded anywhere. Full
+                honesty: it took one prompt to GPT-5, which came back with a
+                single HTML file. 2,266 lines, zero dependencies, works offline,
+                magic-wand flood fill included.
               </p>
               <div class="tags">
                 <span class="tag">Vanilla JS</span
@@ -2057,6 +1982,21 @@
           </div>
         </div>
       </section>
+
+      <!-- ============ Outro ============ -->
+      <section class="outro" aria-label="Get in touch">
+        <div class="inner">
+          <h2>That's the whole demo floor.</h2>
+          <p>
+            Five products, every one shipped and running. If you made it this
+            far, say hi. I read every email.
+          </p>
+          <div class="big-links">
+            <span class="email">bsl54 [ @ ] georgetown [ dot ] edu</span>
+            <a href="https://github.com/BrodieL3">GitHub</a>
+          </div>
+        </div>
+      </section>
     </main>
 
     <footer>
@@ -2069,6 +2009,16 @@
     <script>
       (() => {
         const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+        /* ---------- Email: real mailto links, assembled here so the address
+           never sits scrapeable in the static HTML ---------- */
+        for (const el of document.querySelectorAll(".email")) {
+          const a = document.createElement("a");
+          a.className = "email";
+          a.href = "mailto:bsl54" + "@" + "george" + "town.edu";
+          a.textContent = "bsl54" + "@" + "george" + "town.edu";
+          el.replaceWith(a);
+        }
 
         /* ---------- Field Brief live wire ---------- */
         (async () => {
