@@ -116,86 +116,293 @@
         outline-offset: 2px;
       }
 
+      /* ---------- Quiet top nav ---------- */
+      .site-top .inner {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 1rem;
+        padding-block: 1.15rem;
+      }
+      .site-top .wordmark {
+        font-weight: 750;
+        font-size: 0.98rem;
+        letter-spacing: -0.01em;
+        color: var(--fg);
+      }
+      .site-top nav {
+        display: flex;
+        gap: 1.5rem;
+        font-size: 0.9rem;
+        font-weight: 600;
+      }
+      .site-top nav a {
+        color: var(--fg);
+      }
+      .site-top nav a:hover {
+        color: var(--accent);
+      }
+
       /* ---------- Hero (shell world) ---------- */
       .hero {
-        padding-block: clamp(3.5rem, 10vh, 6.5rem) clamp(2.5rem, 6vh, 4rem);
+        min-height: calc(100svh - 3.6rem);
+        display: flex;
+      }
+      .hero .inner {
+        flex: 1;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        padding-block: clamp(3.5rem, 12vh, 8rem) clamp(1.5rem, 4vh, 3rem);
       }
       .hero h1 {
-        font-size: clamp(3rem, 9vw, 5.5rem);
+        font-size: clamp(3.2rem, 11vw, 6rem);
         font-weight: 800;
-        letter-spacing: -0.03em;
-        line-height: 1;
+        letter-spacing: -0.035em;
+        line-height: 0.98;
         text-wrap: balance;
       }
       .hero .sub {
-        margin-top: 1.2rem;
-        max-width: 42rem;
-        font-size: clamp(1.05rem, 2.2vw, 1.3rem);
+        margin-top: clamp(1.6rem, 4vh, 2.75rem);
+        max-width: 34rem;
+        font-size: clamp(1.08rem, 2.2vw, 1.32rem);
         line-height: 1.55;
         text-wrap: pretty;
+      }
+      .hero .sub + .sub {
+        margin-top: 0.7rem;
+        font-size: 1rem;
       }
       .email {
         color: var(--email);
       }
-      .hero .links {
-        margin-top: 1.2rem;
-        display: flex;
-        gap: 1.4rem;
-        font-size: 1rem;
-        font-weight: 600;
+      button.email {
+        position: relative;
+        font: inherit;
+        background: none;
+        border: 0;
+        padding: 0;
+        cursor: pointer;
       }
-      .worlds {
-        margin-top: 2rem;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.55rem;
+      button.email:hover {
+        text-decoration: underline;
+      }
+      .copied-tip {
+        position: absolute;
+        left: 50%;
+        bottom: calc(100% + 0.4rem);
+        transform: translate(-50%, 3px);
+        padding: 0.14rem 0.6rem;
+        border-radius: 999px;
+        background: var(--fg);
+        color: var(--bg);
+        font-size: 0.78rem;
+        font-weight: 650;
+        line-height: 1.5;
+        white-space: nowrap;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition:
+          opacity 0.2s var(--ease),
+          transform 0.2s var(--ease),
+          visibility 0s 0.2s;
+      }
+      button.email.copied .copied-tip {
+        opacity: 1;
+        visibility: visible;
+        transform: translate(-50%, 0);
+        transition:
+          opacity 0.2s var(--ease),
+          transform 0.2s var(--ease);
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .copied-tip,
+        button.email.copied .copied-tip {
+          transition: none;
+          transform: translate(-50%, 0);
+        }
+      }
+      /* ---------- Hero index: numbered editorial contents ---------- */
+      .index {
+        margin-top: auto;
+        padding-top: clamp(2.5rem, 8vh, 5rem);
         list-style: none;
       }
-      .worlds a {
-        display: inline-block;
-        padding: 0.45rem 1rem;
-        border-radius: 999px;
-        font-size: 0.9rem;
-        font-weight: 650;
-        background: var(--p-bg);
-        color: var(--p-fg);
-        border: 1px solid var(--edge);
-        transition: transform 0.25s var(--ease);
+      .index a {
+        display: grid;
+        grid-template-columns: 3.4rem 1fr auto auto;
+        align-items: baseline;
+        column-gap: 1rem;
+        padding-block: clamp(0.75rem, 1.6vh, 1.05rem);
+        border-top: 1px solid var(--border);
+        color: var(--fg);
       }
-      .worlds a:hover {
+      .index li:last-child a {
+        border-bottom: 1px solid var(--border);
+      }
+      .index a:hover {
         text-decoration: none;
-        transform: translateY(-2px);
       }
-      .worlds .p-fb {
-        --p-bg: #0e0a16;
-        --p-fg: #bf81fe;
+      .index .no {
+        font-size: 0.85rem;
+        font-weight: 650;
+        color: var(--muted);
+        font-variant-numeric: tabular-nums;
       }
-      .worlds .p-rounds {
-        --p-bg: #0b0c0e;
-        --p-fg: #c8f169;
+      .index .nm {
+        font-weight: 750;
+        font-size: clamp(1.1rem, 2.4vw, 1.4rem);
+        letter-spacing: -0.01em;
+        line-height: 1.2;
       }
-      .worlds .p-hh {
-        --p-bg: #0a2a4e;
-        --p-fg: #85b8f8;
+      .index .kd {
+        color: var(--muted);
+        font-size: 0.88rem;
+        text-align: right;
       }
-      .worlds .p-atlas {
-        --p-bg: #081009;
-        --p-fg: #4ee38a;
+      .index .ar {
+        color: var(--muted);
+        font-weight: 700;
+        transition:
+          transform 0.25s var(--ease),
+          color 0.25s var(--ease);
       }
-      .worlds .p-photon {
-        --p-bg: #ffffff;
-        --p-fg: #c21b74;
+      .index a:hover .nm {
+        color: var(--ix);
+      }
+      .index a:hover .ar {
+        color: var(--ix);
+        transform: translateX(0.3rem);
+      }
+      .index .i-atlas {
+        --ix: #147a44;
+      }
+      .index .i-fb {
+        --ix: #7a3fd1;
+      }
+      .index .i-rounds {
+        --ix: #5a7a12;
+      }
+      .index .i-hh {
+        --ix: #1d5fd0;
+      }
+      .index .i-photon {
+        --ix: #c21b74;
+      }
+      @media (prefers-color-scheme: dark) {
+        .index .i-atlas {
+          --ix: #4ee38a;
+        }
+        .index .i-fb {
+          --ix: #bf81fe;
+        }
+        .index .i-rounds {
+          --ix: #c8f169;
+        }
+        .index .i-hh {
+          --ix: #85b8f8;
+        }
+        .index .i-photon {
+          --ix: #f06aad;
+        }
+      }
+      @media (max-width: 640px) {
+        .index a {
+          grid-template-columns: 2.6rem 1fr auto;
+        }
+        .index .no {
+          grid-row: 1;
+          grid-column: 1;
+        }
+        .index .nm {
+          grid-row: 1;
+          grid-column: 2;
+        }
+        .index .kd {
+          grid-column: 2;
+          grid-row: 2;
+          text-align: left;
+          font-size: 0.8rem;
+        }
+        .index .ar {
+          grid-row: 1;
+          grid-column: 3;
+        }
+      }
+
+      /* ---------- Numbered section labels (001/ … 007/) ---------- */
+      .sec-label {
+        position: relative;
+        display: flex;
+        align-items: baseline;
+        gap: 1rem;
+        padding-top: 0.9rem;
+        margin-bottom: clamp(1.8rem, 5vh, 3rem);
+        font-size: 0.92rem;
+      }
+      .sec-label::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: color-mix(
+          in srgb,
+          var(--w-ink, var(--fg)) 18%,
+          transparent
+        );
+        transform-origin: left center;
+      }
+      .sec-label .no {
+        font-weight: 750;
+        font-variant-numeric: tabular-nums;
+        color: var(--w-accent, var(--fg));
+      }
+      .sec-label .nm {
+        font-weight: 550;
+        color: var(--w-muted, var(--muted));
+      }
+      /* Scroll-scrubbed reveal: the rule draws in and the label rises as the
+         section enters the viewport, and reverses scrolling back up. Static
+         (fully visible) wherever scroll-driven animations are unsupported. */
+      @media (prefers-reduced-motion: no-preference) {
+        @supports (animation-timeline: view()) {
+          .sec-label::before {
+            animation: rule-in linear both;
+            animation-timeline: view();
+            animation-range: entry 0% entry 90%;
+          }
+          .sec-label .no,
+          .sec-label .nm {
+            animation: label-in linear both;
+            animation-timeline: view();
+            animation-range: entry 0% entry 80%;
+          }
+        }
+      }
+      @keyframes rule-in {
+        from {
+          transform: scaleX(0);
+        }
+      }
+      @keyframes label-in {
+        from {
+          opacity: 0;
+          transform: translateY(0.5em);
+        }
       }
 
       /* ---------- About: paying off the subscription ---------- */
       .about {
-        padding-block: clamp(1.5rem, 4vh, 2.5rem) clamp(2.5rem, 6vh, 4rem);
+        padding-block: clamp(3.5rem, 10vh, 6.5rem) clamp(4rem, 11vh, 7rem);
       }
       .about h2 {
-        font-size: clamp(1.7rem, 4.2vw, 2.4rem);
+        font-size: clamp(2rem, 5vw, 3.2rem);
         font-weight: 800;
-        letter-spacing: -0.02em;
-        line-height: 1.05;
+        letter-spacing: -0.025em;
+        line-height: 1.02;
         text-wrap: balance;
       }
       .about p {
@@ -239,13 +446,13 @@
 
       /* ---------- Outro: the closing pitch ---------- */
       .outro {
-        padding-block: 0 clamp(2.5rem, 6vh, 4rem);
+        padding-block: clamp(3.5rem, 10vh, 6.5rem) clamp(3rem, 9vh, 6rem);
       }
       .outro h2 {
-        font-size: clamp(1.7rem, 4.2vw, 2.4rem);
+        font-size: clamp(2rem, 5vw, 3.2rem);
         font-weight: 800;
-        letter-spacing: -0.02em;
-        line-height: 1.05;
+        letter-spacing: -0.025em;
+        line-height: 1.02;
         text-wrap: balance;
       }
       .outro p {
@@ -268,50 +475,38 @@
           transform: translateY(16px);
         }
       }
-      .hero .inner > :not(.worlds) {
-        animation: rise 0.65s var(--ease) backwards;
+      .site-top .inner > *,
+      .hero .inner > :not(.index) {
+        animation: rise 0.7s var(--ease) backwards;
       }
       .hero h1 {
-        animation-delay: 0s;
+        animation-delay: 0.05s;
       }
       .hero .sub {
-        animation-delay: 0.08s;
-      }
-      .hero .sub + .sub {
-        animation-delay: 0.11s;
-      }
-      .hero .links {
         animation-delay: 0.14s;
       }
-      .hero .worlds li {
-        animation: rise 0.55s var(--ease) backwards;
-        animation-delay: calc(0.2s + var(--i, 0) * 45ms);
+      .hero .sub + .sub {
+        animation-delay: 0.2s;
+      }
+      .hero .index li {
+        animation: rise 0.6s var(--ease) backwards;
+        animation-delay: calc(0.3s + var(--i, 0) * 60ms);
       }
 
       /* ---------- Worlds (full-bleed sections) ---------- */
       .world {
         background: var(--w-bg);
         color: var(--w-ink);
-        padding-block: clamp(3rem, 8vh, 5rem);
-        margin-block-end: clamp(2.5rem, 6vh, 4rem);
+        padding-block: clamp(4rem, 12vh, 7.5rem);
+        margin-block-end: clamp(3rem, 9vh, 6rem);
         scroll-margin-top: 1rem;
       }
       .world h2 {
-        font-size: clamp(2rem, 5vw, 2.9rem);
+        font-size: clamp(2.4rem, 6.5vw, 4.2rem);
         font-weight: 800;
-        letter-spacing: -0.02em;
-        line-height: 1.05;
-        display: flex;
-        align-items: baseline;
-        gap: 0.8rem;
-        flex-wrap: wrap;
+        letter-spacing: -0.03em;
+        line-height: 0.98;
         text-wrap: balance;
-      }
-      .world h2 .kind {
-        font-size: 1rem;
-        font-weight: 600;
-        letter-spacing: 0;
-        color: var(--w-accent);
       }
       .world p {
         margin-top: 0.9rem;
@@ -356,6 +551,162 @@
         border-block: 1px solid var(--border);
       }
 
+      /* ---------- Liquid Horizon seams: the next world pours over the seam
+         as three crisp wave layers rising at different rates, scrubbed by
+         scroll position (reverses scrolling up). The crest carries a thin
+         line of the incoming accent, and the incoming project's name
+         parallaxes behind the pour at low opacity before the liquid covers
+         it. Transform-only; static fills, no blur. ---------- */
+      .world:has(+ .seam) {
+        margin-block-end: 0;
+      }
+      .seam + .w-photon {
+        border-block-start: 0;
+      }
+      .seam {
+        position: relative;
+        height: clamp(15rem, 36vh, 24rem);
+        overflow: hidden;
+        contain: layout style paint;
+        pointer-events: none;
+        background: var(--sa);
+      }
+      /* shell → ATLAS: the top color tracks the theme canvas, and the label
+         stroke darkens in light mode so the lime stays readable on it */
+      .seam-about-atlas {
+        --sa: var(--bg);
+        --sb: #081009;
+        --sba: #4ee38a;
+        --slb: #147a44;
+      }
+      @media (prefers-color-scheme: dark) {
+        .seam-about-atlas {
+          --slb: #4ee38a;
+        }
+      }
+      .seam-atlas-fb {
+        --sa: #081009;
+        --sb: #0e0a16;
+        --sba: #bf81fe;
+      }
+      .seam-fb-rounds {
+        --sa: #0e0a16;
+        --sb: #0b0c0e;
+        --sba: #c8f169;
+      }
+      .seam-rounds-hh {
+        --sa: #0b0c0e;
+        --sb: #0a2a4e;
+        --sba: #85b8f8;
+      }
+      .seam-hh-photon {
+        --sa: #0a2a4e;
+        --sb: #ffffff;
+        --sba: #c21b74;
+      }
+      .seam svg {
+        position: absolute;
+        left: -15%;
+        bottom: 0;
+        width: 130%;
+        height: 115%;
+        display: block;
+      }
+      .seam path {
+        fill: currentColor;
+      }
+      .seam .w3 {
+        color: color-mix(in srgb, var(--sba) 30%, var(--sb));
+      }
+      .seam .w2 {
+        color: color-mix(in srgb, var(--sba) 10%, var(--sb));
+      }
+      .seam .w1 {
+        color: var(--sba);
+      }
+      .seam .w1 .pour {
+        fill: var(--sb);
+      }
+      .seam-label {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        display: grid;
+        place-items: center;
+        font-size: clamp(2.8rem, 9vw, 7rem);
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        line-height: 1;
+        white-space: nowrap;
+        color: transparent;
+        -webkit-text-stroke: 1.5px
+          color-mix(in srgb, var(--slb, var(--sba)) 75%, transparent);
+      }
+      @keyframes seam-w1 {
+        from {
+          transform: translate3d(0, 96%, 0);
+        }
+        to {
+          transform: translate3d(-4%, 0, 0);
+        }
+      }
+      @keyframes seam-w2 {
+        from {
+          transform: translate3d(0, 78%, 0);
+        }
+        to {
+          transform: translate3d(3%, 0, 0);
+        }
+      }
+      @keyframes seam-w3 {
+        from {
+          transform: translate3d(0, 58%, 0);
+        }
+        to {
+          transform: translate3d(-2%, 0, 0);
+        }
+      }
+      @keyframes seam-label {
+        from {
+          transform: translate3d(0, 90px, 0);
+        }
+        to {
+          transform: translate3d(0, -90px, 0);
+        }
+      }
+      @media (prefers-reduced-motion: no-preference) {
+        .seam svg,
+        .seam-label {
+          will-change: transform;
+        }
+        @supports (animation-timeline: view()) {
+          .seam {
+            view-timeline: --seam block;
+          }
+          .seam .w1 {
+            animation: seam-w1 linear both;
+            animation-timeline: --seam;
+          }
+          .seam .w2 {
+            animation: seam-w2 linear both;
+            animation-timeline: --seam;
+          }
+          .seam .w3 {
+            animation: seam-w3 linear both;
+            animation-timeline: --seam;
+          }
+          .seam-label {
+            animation: seam-label linear both;
+            animation-timeline: --seam;
+          }
+        }
+      }
+      @media (max-width: 560px) {
+        .seam {
+          height: clamp(10rem, 26vh, 14rem);
+        }
+      }
+
       .tags {
         margin-top: 1rem;
         display: flex;
@@ -382,22 +733,16 @@
         font-size: 0.96rem;
         font-weight: 700;
       }
-      /* invisible hit-area expansion so text links and pills reach ~44px on touch */
-      .hero .links a,
-      .cta a,
-      .worlds a {
+      /* invisible hit-area expansion so text links reach ~44px on touch */
+      .site-top nav a,
+      .cta a {
         position: relative;
       }
-      .hero .links a::after,
+      .site-top nav a::after,
       .cta a::after {
         content: "";
         position: absolute;
         inset: -13px -8px;
-      }
-      .worlds a::after {
-        content: "";
-        position: absolute;
-        inset: -6px -4px;
       }
 
       .panel {
@@ -795,9 +1140,9 @@
 
       .cols {
         display: grid;
-        gap: clamp(1.5rem, 4vw, 3rem);
+        gap: clamp(1.5rem, 4vw, 3.5rem);
         align-items: start;
-        margin-top: 1.6rem;
+        margin-top: clamp(1.8rem, 5vh, 3rem);
       }
       @media (min-width: 880px) {
         .cols-fb {
@@ -993,7 +1338,7 @@
       .plate-grid {
         display: grid;
         gap: clamp(1.25rem, 3vw, 2rem);
-        margin-top: 1.7rem;
+        margin-top: clamp(2rem, 6vh, 3.5rem);
       }
       @media (min-width: 880px) {
         .plate-grid {
@@ -1086,7 +1431,7 @@
 
       /* ---------- ATLAS: terminal ---------- */
       .term {
-        margin-top: 1.7rem;
+        margin-top: clamp(2rem, 6vh, 3.5rem);
         background: #050a06;
         border: 1px solid color-mix(in srgb, var(--w-ink) 18%, transparent);
         border-radius: 14px;
@@ -1251,8 +1596,12 @@
       }
 
       @media (prefers-reduced-motion: reduce) {
+        .site-top .inner > *,
         .hero .inner > *,
-        .hero .worlds li,
+        .hero .index li,
+        .sec-label::before,
+        .sec-label .no,
+        .sec-label .nm,
         .live-dot,
         .t-caret,
         .wire.arrive,
@@ -1262,7 +1611,7 @@
         .duel button.swap .b-meta {
           animation: none;
         }
-        .worlds a,
+        .index .ar,
         .duel button,
         .macro .fill,
         .menu-list button {
@@ -1275,113 +1624,151 @@
     </style>
   </head>
   <body>
-    <header class="hero">
+    <header class="site-top">
+      <div class="inner">
+        <span class="wordmark">Brodie Lee</span>
+        <nav aria-label="Profiles">
+          <a href="https://github.com/BrodieL3">GitHub</a>
+          <a href="https://www.linkedin.com/in/broderick-lee-054a5323b/"
+            >LinkedIn</a
+          >
+        </nav>
+      </div>
+    </header>
+
+    <section class="hero" aria-label="Introduction">
       <div class="inner">
         <h1>Brodie Lee</h1>
         <p class="sub">
-          ClaudeMaxxing. Claude writes the code, I run it like an engineering
-          org, and the five products below all shipped.
+          Telling Claude what to do, and then telling Claude to do it better.
         </p>
         <p class="sub">
           Reach me at
           <span class="email">bsl54 [ @ ] georgetown [ dot ] edu</span>.
         </p>
-        <div class="links">
-          <a href="https://github.com/BrodieL3">GitHub</a>
-          <a href="https://www.linkedin.com/in/broderick-lee-054a5323b/"
-            >LinkedIn</a
-          >
-        </div>
-        <ul class="worlds" aria-label="Jump to a project">
-          <li style="--i: 0"><a class="p-atlas" href="#atlas">ATLAS</a></li>
+        <ol class="index" aria-label="Jump to a project">
+          <li style="--i: 0">
+            <a class="i-atlas" href="#atlas"
+              ><span class="no">002/</span><span class="nm">ATLAS</span
+              ><span class="kd">Multi-agent AI research system</span
+              ><span class="ar" aria-hidden="true">&rarr;</span></a
+            >
+          </li>
           <li style="--i: 1">
-            <a class="p-fb" href="#fieldbrief">Field Brief</a>
+            <a class="i-fb" href="#fieldbrief"
+              ><span class="no">003/</span><span class="nm">Field Brief</span
+              ><span class="kd">Defense-tech news intelligence</span
+              ><span class="ar" aria-hidden="true">&rarr;</span></a
+            >
           </li>
-          <li style="--i: 2"><a class="p-rounds" href="#rounds">Rounds</a></li>
+          <li style="--i: 2">
+            <a class="i-rounds" href="#rounds"
+              ><span class="no">004/</span><span class="nm">Rounds</span
+              ><span class="kd">Social nightlife discovery</span
+              ><span class="ar" aria-hidden="true">&rarr;</span></a
+            >
+          </li>
           <li style="--i: 3">
-            <a class="p-hh" href="#healthyhoyas">HealthyHoyas</a>
+            <a class="i-hh" href="#healthyhoyas"
+              ><span class="no">005/</span><span class="nm">HealthyHoyas</span
+              ><span class="kd">Campus nutrition tracking</span
+              ><span class="ar" aria-hidden="true">&rarr;</span></a
+            >
           </li>
-          <li style="--i: 4"><a class="p-photon" href="#photon">Photon</a></li>
-        </ul>
+          <li style="--i: 4">
+            <a class="i-photon" href="#photon"
+              ><span class="no">006/</span><span class="nm">Photon</span
+              ><span class="kd">In-browser photo editor</span
+              ><span class="ar" aria-hidden="true">&rarr;</span></a
+            >
+          </li>
+        </ol>
       </div>
-    </header>
+    </section>
 
     <main>
       <!-- ============ About ============ -->
       <section class="about" id="about" aria-label="About that subscription">
         <div class="inner">
+          <div class="sec-label">
+            <span class="no">001/</span><span class="nm">About</span>
+          </div>
           <h2>About that subscription</h2>
           <p>
-            I don't "use AI." I run it like an engineering org. Every project
-            starts as product and design docs the agents build against. The
-            toolchain is customized: skills I've installed and written that make
-            Claude interview <em>me</em>, one question at a time, before it
-            writes a line of code; planning maps that slice work into
-            agent-sized tickets; review gates so nothing ships until it survives
-            a code review and a security pass. Claude writes most of the code. I
-            make it earn the merge.
+            You're probably using Fable wrong. The thing people tend to get
+            wrong is that its greatest strength is its ability to one-shot
+            tasks. The truth is that for a project to feel polished, you need a
+            structured approach.
           </p>
           <p>
-            We're ClaudeMaxxing brah. Slop factory that. Claude gets it done.
+            Every project starts as product and design docs the agents build
+            against. The process is: A) use skills I've installed and written
+            that make Claude interview <em>me</em> before it writes a line of
+            code, B) chart maps that slice work into agent-sized tickets, and C)
+            create loops for testing and code review.
           </p>
-          <p>
-            Don't take my word for it: this page is the proof. Below is the
-            actual, verbatim prompt that kicked off the rewrite you're reading
-            right now.
-          </p>
-          <figure class="prompt-box">
-            <div class="prompt-input">
-              <span class="prompt-caret" aria-hidden="true">&#10095;</span>
-              <p>
-                the project descriptions should loosely follow the format of
-                "Made this because [some personal non technical reason if any,
-                tell a story, don't be a robot] and because I wanted to learn
-                [the technologies used to make it]. Biggest accomplishment was
-                [something you're proud of achieving, for example 1000+ API
-                requests, stars on GitHub]. Biggest obstacle was [ideally
-                something technical, for example CORS was being a bitch] and I
-                overcame it by [however you did it]." Talk about how I came up
-                with the project idea. The first section of the page should be a
-                personal one talking about how I use Claude Code to make these
-                projects, so I want you to /grill-me on how to present that
-                information. Very briefly, I think ATLAS ought to be the hero
-                project as well.
-              </p>
-            </div>
-            <figcaption>verbatim: the prompt that wrote this page.</figcaption>
-          </figure>
+          <p>TLDR; ClaudeMaxxing. Building a software factory.</p>
         </div>
       </section>
+
+      <div class="seam seam-about-atlas" aria-hidden="true">
+        <span class="seam-label">ATLAS</span>
+        <svg class="w3" viewBox="0 0 1200 400" preserveAspectRatio="none">
+          <path
+            transform="translate(1200 0) scale(-1 1)"
+            d="M0,120 C160,60 340,180 600,120 C860,60 1040,180 1200,110 L1200,400 L0,400 Z"
+          />
+        </svg>
+        <svg class="w2" viewBox="0 0 1200 400" preserveAspectRatio="none">
+          <path
+            transform="translate(1200 0) scale(-1 1)"
+            d="M0,140 C220,210 420,70 640,130 C880,200 1060,90 1200,150 L1200,400 L0,400 Z"
+          />
+        </svg>
+        <svg class="w1" viewBox="0 0 1200 400" preserveAspectRatio="none">
+          <path
+            transform="translate(1200 0) scale(-1 1)"
+            d="M0,118 C180,58 380,178 620,118 C860,58 1040,178 1200,108 L1200,400 L0,400 Z"
+          />
+          <path
+            class="pour"
+            transform="translate(1200 0) scale(-1 1)"
+            d="M0,124 C180,64 380,184 620,124 C860,64 1040,184 1200,114 L1200,400 L0,400 Z"
+          />
+        </svg>
+      </div>
 
       <!-- ============ ATLAS ============ -->
       <section class="world w-atlas" id="atlas" aria-label="ATLAS">
         <div class="inner">
-          <h2>
-            ATLAS <span class="kind">Multi-agent AI research system</span>
-          </h2>
+          <div class="sec-label">
+            <span class="no">002/</span
+            ><span class="nm">Multi-agent AI research system</span>
+          </div>
+          <h2>ATLAS</h2>
           <p>
-            Made this because I fell down the rabbit hole of Together's
-            Mixture-of-Agents paper and got stuck on one thought:
-            <strong
-              >everyone claims a team of models beats a single model, and
-              nobody's demo has a scoreboard.</strong
-            >
-            Stock trading has a scoreboard: the number goes up or it doesn't. So
-            I built a research collective to settle it for myself, and to learn
-            real multi-agent orchestration along the way: eight named agents
-            with specialized roles, a nine-phase deliberation, evidence-first
-            rules where every claim has to cite a source. Plus the Claude API
-            and Alpaca's paper-trading API.
+            I love Together's Mixture-of-Agents paper and its findings on MoA
+            performance made me wonder if quantitative finance could be a good
+            testbed for multi-agent research, so I built ATLAS, a multi-agent
+            research system for stock trading.
           </p>
           <p>
-            The thing I'm proudest of is the accountability ledger: being wrong
-            costs you here. Voting power gets reweighted by track record, and
-            roles are up for election. A quant that keeps missing gets outvoted,
-            then unseated. Biggest obstacle was the first real run dying with a
-            429: the morning data brief came out to 32K tokens against a 30K
-            limit, so my agents' reading list was literally too long for them to
-            read. A summarizer now compresses the raw dumps into tight digests
-            all eight agents can afford to read.
+            Stock trading has a clear scoreboard of the valuation of your
+            portfolio. So I built a research collective to settle it for myself
+            and learn a little bit about multi-agent orchestration along the
+            way. I set up eight named agents with research roles and a
+            nine-phase deliberation with evidence-first rules where every claim
+            has to cite a source.
+          </p>
+          <p>
+            The accountability ledger is really the backbone of the system:
+            being wrong costs the agent, so voting power gets reweighted by
+            track record, and roles are up for election. A quant that keeps
+            missing gets outvoted, then unseated. Biggest obstacle was the first
+            real run dying with a 429: the morning data brief came out to 32K
+            tokens against a 30K limit, so my agents' reading list was literally
+            too long for them to read. A summarizer now compresses the raw dumps
+            into tight digests all eight agents can afford to read.
           </p>
           <div class="tags">
             <span class="tag">Python</span><span class="tag">Claude API</span
@@ -1456,39 +1843,60 @@
         </div>
       </section>
 
+      <div class="seam seam-atlas-fb" aria-hidden="true">
+        <span class="seam-label">Field Brief</span>
+        <svg class="w3" viewBox="0 0 1200 400" preserveAspectRatio="none">
+          <path
+            d="M0,120 C160,60 340,180 600,120 C860,60 1040,180 1200,110 L1200,400 L0,400 Z"
+          />
+        </svg>
+        <svg class="w2" viewBox="0 0 1200 400" preserveAspectRatio="none">
+          <path
+            d="M0,140 C220,210 420,70 640,130 C880,200 1060,90 1200,150 L1200,400 L0,400 Z"
+          />
+        </svg>
+        <svg class="w1" viewBox="0 0 1200 400" preserveAspectRatio="none">
+          <path
+            d="M0,118 C180,58 380,178 620,118 C860,58 1040,178 1200,108 L1200,400 L0,400 Z"
+          />
+          <path
+            class="pour"
+            d="M0,124 C180,64 380,184 620,124 C860,64 1040,184 1200,114 L1200,400 L0,400 Z"
+          />
+        </svg>
+      </div>
+
       <!-- ============ Field Brief ============ -->
       <section class="world w-fb" id="fieldbrief" aria-label="Field Brief">
         <div class="inner">
+          <div class="sec-label">
+            <span class="no">003/</span
+            ><span class="nm">Defense-tech news intelligence</span>
+          </div>
+          <h2>Field Brief</h2>
           <div class="cols cols-fb">
             <div>
-              <h2>
-                Field Brief
-                <span class="kind">Defense-tech news intelligence</span>
-              </h2>
               <p>
-                I wanted to learn more about the defense-tech industry, and the
-                fastest way to learn an industry is to ship something for it. So
-                I built the product I'd want on my own desk:
-                <strong
-                  >a news feed that reads fifteen niche defense outlets,
-                  clusters the coverage into stories, and pairs it with the
-                  money</strong
-                >: DoD contract awards, SAM.gov opportunities, prime-contractor
-                market data. I also had two things I wanted to learn: how to
-                render seriously data-dense pages in React, and how to run
-                Sanity as a real editorial surface with review queues and a
-                curation workflow.
+                I wanted to learn more about the defense-tech industry, so I
+                made Field Brief, which provides a continuous briefing of the
+                latest news and contract awards.
               </p>
               <p>
-                The accomplishment I keep coming back to: the paper assembles
-                itself. One cron fires every morning and the whole cycle runs,
-                from feed pull to entity extraction to clustering to publish. A
-                newspaper with zero staff, live at desem.vercel.app, and the
-                headlines below are served by its public API right now. The big
-                fight was story clustering: pure embedding similarity kept
-                fusing unrelated coverage into one mega-story while splitting a
-                single contract award into five. A hybrid score, word overlap
-                plus embeddings, finally snapped stories into shape.
+                Learned a lot about big data wrangling with DoD contract awards,
+                SAM.gov opportunities, prime-contractor market data. I also
+                wanted to learn how to render seriously data-dense pages in
+                React, and how to run Sanity as a real editorial surface with
+                review queues and a curation workflow which this project has in
+                spades.
+              </p>
+              <p>
+                On a technical level, one cron runs the whole cycle, from feed
+                pull to entity extraction to clustering to publish. Basically
+                it's a newspaper with zero staff. The big fight was story
+                clustering: pure embedding similarity kept fusing unrelated
+                coverage into one mega-story while splitting a single contract
+                award into five. A hybrid score, word overlap plus embeddings,
+                finally snapped stories into shape.
               </p>
               <div class="tags">
                 <span class="tag">Next.js</span><span class="tag">Supabase</span
@@ -1583,9 +1991,41 @@
         </div>
       </section>
 
+      <div class="seam seam-fb-rounds" aria-hidden="true">
+        <span class="seam-label">Rounds</span>
+        <svg class="w3" viewBox="0 0 1200 400" preserveAspectRatio="none">
+          <path
+            transform="translate(1200 0) scale(-1 1)"
+            d="M0,120 C160,60 340,180 600,120 C860,60 1040,180 1200,110 L1200,400 L0,400 Z"
+          />
+        </svg>
+        <svg class="w2" viewBox="0 0 1200 400" preserveAspectRatio="none">
+          <path
+            transform="translate(1200 0) scale(-1 1)"
+            d="M0,140 C220,210 420,70 640,130 C880,200 1060,90 1200,150 L1200,400 L0,400 Z"
+          />
+        </svg>
+        <svg class="w1" viewBox="0 0 1200 400" preserveAspectRatio="none">
+          <path
+            transform="translate(1200 0) scale(-1 1)"
+            d="M0,118 C180,58 380,178 620,118 C860,58 1040,178 1200,108 L1200,400 L0,400 Z"
+          />
+          <path
+            class="pour"
+            transform="translate(1200 0) scale(-1 1)"
+            d="M0,124 C180,64 380,184 620,124 C860,64 1040,184 1200,114 L1200,400 L0,400 Z"
+          />
+        </svg>
+      </div>
+
       <!-- ============ Rounds ============ -->
       <section class="world w-rounds" id="rounds" aria-label="Rounds">
         <div class="inner">
+          <div class="sec-label">
+            <span class="no">004/</span
+            ><span class="nm">Social nightlife discovery</span>
+          </div>
+          <h2>Rounds</h2>
           <div class="cols cols-rounds">
             <div class="demo-col">
               <div class="duel panel">
@@ -1652,9 +2092,6 @@
               </div>
             </div>
             <div>
-              <h2>
-                Rounds <span class="kind">Social nightlife discovery</span>
-              </h2>
               <p>
                 My friends and I could never decide where to go out in Boston.
                 Everyone had opinions about every bar, and the apps that rank
@@ -1696,12 +2133,37 @@
         </div>
       </section>
 
+      <div class="seam seam-rounds-hh" aria-hidden="true">
+        <span class="seam-label">HealthyHoyas</span>
+        <svg class="w3" viewBox="0 0 1200 400" preserveAspectRatio="none">
+          <path
+            d="M0,120 C160,60 340,180 600,120 C860,60 1040,180 1200,110 L1200,400 L0,400 Z"
+          />
+        </svg>
+        <svg class="w2" viewBox="0 0 1200 400" preserveAspectRatio="none">
+          <path
+            d="M0,140 C220,210 420,70 640,130 C880,200 1060,90 1200,150 L1200,400 L0,400 Z"
+          />
+        </svg>
+        <svg class="w1" viewBox="0 0 1200 400" preserveAspectRatio="none">
+          <path
+            d="M0,118 C180,58 380,178 620,118 C860,58 1040,178 1200,108 L1200,400 L0,400 Z"
+          />
+          <path
+            class="pour"
+            d="M0,124 C180,64 380,184 620,124 C860,64 1040,184 1200,114 L1200,400 L0,400 Z"
+          />
+        </svg>
+      </div>
+
       <!-- ============ HealthyHoyas ============ -->
       <section class="world w-hh" id="healthyhoyas" aria-label="HealthyHoyas">
         <div class="inner">
-          <h2>
-            HealthyHoyas <span class="kind">Campus nutrition tracking</span>
-          </h2>
+          <div class="sec-label">
+            <span class="no">005/</span
+            ><span class="nm">Campus nutrition tracking</span>
+          </div>
+          <h2>HealthyHoyas</h2>
           <p class="lead">
             Made this because I was trying to hit my macros while eating every
             meal at a Georgetown dining hall, and MyFitnessPal had no idea what
@@ -1861,9 +2323,41 @@
         </div>
       </section>
 
+      <div class="seam seam-hh-photon" aria-hidden="true">
+        <span class="seam-label">Photon</span>
+        <svg class="w3" viewBox="0 0 1200 400" preserveAspectRatio="none">
+          <path
+            transform="translate(1200 0) scale(-1 1)"
+            d="M0,120 C160,60 340,180 600,120 C860,60 1040,180 1200,110 L1200,400 L0,400 Z"
+          />
+        </svg>
+        <svg class="w2" viewBox="0 0 1200 400" preserveAspectRatio="none">
+          <path
+            transform="translate(1200 0) scale(-1 1)"
+            d="M0,140 C220,210 420,70 640,130 C880,200 1060,90 1200,150 L1200,400 L0,400 Z"
+          />
+        </svg>
+        <svg class="w1" viewBox="0 0 1200 400" preserveAspectRatio="none">
+          <path
+            transform="translate(1200 0) scale(-1 1)"
+            d="M0,118 C180,58 380,178 620,118 C860,58 1040,178 1200,108 L1200,400 L0,400 Z"
+          />
+          <path
+            class="pour"
+            transform="translate(1200 0) scale(-1 1)"
+            d="M0,124 C180,64 380,184 620,124 C860,64 1040,184 1200,114 L1200,400 L0,400 Z"
+          />
+        </svg>
+      </div>
+
       <!-- ============ Photon ============ -->
       <section class="world w-photon" id="photon" aria-label="Photon">
         <div class="inner">
+          <div class="sec-label">
+            <span class="no">006/</span
+            ><span class="nm">In-browser photo editor</span>
+          </div>
+          <h2>Photon</h2>
           <div class="cols cols-photon">
             <div class="demo-col">
               <div class="ba" id="ba">
@@ -1897,7 +2391,6 @@
               </p>
             </div>
             <div>
-              <h2>Photon <span class="kind">In-browser photo editor</span></h2>
               <p>
                 I kept needing two dumb-simple things, background removal and
                 image-to-SVG, and every site that does them wants an account, an
@@ -1984,8 +2477,11 @@
       </section>
 
       <!-- ============ Outro ============ -->
-      <section class="outro" aria-label="Get in touch">
+      <section class="outro" id="contact" aria-label="Get in touch">
         <div class="inner">
+          <div class="sec-label">
+            <span class="no">007/</span><span class="nm">Contact</span>
+          </div>
           <h2>That's the whole demo floor.</h2>
           <p>
             Five products, every one shipped and running. If you made it this
@@ -1995,6 +2491,7 @@
             <span class="email">bsl54 [ @ ] georgetown [ dot ] edu</span>
             <a href="https://github.com/BrodieL3">GitHub</a>
           </div>
+          <div class="sr-status" id="copy-status" aria-live="polite"></div>
         </div>
       </section>
     </main>
@@ -2010,14 +2507,55 @@
       (() => {
         const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-        /* ---------- Email: real mailto links, assembled here so the address
-           never sits scrapeable in the static HTML ---------- */
-        for (const el of document.querySelectorAll(".email")) {
-          const a = document.createElement("a");
-          a.className = "email";
-          a.href = "mailto:bsl54" + "@" + "george" + "town.edu";
-          a.textContent = "bsl54" + "@" + "george" + "town.edu";
-          el.replaceWith(a);
+        /* ---------- Email: click-to-copy buttons, assembled here so the
+           address never sits scrapeable in the static HTML ---------- */
+        {
+          const addr = "bsl54" + "@" + "george" + "town.edu";
+          const copyStatus = document.getElementById("copy-status");
+          const copyAddr = async () => {
+            try {
+              await navigator.clipboard.writeText(addr);
+              return true;
+            } catch (_) {
+              const ta = document.createElement("textarea");
+              ta.value = addr;
+              ta.setAttribute("readonly", "");
+              ta.style.position = "fixed";
+              ta.style.opacity = "0";
+              document.body.appendChild(ta);
+              ta.select();
+              let ok = false;
+              try {
+                ok = document.execCommand("copy");
+              } catch (_) {}
+              ta.remove();
+              return ok;
+            }
+          };
+          for (const el of document.querySelectorAll(".email")) {
+            const btn = document.createElement("button");
+            btn.type = "button";
+            btn.className = "email";
+            btn.title = "Copy email address";
+            btn.textContent = addr;
+            const tip = document.createElement("span");
+            tip.className = "copied-tip";
+            tip.setAttribute("aria-hidden", "true");
+            tip.textContent = "Copied";
+            btn.appendChild(tip);
+            let timer;
+            btn.addEventListener("click", async () => {
+              if (!(await copyAddr())) return;
+              btn.classList.add("copied");
+              if (copyStatus) copyStatus.textContent = "Copied email address";
+              clearTimeout(timer);
+              timer = setTimeout(() => {
+                btn.classList.remove("copied");
+                if (copyStatus) copyStatus.textContent = "";
+              }, 1700);
+            });
+            el.replaceWith(btn);
+          }
         }
 
         /* ---------- Field Brief live wire ---------- */
@@ -2313,6 +2851,69 @@
             );
             io.observe(document.getElementById("ba"));
           }
+        })();
+
+        /* ---------- Liquid Horizon seams: scroll-scrub fallback for browsers
+           without CSS scroll-driven animations (e.g. older Safari). Mirrors
+           the seam-w* / seam-label keyframes; writes transform only, so each
+           frame is style + composite with no layout or repaint. ---------- */
+        (() => {
+          if (reduced || CSS.supports("animation-timeline: view()")) return;
+          const KF = {
+            w1: [
+              [0, 96],
+              [-4, 0],
+            ],
+            w2: [
+              [0, 78],
+              [3, 0],
+            ],
+            w3: [
+              [0, 58],
+              [-2, 0],
+            ],
+          };
+          const bands = [...document.querySelectorAll(".seam")].map((el) => ({
+            el,
+            p: -1,
+            num: el.querySelector(".seam-label"),
+            waves: [...el.querySelectorAll("svg")].flatMap((s) => {
+              const kf = KF[[...s.classList].find((c) => KF[c])];
+              return kf ? [{ el: s, from: kf[0], to: kf[1] }] : [];
+            }),
+          }));
+          if (!bands.length) return;
+          let ticking = false;
+          const paint = () => {
+            ticking = false;
+            const vh = innerHeight;
+            for (const band of bands) {
+              const r = band.el.getBoundingClientRect();
+              const p = Math.min(
+                1,
+                Math.max(0, (vh - r.top) / (vh + r.height)),
+              );
+              if (p === band.p) continue;
+              band.p = p;
+              for (const { el, from, to } of band.waves) {
+                const x = from[0] + (to[0] - from[0]) * p;
+                const y = from[1] + (to[1] - from[1]) * p;
+                el.style.transform = "translate3d(" + x + "%, " + y + "%, 0)";
+              }
+              if (band.num) {
+                band.num.style.transform =
+                  "translate3d(0, " + (90 - 180 * p) + "px, 0)";
+              }
+            }
+          };
+          const queue = () => {
+            if (ticking) return;
+            ticking = true;
+            requestAnimationFrame(paint);
+          };
+          addEventListener("scroll", queue, { passive: true });
+          addEventListener("resize", queue, { passive: true });
+          queue();
         })();
       })();
     </script>
