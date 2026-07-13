@@ -3,18 +3,21 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Brodie Lee — Projects</title>
+    <title>Brodie Lee — Claude automation for small businesses</title>
     <meta
       name="description"
-      content="Five shipped products: multi-agent AI research, defense-tech news intelligence, social nightlife rankings, campus nutrition, in-browser photo editing."
+      content="The boring half of your business can run itself. I find where Claude saves you hours, then build tooling you fully own. Free 20-minute call; five shipped products prove the range."
     />
     <link rel="canonical" href="https://brodielee.vercel.app/" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://brodielee.vercel.app/" />
-    <meta property="og:title" content="Brodie Lee — Projects" />
+    <meta
+      property="og:title"
+      content="Brodie Lee — Claude automation for small businesses"
+    />
     <meta
       property="og:description"
-      content="Five shipped products: multi-agent AI research, defense-tech news intelligence, social nightlife rankings, campus nutrition, in-browser photo editing."
+      content="The boring half of your business can run itself. I find where Claude saves you hours, then build tooling you fully own. Free 20-minute call; five shipped products prove the range."
     />
     <meta
       property="og:image"
@@ -23,10 +26,13 @@
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Brodie Lee — Projects" />
+    <meta
+      name="twitter:title"
+      content="Brodie Lee — Claude automation for small businesses"
+    />
     <meta
       name="twitter:description"
-      content="Five shipped products: multi-agent AI research, defense-tech news intelligence, social nightlife rankings, campus nutrition, in-browser photo editing."
+      content="The boring half of your business can run itself. I find where Claude saves you hours, then build tooling you fully own. Free 20-minute call; five shipped products prove the range."
     />
     <meta
       name="twitter:image"
@@ -164,10 +170,11 @@
         padding-block: clamp(2.5rem, 6vh, 4rem) clamp(1.25rem, 3vh, 2rem);
       }
       .hero h1 {
-        font-size: clamp(3.2rem, 11vw, 6rem);
+        font-size: clamp(2.6rem, 8.5vw, 5rem);
         font-weight: 800;
         letter-spacing: -0.035em;
-        line-height: 0.98;
+        line-height: 1.02;
+        max-width: 20ch;
         text-wrap: balance;
       }
       .hero .sub {
@@ -177,9 +184,35 @@
         line-height: 1.55;
         text-wrap: pretty;
       }
-      .hero .sub + .sub {
-        margin-top: 1.3rem;
-        font-size: clamp(1.2rem, 2.6vw, 1.6rem);
+      .hero-cta {
+        margin-top: clamp(1.6rem, 4vh, 2.5rem);
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem 1rem;
+      }
+      .book-btn {
+        display: inline-flex;
+        align-items: center;
+        background: var(--accent);
+        color: var(--bg);
+        font-weight: 750;
+        font-size: 1rem;
+        line-height: 1.2;
+        border-radius: 999px;
+        padding: 0.78rem 1.6rem;
+        transition:
+          transform 0.15s var(--ease),
+          filter 0.15s var(--ease);
+      }
+      .book-btn:hover {
+        text-decoration: none;
+        filter: brightness(1.08);
+        transform: translateY(-1px);
+      }
+      .book-btn:active {
+        transform: translateY(0);
       }
       .email {
         color: var(--email);
@@ -474,7 +507,7 @@
         }
       }
 
-      /* ---------- About: paying off the subscription ---------- */
+      /* ---------- About: the offer ---------- */
       .about {
         padding-block: clamp(3.5rem, 10vh, 6.5rem) clamp(4rem, 11vh, 7rem);
       }
@@ -490,40 +523,6 @@
         max-width: 62ch;
         text-wrap: pretty;
       }
-      .prompt-box {
-        margin-top: 1.5rem;
-        max-width: 46rem;
-      }
-      .prompt-input {
-        display: flex;
-        gap: 0.7rem;
-        align-items: flex-start;
-        padding: 0.9rem 1.1rem;
-        border: 1px solid var(--edge);
-        border-radius: 14px;
-        background: color-mix(in srgb, var(--fg) 4%, var(--bg));
-        font-family:
-          ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono",
-          monospace;
-      }
-      .prompt-input p {
-        margin-top: 0;
-        max-width: none;
-        font-size: 0.82rem;
-        line-height: 1.6;
-      }
-      .prompt-caret {
-        color: var(--accent);
-        font-weight: 700;
-        font-size: 0.82rem;
-        line-height: 1.6;
-      }
-      .prompt-box figcaption {
-        margin-top: 0.6rem;
-        font-size: 0.8rem;
-        color: var(--muted);
-      }
-
       /* ---------- Outro: the closing pitch ---------- */
       .outro {
         padding-block: clamp(3.5rem, 10vh, 6.5rem) clamp(3rem, 9vh, 6rem);
@@ -541,12 +540,16 @@
         text-wrap: pretty;
       }
       .outro .big-links {
-        margin-top: 1.4rem;
+        margin-top: 1.6rem;
         display: flex;
         flex-wrap: wrap;
-        gap: 1.6rem;
+        align-items: center;
+        gap: 1rem 1.6rem;
         font-size: clamp(1.05rem, 2.2vw, 1.25rem);
         font-weight: 700;
+      }
+      .outro .book-btn {
+        font-size: 1.05rem;
       }
 
       @keyframes rise {
@@ -565,7 +568,7 @@
       .hero .sub {
         animation-delay: 0.14s;
       }
-      .hero .sub + .sub {
+      .hero .hero-cta {
         animation-delay: 0.2s;
       }
 
@@ -825,6 +828,27 @@
         background: color-mix(in srgb, var(--w-ink) 6%, transparent);
         border: 1px solid color-mix(in srgb, var(--w-ink) 15%, transparent);
         border-radius: 14px;
+      }
+      /* ---------- Takeaway: the plain-language translation line each
+         project carries for the owner/operator reader ---------- */
+      .takeaway {
+        margin-top: 1.25rem;
+        max-width: 62ch;
+        padding: 0.75rem 1.05rem;
+        border-left: 3px solid var(--w-accent);
+        border-radius: 0 12px 12px 0;
+        background: color-mix(in srgb, var(--w-accent) 9%, transparent);
+        font-size: 0.95rem;
+        text-wrap: pretty;
+      }
+      .takeaway .tk {
+        display: block;
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.09em;
+        text-transform: uppercase;
+        color: var(--w-accent);
+        margin-bottom: 0.15rem;
       }
       /* ---------- Lifted UI miniatures (real markup instead of screenshots) ---------- */
       .lift {
@@ -1717,11 +1741,21 @@
 
     <section class="hero" aria-label="Introduction">
       <div class="inner">
-        <h1>Use Claude Smarter</h1>
-        <p class="sub">Better tools for Claude. Projects to prove it.</p>
+        <h1>The boring half of your business can run itself.</h1>
         <p class="sub">
-          Reach me at
-          <span class="email">bsl54 [ @ ] georgetown [ dot ] edu</span>.
+          I find where Claude saves you hours, then build the tooling that does
+          it. Five shipped products below prove the range.
+        </p>
+        <!-- TODO: replace both book-btn hrefs with the real Google Calendar
+             appointment-schedule URL -->
+        <p class="sub hero-cta">
+          <a class="book-btn" href="https://calendar.app.google/YOUR-LINK-HERE"
+            >Book 20 minutes</a
+          >
+          <span
+            >or email
+            <span class="email">bsl54 [ @ ] georgetown [ dot ] edu</span></span
+          >
         </p>
       </div>
       <a class="scroll-cue" href="#about"
@@ -1730,17 +1764,34 @@
     </section>
 
     <main>
-      <!-- ============ About ============ -->
-      <section class="about" id="about" aria-label="About that subscription">
+      <!-- ============ The offer ============ -->
+      <section class="about" id="about" aria-label="How this works">
         <div class="inner">
           <div class="sec-label">
-            <span class="no">001/</span><span class="nm">About</span>
+            <span class="no">001/</span><span class="nm">How this works</span>
           </div>
-          <h2>About that subscription</h2>
+          <h2>How this works</h2>
           <p>
-            You're probably using Fable wrong. You think its greatest strength
-            is the ability to one-shot tasks. But for a project to feel
-            polished, Claude needs more.
+            It starts with a free 20-minute call about the most tedious work in
+            your week. If Claude can take real hours off your plate, I'll tell
+            you where. If it can't, I'll tell you that too.
+          </p>
+          <p>
+            If it's worth going further, I do an audit for a flat fee we agree
+            on before I start. You get a short written plan in plain language:
+            the two or three places Claude saves you the most hours, and what
+            each would cost to build. That plan is yours to keep, and it's
+            useful even if you never hire me again.
+          </p>
+          <p>
+            Want the tools built? I build them, document them, and walk through
+            them with whoever will use them. You own everything outright — no
+            subscriptions to me, nothing that breaks when I leave.
+          </p>
+          <p>
+            I'm a Georgetown student. I live in these tools every day, I move
+            fast, and I cost a lot less than an agency. The five products below
+            carry the proof.
           </p>
         </div>
       </section>
@@ -1803,6 +1854,10 @@
             tokens against a 30K limit, so my agents' reading list was literally
             too long for them to read. A summarizer now compresses the raw dumps
             into tight digests all eight agents can afford to read.
+          </p>
+          <p class="takeaway">
+            <span class="tk">For your business</span>Agents that check each
+            other's work before anyone acts on it.
           </p>
           <div class="tags">
             <span class="tag">Python</span><span class="tag">Claude API</span
@@ -1931,6 +1986,10 @@
                 coverage into one mega-story while splitting a single contract
                 award into five. A hybrid score, word overlap plus embeddings,
                 finally snapped stories into shape.
+              </p>
+              <p class="takeaway">
+                <span class="tk">For your business</span>A system that reads
+                hundreds of sources every morning and writes the brief.
               </p>
               <div class="tags">
                 <span class="tag">Next.js</span><span class="tag">Supabase</span
@@ -2152,6 +2211,10 @@
                 membership, so that logic moved into trusted Cloud Functions,
                 with every rule under an emulator test suite.
               </p>
+              <p class="takeaway">
+                <span class="tk">For your business</span>Software that turns
+                messy human opinions into rankings people trust.
+              </p>
               <div class="tags">
                 <span class="tag">React Native / Expo</span
                 ><span class="tag">Firebase</span
@@ -2221,6 +2284,10 @@
             site failed at random. A 700+ item nutrition cache, cleaning passes,
             and retry logic tamed it, and it's been quietly shipping menus every
             morning since.
+          </p>
+          <p class="takeaway">
+            <span class="tk">For your business</span>A pipeline that scrapes
+            unreliable data on a schedule and keeps it clean.
           </p>
           <div class="tags">
             <span class="tag">Next.js</span><span class="tag">Supabase</span
@@ -2436,6 +2503,10 @@
                 single HTML file. 2,266 lines, zero dependencies, works offline,
                 magic-wand flood fill included.
               </p>
+              <p class="takeaway">
+                <span class="tk">For your business</span>Tools that run entirely
+                in the browser, with nothing to install.
+              </p>
               <div class="tags">
                 <span class="tag">Vanilla JS</span
                 ><span class="tag">Canvas</span
@@ -2516,12 +2587,19 @@
           <div class="sec-label">
             <span class="no">007/</span><span class="nm">Contact</span>
           </div>
-          <h2>That's the whole demo floor.</h2>
+          <h2>What's the most tedious thing in your week?</h2>
           <p>
-            Five products, every one shipped and running. If you made it this
-            far, say hi. I read every email.
+            Tell me about it for 20 minutes. It's free, and you'll leave knowing
+            whether Claude can take it off your plate. Five products above,
+            every one shipped and running — I can build yours too. I read every
+            email.
           </p>
           <div class="big-links">
+            <a
+              class="book-btn"
+              href="https://calendar.app.google/YOUR-LINK-HERE"
+              >Book 20 minutes</a
+            >
             <span class="email">bsl54 [ @ ] georgetown [ dot ] edu</span>
             <a href="https://github.com/BrodieL3">GitHub</a>
           </div>
@@ -2539,8 +2617,8 @@
 
     <nav class="folio" id="folio" aria-label="Sections">
       <div class="menu" id="folio-menu">
-        <a href="#about" data-key="about" data-n="001" data-name="About"
-          ><span class="n">001/</span>About</a
+        <a href="#about" data-key="about" data-n="001" data-name="The offer"
+          ><span class="n">001/</span>The offer</a
         >
         <a href="#atlas" data-key="atlas" data-n="002" data-name="ATLAS"
           ><span class="n">002/</span>ATLAS</a
@@ -2572,7 +2650,7 @@
         aria-controls="folio-menu"
       >
         <span class="prog" aria-hidden="true"></span>
-        <b class="n">001/</b><span class="l">About</span>
+        <b class="n">001/</b><span class="l">The offer</span>
         <span class="car" aria-hidden="true">&#9650;</span>
       </button>
     </nav>
