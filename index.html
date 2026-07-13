@@ -47,6 +47,8 @@
         --accent: #2456d6;
         --email: #8b2fc9;
         --edge: rgba(0, 0, 0, 0.14);
+        --panel: #ffffff;
+        --panel-line: #e2e2dd;
         --ease: cubic-bezier(0.22, 1, 0.36, 1);
       }
       @media (prefers-color-scheme: dark) {
@@ -58,6 +60,8 @@
           --accent: #7aa2ff;
           --email: #d988fc;
           --edge: rgba(255, 255, 255, 0.12);
+          --panel: #1c1c21;
+          --panel-line: #38383e;
         }
       }
       * {
@@ -145,6 +149,7 @@
 
       /* ---------- Hero (shell world) ---------- */
       .hero {
+        position: relative;
         min-height: calc(100svh - 3.6rem);
         display: flex;
       }
@@ -153,7 +158,10 @@
         width: 100%;
         display: flex;
         flex-direction: column;
-        padding-block: clamp(3.5rem, 12vh, 8rem) clamp(1.5rem, 4vh, 3rem);
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding-block: clamp(2.5rem, 6vh, 4rem) clamp(1.25rem, 3vh, 2rem);
       }
       .hero h1 {
         font-size: clamp(3.2rem, 11vw, 6rem);
@@ -164,14 +172,14 @@
       }
       .hero .sub {
         margin-top: clamp(1.6rem, 4vh, 2.75rem);
-        max-width: 34rem;
+        max-width: 36rem;
         font-size: clamp(1.08rem, 2.2vw, 1.32rem);
         line-height: 1.55;
         text-wrap: pretty;
       }
       .hero .sub + .sub {
-        margin-top: 0.7rem;
-        font-size: 1rem;
+        margin-top: 1.3rem;
+        font-size: clamp(1.2rem, 2.6vw, 1.6rem);
       }
       .email {
         color: var(--email);
@@ -223,112 +231,184 @@
           transform: translate(-50%, 0);
         }
       }
-      /* ---------- Hero index: numbered editorial contents ---------- */
-      .index {
-        margin-top: auto;
-        padding-top: clamp(2.5rem, 8vh, 5rem);
-        list-style: none;
-      }
-      .index a {
-        display: grid;
-        grid-template-columns: 3.4rem 1fr auto auto;
+      /* ---------- Hero scroll cue: pinned to the fold's bottom edge,
+         breathing — the arrow drifts down and dims on a slow loop ---------- */
+      .scroll-cue {
+        position: absolute;
+        left: 50%;
+        bottom: clamp(1rem, 3vh, 2rem);
+        transform: translateX(-50%);
+        display: inline-flex;
         align-items: baseline;
-        column-gap: 1rem;
-        padding-block: clamp(0.75rem, 1.6vh, 1.05rem);
-        border-top: 1px solid var(--border);
-        color: var(--fg);
+        gap: 0.4rem;
+        padding: 0.5rem 0.9rem;
+        font-size: 0.92rem;
+        font-weight: 650;
+        color: var(--muted);
+        animation: cue-in 0.9s var(--ease) 0.55s backwards;
       }
-      .index li:last-child a {
-        border-bottom: 1px solid var(--border);
-      }
-      .index a:hover {
+      .scroll-cue:hover {
+        color: var(--accent);
         text-decoration: none;
       }
-      .index .no {
-        font-size: 0.85rem;
+      .scroll-cue .arr {
+        display: inline-block;
+      }
+      @keyframes cue-in {
+        from {
+          opacity: 0;
+        }
+      }
+      @keyframes cue-breathe {
+        0%,
+        100% {
+          transform: translateY(0);
+          opacity: 1;
+        }
+        50% {
+          transform: translateY(0.32em);
+          opacity: 0.4;
+        }
+      }
+      @media (prefers-reduced-motion: no-preference) {
+        .scroll-cue .arr {
+          animation: cue-breathe 2.6s ease-in-out 1.6s infinite;
+        }
+      }
+
+      /* ---------- Floating directory: the folio pill ---------- */
+      .folio {
+        position: fixed;
+        left: 50%;
+        bottom: calc(1rem + env(safe-area-inset-bottom, 0px));
+        transform: translateX(-50%) translateY(10px);
+        z-index: 40;
+        display: grid;
+        justify-items: center;
+        opacity: 0;
+        pointer-events: none;
+        transition:
+          opacity 0.35s var(--ease),
+          transform 0.35s var(--ease);
+        --dx: var(--accent);
+      }
+      .folio.show {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateX(-50%);
+      }
+      .folio[data-on="atlas"] {
+        --dx: #147a44;
+      }
+      .folio[data-on="fb"] {
+        --dx: #7a3fd1;
+      }
+      .folio[data-on="rounds"] {
+        --dx: #5a7a12;
+      }
+      .folio[data-on="hh"] {
+        --dx: #1d5fd0;
+      }
+      .folio[data-on="photon"] {
+        --dx: #c21b74;
+      }
+      @media (prefers-color-scheme: dark) {
+        .folio[data-on="atlas"] {
+          --dx: #4ee38a;
+        }
+        .folio[data-on="fb"] {
+          --dx: #bf81fe;
+        }
+        .folio[data-on="rounds"] {
+          --dx: #c8f169;
+        }
+        .folio[data-on="hh"] {
+          --dx: #85b8f8;
+        }
+        .folio[data-on="photon"] {
+          --dx: #f06aad;
+        }
+      }
+      .folio .cur {
+        font: inherit;
+        color: var(--fg);
+        display: flex;
+        align-items: baseline;
+        gap: 0.55rem;
+        background: var(--panel);
+        border: 1px solid var(--panel-line);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+        border-radius: 999px;
+        padding: 0.5rem 1.15rem;
+        position: relative;
+        overflow: hidden;
+        cursor: pointer;
+      }
+      .folio .cur .n {
+        font-weight: 750;
+        font-size: 0.82rem;
+        font-variant-numeric: tabular-nums;
+        color: var(--dx);
+      }
+      .folio .cur .l {
+        font-weight: 700;
+        font-size: 0.92rem;
+      }
+      .folio .cur .car {
+        color: var(--muted);
+        font-size: 0.68rem;
+        transition: transform 0.25s var(--ease);
+      }
+      .folio.open .cur .car {
+        transform: rotate(180deg);
+      }
+      .folio .prog {
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 2px;
+        width: 100%;
+        background: var(--dx);
+        transform-origin: left center;
+        transform: scaleX(var(--p, 0));
+      }
+      .folio .menu {
+        position: absolute;
+        bottom: calc(100% + 0.55rem);
+        background: var(--panel);
+        border: 1px solid var(--panel-line);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+        border-radius: 14px;
+        padding: 0.45rem;
+        display: none;
+        min-width: 14rem;
+      }
+      .folio.open .menu {
+        display: grid;
+      }
+      .folio .menu a {
+        display: flex;
+        align-items: baseline;
+        gap: 0.6rem;
+        padding: 0.4rem 0.65rem;
+        border-radius: 10px;
+        font-size: 0.9rem;
         font-weight: 650;
+        color: var(--fg);
+      }
+      .folio .menu a:hover {
+        background: color-mix(in srgb, var(--fg) 6%, transparent);
+        text-decoration: none;
+      }
+      .folio .menu a .n {
+        font-size: 0.72rem;
+        font-weight: 700;
         color: var(--muted);
         font-variant-numeric: tabular-nums;
       }
-      .index .nm {
-        font-weight: 750;
-        font-size: clamp(1.1rem, 2.4vw, 1.4rem);
-        letter-spacing: -0.01em;
-        line-height: 1.2;
-      }
-      .index .kd {
-        color: var(--muted);
-        font-size: 0.88rem;
-        text-align: right;
-      }
-      .index .ar {
-        color: var(--muted);
-        font-weight: 700;
-        transition:
-          transform 0.25s var(--ease),
-          color 0.25s var(--ease);
-      }
-      .index a:hover .nm {
-        color: var(--ix);
-      }
-      .index a:hover .ar {
-        color: var(--ix);
-        transform: translateX(0.3rem);
-      }
-      .index .i-atlas {
-        --ix: #147a44;
-      }
-      .index .i-fb {
-        --ix: #7a3fd1;
-      }
-      .index .i-rounds {
-        --ix: #5a7a12;
-      }
-      .index .i-hh {
-        --ix: #1d5fd0;
-      }
-      .index .i-photon {
-        --ix: #c21b74;
-      }
-      @media (prefers-color-scheme: dark) {
-        .index .i-atlas {
-          --ix: #4ee38a;
-        }
-        .index .i-fb {
-          --ix: #bf81fe;
-        }
-        .index .i-rounds {
-          --ix: #c8f169;
-        }
-        .index .i-hh {
-          --ix: #85b8f8;
-        }
-        .index .i-photon {
-          --ix: #f06aad;
-        }
-      }
-      @media (max-width: 640px) {
-        .index a {
-          grid-template-columns: 2.6rem 1fr auto;
-        }
-        .index .no {
-          grid-row: 1;
-          grid-column: 1;
-        }
-        .index .nm {
-          grid-row: 1;
-          grid-column: 2;
-        }
-        .index .kd {
-          grid-column: 2;
-          grid-row: 2;
-          text-align: left;
-          font-size: 0.8rem;
-        }
-        .index .ar {
-          grid-row: 1;
-          grid-column: 3;
-        }
+      .folio .menu a.on,
+      .folio .menu a.on .n {
+        color: var(--dx);
       }
 
       /* ---------- Numbered section labels (001/ … 007/) ---------- */
@@ -476,7 +556,7 @@
         }
       }
       .site-top .inner > *,
-      .hero .inner > :not(.index) {
+      .hero .inner > * {
         animation: rise 0.7s var(--ease) backwards;
       }
       .hero h1 {
@@ -487,10 +567,6 @@
       }
       .hero .sub + .sub {
         animation-delay: 0.2s;
-      }
-      .hero .index li {
-        animation: rise 0.6s var(--ease) backwards;
-        animation-delay: calc(0.3s + var(--i, 0) * 60ms);
       }
 
       /* ---------- Worlds (full-bleed sections) ---------- */
@@ -1590,7 +1666,8 @@
       }
 
       footer {
-        padding-block: 0.5rem clamp(2.5rem, 6vh, 4rem);
+        /* extra bottom room so the folio pill never covers the credits */
+        padding-block: 0.5rem clamp(5rem, 10vh, 7rem);
         color: var(--muted);
         font-size: 0.85rem;
       }
@@ -1598,7 +1675,8 @@
       @media (prefers-reduced-motion: reduce) {
         .site-top .inner > *,
         .hero .inner > *,
-        .hero .index li,
+        .scroll-cue,
+        .scroll-cue .arr,
         .sec-label::before,
         .sec-label .no,
         .sec-label .nm,
@@ -1611,7 +1689,8 @@
         .duel button.swap .b-meta {
           animation: none;
         }
-        .index .ar,
+        .folio,
+        .folio .cur .car,
         .duel button,
         .macro .fill,
         .menu-list button {
@@ -1638,52 +1717,16 @@
 
     <section class="hero" aria-label="Introduction">
       <div class="inner">
-        <h1>Brodie Lee</h1>
-        <p class="sub">
-          Telling Claude what to do, and then telling Claude to do it better.
-        </p>
+        <h1>Use Claude Smarter</h1>
+        <p class="sub">Better tools for Claude. Projects to prove it.</p>
         <p class="sub">
           Reach me at
           <span class="email">bsl54 [ @ ] georgetown [ dot ] edu</span>.
         </p>
-        <ol class="index" aria-label="Jump to a project">
-          <li style="--i: 0">
-            <a class="i-atlas" href="#atlas"
-              ><span class="no">002/</span><span class="nm">ATLAS</span
-              ><span class="kd">Multi-agent AI research system</span
-              ><span class="ar" aria-hidden="true">&rarr;</span></a
-            >
-          </li>
-          <li style="--i: 1">
-            <a class="i-fb" href="#fieldbrief"
-              ><span class="no">003/</span><span class="nm">Field Brief</span
-              ><span class="kd">Defense-tech news intelligence</span
-              ><span class="ar" aria-hidden="true">&rarr;</span></a
-            >
-          </li>
-          <li style="--i: 2">
-            <a class="i-rounds" href="#rounds"
-              ><span class="no">004/</span><span class="nm">Rounds</span
-              ><span class="kd">Social nightlife discovery</span
-              ><span class="ar" aria-hidden="true">&rarr;</span></a
-            >
-          </li>
-          <li style="--i: 3">
-            <a class="i-hh" href="#healthyhoyas"
-              ><span class="no">005/</span><span class="nm">HealthyHoyas</span
-              ><span class="kd">Campus nutrition tracking</span
-              ><span class="ar" aria-hidden="true">&rarr;</span></a
-            >
-          </li>
-          <li style="--i: 4">
-            <a class="i-photon" href="#photon"
-              ><span class="no">006/</span><span class="nm">Photon</span
-              ><span class="kd">In-browser photo editor</span
-              ><span class="ar" aria-hidden="true">&rarr;</span></a
-            >
-          </li>
-        </ol>
       </div>
+      <a class="scroll-cue" href="#about"
+        >Scroll <span class="arr" aria-hidden="true">&darr;</span></a
+      >
     </section>
 
     <main>
@@ -1695,19 +1738,10 @@
           </div>
           <h2>About that subscription</h2>
           <p>
-            You're probably using Fable wrong. The thing people tend to get
-            wrong is that its greatest strength is its ability to one-shot
-            tasks. The truth is that for a project to feel polished, you need a
-            structured approach.
+            You're probably using Fable wrong. You think its greatest strength
+            is the ability to one-shot tasks. But for a project to feel
+            polished, Claude needs more.
           </p>
-          <p>
-            Every project starts as product and design docs the agents build
-            against. The process is: A) use skills I've installed and written
-            that make Claude interview <em>me</em> before it writes a line of
-            code, B) chart maps that slice work into agent-sized tickets, and C)
-            create loops for testing and code review.
-          </p>
-          <p>TLDR; ClaudeMaxxing. Building a software factory.</p>
         </div>
       </section>
 
@@ -2503,6 +2537,46 @@
       </div>
     </footer>
 
+    <nav class="folio" id="folio" aria-label="Sections">
+      <div class="menu" id="folio-menu">
+        <a href="#about" data-key="about" data-n="001" data-name="About"
+          ><span class="n">001/</span>About</a
+        >
+        <a href="#atlas" data-key="atlas" data-n="002" data-name="ATLAS"
+          ><span class="n">002/</span>ATLAS</a
+        >
+        <a href="#fieldbrief" data-key="fb" data-n="003" data-name="Field Brief"
+          ><span class="n">003/</span>Field Brief</a
+        >
+        <a href="#rounds" data-key="rounds" data-n="004" data-name="Rounds"
+          ><span class="n">004/</span>Rounds</a
+        >
+        <a
+          href="#healthyhoyas"
+          data-key="hh"
+          data-n="005"
+          data-name="HealthyHoyas"
+          ><span class="n">005/</span>HealthyHoyas</a
+        >
+        <a href="#photon" data-key="photon" data-n="006" data-name="Photon"
+          ><span class="n">006/</span>Photon</a
+        >
+        <a href="#contact" data-key="contact" data-n="007" data-name="Contact"
+          ><span class="n">007/</span>Contact</a
+        >
+      </div>
+      <button
+        type="button"
+        class="cur"
+        aria-expanded="false"
+        aria-controls="folio-menu"
+      >
+        <span class="prog" aria-hidden="true"></span>
+        <b class="n">001/</b><span class="l">About</span>
+        <span class="car" aria-hidden="true">&#9650;</span>
+      </button>
+    </nav>
+
     <script>
       (() => {
         const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -2851,6 +2925,77 @@
             );
             io.observe(document.getElementById("ba"));
           }
+        })();
+
+        /* ---------- Folio pill: floating directory with active-section
+           tracking and scroll progress. Appears once the hero is passed. */
+        (() => {
+          const folio = document.getElementById("folio");
+          const hero = document.querySelector(".hero");
+          if (!folio || !hero) return;
+          const btn = folio.querySelector(".cur");
+          const curN = btn.querySelector(".n");
+          const curL = btn.querySelector(".l");
+          const items = [...folio.querySelectorAll(".menu a")];
+          const sections = items
+            .map((a) => ({
+              a,
+              el: document.getElementById(a.getAttribute("href").slice(1)),
+            }))
+            .filter((s) => s.el);
+          if (!sections.length) return;
+
+          const close = () => {
+            folio.classList.remove("open");
+            btn.setAttribute("aria-expanded", "false");
+          };
+          btn.addEventListener("click", () => {
+            const open = folio.classList.toggle("open");
+            btn.setAttribute("aria-expanded", open ? "true" : "false");
+          });
+          for (const { a } of sections) a.addEventListener("click", close);
+          document.addEventListener("click", (e) => {
+            if (!folio.contains(e.target)) close();
+          });
+          document.addEventListener("keydown", (e) => {
+            if (e.key === "Escape") close();
+          });
+
+          let active = -1;
+          let ticking = false;
+          const paint = () => {
+            ticking = false;
+            const doc = document.documentElement;
+            folio.style.setProperty(
+              "--p",
+              (scrollY / Math.max(1, doc.scrollHeight - innerHeight)).toFixed(
+                4,
+              ),
+            );
+            const shown = scrollY > hero.offsetHeight * 0.5;
+            folio.classList.toggle("show", shown);
+            if (!shown && folio.classList.contains("open")) close();
+            const mid = innerHeight / 2;
+            let i = 0;
+            sections.forEach((s, k) => {
+              if (s.el.getBoundingClientRect().top <= mid) i = k;
+            });
+            if (i === active) return;
+            active = i;
+            const { a } = sections[i];
+            sections.forEach((s, k) => s.a.classList.toggle("on", k === i));
+            curN.textContent = a.dataset.n + "/";
+            curL.textContent = a.dataset.name;
+            folio.dataset.on = a.dataset.key;
+          };
+          const queue = () => {
+            if (ticking) return;
+            ticking = true;
+            requestAnimationFrame(paint);
+          };
+          addEventListener("scroll", queue, { passive: true });
+          addEventListener("resize", queue, { passive: true });
+          paint();
         })();
 
         /* ---------- Liquid Horizon seams: scroll-scrub fallback for browsers
