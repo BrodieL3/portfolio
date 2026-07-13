@@ -3,18 +3,21 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Brodie Lee — Projects</title>
+    <title>Brodie Lee — Claude automation for small businesses</title>
     <meta
       name="description"
-      content="Five shipped products: multi-agent AI research, defense-tech news intelligence, social nightlife rankings, campus nutrition, in-browser photo editing."
+      content="The boring half of your business can run itself. I find where Claude saves you hours, then build tooling you fully own. Free 20-minute call; five shipped products prove the range."
     />
     <link rel="canonical" href="https://brodielee.vercel.app/" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://brodielee.vercel.app/" />
-    <meta property="og:title" content="Brodie Lee — Projects" />
+    <meta
+      property="og:title"
+      content="Brodie Lee — Claude automation for small businesses"
+    />
     <meta
       property="og:description"
-      content="Five shipped products: multi-agent AI research, defense-tech news intelligence, social nightlife rankings, campus nutrition, in-browser photo editing."
+      content="The boring half of your business can run itself. I find where Claude saves you hours, then build tooling you fully own. Free 20-minute call; five shipped products prove the range."
     />
     <meta
       property="og:image"
@@ -23,10 +26,13 @@
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Brodie Lee — Projects" />
+    <meta
+      name="twitter:title"
+      content="Brodie Lee — Claude automation for small businesses"
+    />
     <meta
       name="twitter:description"
-      content="Five shipped products: multi-agent AI research, defense-tech news intelligence, social nightlife rankings, campus nutrition, in-browser photo editing."
+      content="The boring half of your business can run itself. I find where Claude saves you hours, then build tooling you fully own. Free 20-minute call; five shipped products prove the range."
     />
     <meta
       name="twitter:image"
@@ -47,6 +53,8 @@
         --accent: #2456d6;
         --email: #8b2fc9;
         --edge: rgba(0, 0, 0, 0.14);
+        --panel: #ffffff;
+        --panel-line: #e2e2dd;
         --ease: cubic-bezier(0.22, 1, 0.36, 1);
       }
       @media (prefers-color-scheme: dark) {
@@ -58,6 +66,8 @@
           --accent: #7aa2ff;
           --email: #d988fc;
           --edge: rgba(255, 255, 255, 0.12);
+          --panel: #1c1c21;
+          --panel-line: #38383e;
         }
       }
       * {
@@ -116,86 +126,396 @@
         outline-offset: 2px;
       }
 
+      /* ---------- Quiet top nav ---------- */
+      .site-top .inner {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 1rem;
+        padding-block: 1.15rem;
+      }
+      .site-top .wordmark {
+        font-weight: 750;
+        font-size: 0.98rem;
+        letter-spacing: -0.01em;
+        color: var(--fg);
+      }
+      .site-top nav {
+        display: flex;
+        gap: 1.5rem;
+        font-size: 0.9rem;
+        font-weight: 600;
+      }
+      .site-top nav a {
+        color: var(--fg);
+      }
+      .site-top nav a:hover {
+        color: var(--accent);
+      }
+
       /* ---------- Hero (shell world) ---------- */
       .hero {
-        padding-block: clamp(3.5rem, 10vh, 6.5rem) clamp(2.5rem, 6vh, 4rem);
+        position: relative;
+        min-height: calc(100svh - 3.6rem);
+        display: flex;
+      }
+      .hero .inner {
+        flex: 1;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding-block: clamp(2.5rem, 6vh, 4rem) clamp(1.25rem, 3vh, 2rem);
       }
       .hero h1 {
-        font-size: clamp(3rem, 9vw, 5.5rem);
+        font-size: clamp(2.6rem, 8.5vw, 5rem);
         font-weight: 800;
-        letter-spacing: -0.03em;
-        line-height: 1;
+        letter-spacing: -0.035em;
+        line-height: 1.02;
+        max-width: 20ch;
         text-wrap: balance;
       }
       .hero .sub {
-        margin-top: 1.2rem;
-        max-width: 42rem;
-        font-size: clamp(1.05rem, 2.2vw, 1.3rem);
+        margin-top: clamp(1.6rem, 4vh, 2.75rem);
+        max-width: 36rem;
+        font-size: clamp(1.08rem, 2.2vw, 1.32rem);
         line-height: 1.55;
         text-wrap: pretty;
+      }
+      .hero-cta {
+        margin-top: clamp(1.6rem, 4vh, 2.5rem);
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem 1rem;
+      }
+      .book-btn {
+        display: inline-flex;
+        align-items: center;
+        background: var(--accent);
+        color: var(--bg);
+        font-weight: 750;
+        font-size: 1rem;
+        line-height: 1.2;
+        border-radius: 999px;
+        padding: 0.78rem 1.6rem;
+        transition:
+          transform 0.15s var(--ease),
+          filter 0.15s var(--ease);
+      }
+      .book-btn:hover {
+        text-decoration: none;
+        filter: brightness(1.08);
+        transform: translateY(-1px);
+      }
+      .book-btn:active {
+        transform: translateY(0);
       }
       .email {
         color: var(--email);
       }
-      .hero .links {
-        margin-top: 1.2rem;
-        display: flex;
-        gap: 1.4rem;
-        font-size: 1rem;
-        font-weight: 600;
+      button.email {
+        position: relative;
+        font: inherit;
+        background: none;
+        border: 0;
+        padding: 0;
+        cursor: pointer;
       }
-      .worlds {
-        margin-top: 2rem;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.55rem;
-        list-style: none;
+      button.email:hover {
+        text-decoration: underline;
       }
-      .worlds a {
-        display: inline-block;
-        padding: 0.45rem 1rem;
+      .copied-tip {
+        position: absolute;
+        left: 50%;
+        bottom: calc(100% + 0.4rem);
+        transform: translate(-50%, 3px);
+        padding: 0.14rem 0.6rem;
         border-radius: 999px;
-        font-size: 0.9rem;
+        background: var(--fg);
+        color: var(--bg);
+        font-size: 0.78rem;
         font-weight: 650;
-        background: var(--p-bg);
-        color: var(--p-fg);
-        border: 1px solid var(--edge);
-        transition: transform 0.25s var(--ease);
+        line-height: 1.5;
+        white-space: nowrap;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition:
+          opacity 0.2s var(--ease),
+          transform 0.2s var(--ease),
+          visibility 0s 0.2s;
       }
-      .worlds a:hover {
+      button.email.copied .copied-tip {
+        opacity: 1;
+        visibility: visible;
+        transform: translate(-50%, 0);
+        transition:
+          opacity 0.2s var(--ease),
+          transform 0.2s var(--ease);
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .copied-tip,
+        button.email.copied .copied-tip {
+          transition: none;
+          transform: translate(-50%, 0);
+        }
+      }
+      /* ---------- Hero scroll cue: pinned to the fold's bottom edge,
+         breathing — the arrow drifts down and dims on a slow loop ---------- */
+      .scroll-cue {
+        position: absolute;
+        left: 50%;
+        bottom: clamp(1rem, 3vh, 2rem);
+        transform: translateX(-50%);
+        display: inline-flex;
+        align-items: baseline;
+        gap: 0.4rem;
+        padding: 0.5rem 0.9rem;
+        font-size: 0.92rem;
+        font-weight: 650;
+        color: var(--muted);
+        animation: cue-in 0.9s var(--ease) 0.55s backwards;
+      }
+      .scroll-cue:hover {
+        color: var(--accent);
         text-decoration: none;
-        transform: translateY(-2px);
       }
-      .worlds .p-fb {
-        --p-bg: #0e0a16;
-        --p-fg: #bf81fe;
+      .scroll-cue .arr {
+        display: inline-block;
       }
-      .worlds .p-rounds {
-        --p-bg: #0b0c0e;
-        --p-fg: #c8f169;
+      @keyframes cue-in {
+        from {
+          opacity: 0;
+        }
       }
-      .worlds .p-hh {
-        --p-bg: #0a2a4e;
-        --p-fg: #85b8f8;
+      @keyframes cue-breathe {
+        0%,
+        100% {
+          transform: translateY(0);
+          opacity: 1;
+        }
+        50% {
+          transform: translateY(0.32em);
+          opacity: 0.4;
+        }
       }
-      .worlds .p-atlas {
-        --p-bg: #081009;
-        --p-fg: #4ee38a;
-      }
-      .worlds .p-photon {
-        --p-bg: #ffffff;
-        --p-fg: #c21b74;
+      @media (prefers-reduced-motion: no-preference) {
+        .scroll-cue .arr {
+          animation: cue-breathe 2.6s ease-in-out 1.6s infinite;
+        }
       }
 
-      /* ---------- About: paying off the subscription ---------- */
+      /* ---------- Floating directory: the folio pill ---------- */
+      .folio {
+        position: fixed;
+        left: 50%;
+        bottom: calc(1rem + env(safe-area-inset-bottom, 0px));
+        transform: translateX(-50%) translateY(10px);
+        z-index: 40;
+        display: grid;
+        justify-items: center;
+        opacity: 0;
+        pointer-events: none;
+        transition:
+          opacity 0.35s var(--ease),
+          transform 0.35s var(--ease);
+        --dx: var(--accent);
+      }
+      .folio.show {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateX(-50%);
+      }
+      .folio[data-on="atlas"] {
+        --dx: #147a44;
+      }
+      .folio[data-on="fb"] {
+        --dx: #7a3fd1;
+      }
+      .folio[data-on="rounds"] {
+        --dx: #5a7a12;
+      }
+      .folio[data-on="hh"] {
+        --dx: #1d5fd0;
+      }
+      .folio[data-on="photon"] {
+        --dx: #c21b74;
+      }
+      @media (prefers-color-scheme: dark) {
+        .folio[data-on="atlas"] {
+          --dx: #4ee38a;
+        }
+        .folio[data-on="fb"] {
+          --dx: #bf81fe;
+        }
+        .folio[data-on="rounds"] {
+          --dx: #c8f169;
+        }
+        .folio[data-on="hh"] {
+          --dx: #85b8f8;
+        }
+        .folio[data-on="photon"] {
+          --dx: #f06aad;
+        }
+      }
+      .folio .cur {
+        font: inherit;
+        color: var(--fg);
+        display: flex;
+        align-items: baseline;
+        gap: 0.55rem;
+        background: var(--panel);
+        border: 1px solid var(--panel-line);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+        border-radius: 999px;
+        padding: 0.5rem 1.15rem;
+        position: relative;
+        overflow: hidden;
+        cursor: pointer;
+      }
+      .folio .cur .n {
+        font-weight: 750;
+        font-size: 0.82rem;
+        font-variant-numeric: tabular-nums;
+        color: var(--dx);
+      }
+      .folio .cur .l {
+        font-weight: 700;
+        font-size: 0.92rem;
+      }
+      .folio .cur .car {
+        color: var(--muted);
+        font-size: 0.68rem;
+        transition: transform 0.25s var(--ease);
+      }
+      .folio.open .cur .car {
+        transform: rotate(180deg);
+      }
+      .folio .prog {
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 2px;
+        width: 100%;
+        background: var(--dx);
+        transform-origin: left center;
+        transform: scaleX(var(--p, 0));
+      }
+      .folio .menu {
+        position: absolute;
+        bottom: calc(100% + 0.55rem);
+        background: var(--panel);
+        border: 1px solid var(--panel-line);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+        border-radius: 14px;
+        padding: 0.45rem;
+        display: none;
+        min-width: 14rem;
+      }
+      .folio.open .menu {
+        display: grid;
+      }
+      .folio .menu a {
+        display: flex;
+        align-items: baseline;
+        gap: 0.6rem;
+        padding: 0.4rem 0.65rem;
+        border-radius: 10px;
+        font-size: 0.9rem;
+        font-weight: 650;
+        color: var(--fg);
+      }
+      .folio .menu a:hover {
+        background: color-mix(in srgb, var(--fg) 6%, transparent);
+        text-decoration: none;
+      }
+      .folio .menu a .n {
+        font-size: 0.72rem;
+        font-weight: 700;
+        color: var(--muted);
+        font-variant-numeric: tabular-nums;
+      }
+      .folio .menu a.on,
+      .folio .menu a.on .n {
+        color: var(--dx);
+      }
+
+      /* ---------- Numbered section labels (001/ … 007/) ---------- */
+      .sec-label {
+        position: relative;
+        display: flex;
+        align-items: baseline;
+        gap: 1rem;
+        padding-top: 0.9rem;
+        margin-bottom: clamp(1.8rem, 5vh, 3rem);
+        font-size: 0.92rem;
+      }
+      .sec-label::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: color-mix(
+          in srgb,
+          var(--w-ink, var(--fg)) 18%,
+          transparent
+        );
+        transform-origin: left center;
+      }
+      .sec-label .no {
+        font-weight: 750;
+        font-variant-numeric: tabular-nums;
+        color: var(--w-accent, var(--fg));
+      }
+      .sec-label .nm {
+        font-weight: 550;
+        color: var(--w-muted, var(--muted));
+      }
+      /* Scroll-scrubbed reveal: the rule draws in and the label rises as the
+         section enters the viewport, and reverses scrolling back up. Static
+         (fully visible) wherever scroll-driven animations are unsupported. */
+      @media (prefers-reduced-motion: no-preference) {
+        @supports (animation-timeline: view()) {
+          .sec-label::before {
+            animation: rule-in linear both;
+            animation-timeline: view();
+            animation-range: entry 0% entry 90%;
+          }
+          .sec-label .no,
+          .sec-label .nm {
+            animation: label-in linear both;
+            animation-timeline: view();
+            animation-range: entry 0% entry 80%;
+          }
+        }
+      }
+      @keyframes rule-in {
+        from {
+          transform: scaleX(0);
+        }
+      }
+      @keyframes label-in {
+        from {
+          opacity: 0;
+          transform: translateY(0.5em);
+        }
+      }
+
+      /* ---------- About: the offer ---------- */
       .about {
-        padding-block: clamp(1.5rem, 4vh, 2.5rem) clamp(2.5rem, 6vh, 4rem);
+        padding-block: clamp(3.5rem, 10vh, 6.5rem) clamp(4rem, 11vh, 7rem);
       }
       .about h2 {
-        font-size: clamp(1.7rem, 4.2vw, 2.4rem);
+        font-size: clamp(2rem, 5vw, 3.2rem);
         font-weight: 800;
-        letter-spacing: -0.02em;
-        line-height: 1.05;
+        letter-spacing: -0.025em;
+        line-height: 1.02;
         text-wrap: balance;
       }
       .about p {
@@ -203,49 +523,15 @@
         max-width: 62ch;
         text-wrap: pretty;
       }
-      .prompt-box {
-        margin-top: 1.5rem;
-        max-width: 46rem;
-      }
-      .prompt-input {
-        display: flex;
-        gap: 0.7rem;
-        align-items: flex-start;
-        padding: 0.9rem 1.1rem;
-        border: 1px solid var(--edge);
-        border-radius: 14px;
-        background: color-mix(in srgb, var(--fg) 4%, var(--bg));
-        font-family:
-          ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono",
-          monospace;
-      }
-      .prompt-input p {
-        margin-top: 0;
-        max-width: none;
-        font-size: 0.82rem;
-        line-height: 1.6;
-      }
-      .prompt-caret {
-        color: var(--accent);
-        font-weight: 700;
-        font-size: 0.82rem;
-        line-height: 1.6;
-      }
-      .prompt-box figcaption {
-        margin-top: 0.6rem;
-        font-size: 0.8rem;
-        color: var(--muted);
-      }
-
       /* ---------- Outro: the closing pitch ---------- */
       .outro {
-        padding-block: 0 clamp(2.5rem, 6vh, 4rem);
+        padding-block: clamp(3.5rem, 10vh, 6.5rem) clamp(3rem, 9vh, 6rem);
       }
       .outro h2 {
-        font-size: clamp(1.7rem, 4.2vw, 2.4rem);
+        font-size: clamp(2rem, 5vw, 3.2rem);
         font-weight: 800;
-        letter-spacing: -0.02em;
-        line-height: 1.05;
+        letter-spacing: -0.025em;
+        line-height: 1.02;
         text-wrap: balance;
       }
       .outro p {
@@ -254,12 +540,16 @@
         text-wrap: pretty;
       }
       .outro .big-links {
-        margin-top: 1.4rem;
+        margin-top: 1.6rem;
         display: flex;
         flex-wrap: wrap;
-        gap: 1.6rem;
+        align-items: center;
+        gap: 1rem 1.6rem;
         font-size: clamp(1.05rem, 2.2vw, 1.25rem);
         font-weight: 700;
+      }
+      .outro .book-btn {
+        font-size: 1.05rem;
       }
 
       @keyframes rise {
@@ -268,50 +558,34 @@
           transform: translateY(16px);
         }
       }
-      .hero .inner > :not(.worlds) {
-        animation: rise 0.65s var(--ease) backwards;
+      .site-top .inner > *,
+      .hero .inner > * {
+        animation: rise 0.7s var(--ease) backwards;
       }
       .hero h1 {
-        animation-delay: 0s;
+        animation-delay: 0.05s;
       }
       .hero .sub {
-        animation-delay: 0.08s;
-      }
-      .hero .sub + .sub {
-        animation-delay: 0.11s;
-      }
-      .hero .links {
         animation-delay: 0.14s;
       }
-      .hero .worlds li {
-        animation: rise 0.55s var(--ease) backwards;
-        animation-delay: calc(0.2s + var(--i, 0) * 45ms);
+      .hero .hero-cta {
+        animation-delay: 0.2s;
       }
 
       /* ---------- Worlds (full-bleed sections) ---------- */
       .world {
         background: var(--w-bg);
         color: var(--w-ink);
-        padding-block: clamp(3rem, 8vh, 5rem);
-        margin-block-end: clamp(2.5rem, 6vh, 4rem);
+        padding-block: clamp(4rem, 12vh, 7.5rem);
+        margin-block-end: clamp(3rem, 9vh, 6rem);
         scroll-margin-top: 1rem;
       }
       .world h2 {
-        font-size: clamp(2rem, 5vw, 2.9rem);
+        font-size: clamp(2.4rem, 6.5vw, 4.2rem);
         font-weight: 800;
-        letter-spacing: -0.02em;
-        line-height: 1.05;
-        display: flex;
-        align-items: baseline;
-        gap: 0.8rem;
-        flex-wrap: wrap;
+        letter-spacing: -0.03em;
+        line-height: 0.98;
         text-wrap: balance;
-      }
-      .world h2 .kind {
-        font-size: 1rem;
-        font-weight: 600;
-        letter-spacing: 0;
-        color: var(--w-accent);
       }
       .world p {
         margin-top: 0.9rem;
@@ -356,6 +630,162 @@
         border-block: 1px solid var(--border);
       }
 
+      /* ---------- Liquid Horizon seams: the next world pours over the seam
+         as three crisp wave layers rising at different rates, scrubbed by
+         scroll position (reverses scrolling up). The crest carries a thin
+         line of the incoming accent, and the incoming project's name
+         parallaxes behind the pour at low opacity before the liquid covers
+         it. Transform-only; static fills, no blur. ---------- */
+      .world:has(+ .seam) {
+        margin-block-end: 0;
+      }
+      .seam + .w-photon {
+        border-block-start: 0;
+      }
+      .seam {
+        position: relative;
+        height: clamp(15rem, 36vh, 24rem);
+        overflow: hidden;
+        contain: layout style paint;
+        pointer-events: none;
+        background: var(--sa);
+      }
+      /* shell → ATLAS: the top color tracks the theme canvas, and the label
+         stroke darkens in light mode so the lime stays readable on it */
+      .seam-about-atlas {
+        --sa: var(--bg);
+        --sb: #081009;
+        --sba: #4ee38a;
+        --slb: #147a44;
+      }
+      @media (prefers-color-scheme: dark) {
+        .seam-about-atlas {
+          --slb: #4ee38a;
+        }
+      }
+      .seam-atlas-fb {
+        --sa: #081009;
+        --sb: #0e0a16;
+        --sba: #bf81fe;
+      }
+      .seam-fb-rounds {
+        --sa: #0e0a16;
+        --sb: #0b0c0e;
+        --sba: #c8f169;
+      }
+      .seam-rounds-hh {
+        --sa: #0b0c0e;
+        --sb: #0a2a4e;
+        --sba: #85b8f8;
+      }
+      .seam-hh-photon {
+        --sa: #0a2a4e;
+        --sb: #ffffff;
+        --sba: #c21b74;
+      }
+      .seam svg {
+        position: absolute;
+        left: -15%;
+        bottom: 0;
+        width: 130%;
+        height: 115%;
+        display: block;
+      }
+      .seam path {
+        fill: currentColor;
+      }
+      .seam .w3 {
+        color: color-mix(in srgb, var(--sba) 30%, var(--sb));
+      }
+      .seam .w2 {
+        color: color-mix(in srgb, var(--sba) 10%, var(--sb));
+      }
+      .seam .w1 {
+        color: var(--sba);
+      }
+      .seam .w1 .pour {
+        fill: var(--sb);
+      }
+      .seam-label {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        display: grid;
+        place-items: center;
+        font-size: clamp(2.8rem, 9vw, 7rem);
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        line-height: 1;
+        white-space: nowrap;
+        color: transparent;
+        -webkit-text-stroke: 1.5px
+          color-mix(in srgb, var(--slb, var(--sba)) 75%, transparent);
+      }
+      @keyframes seam-w1 {
+        from {
+          transform: translate3d(0, 96%, 0);
+        }
+        to {
+          transform: translate3d(-4%, 0, 0);
+        }
+      }
+      @keyframes seam-w2 {
+        from {
+          transform: translate3d(0, 78%, 0);
+        }
+        to {
+          transform: translate3d(3%, 0, 0);
+        }
+      }
+      @keyframes seam-w3 {
+        from {
+          transform: translate3d(0, 58%, 0);
+        }
+        to {
+          transform: translate3d(-2%, 0, 0);
+        }
+      }
+      @keyframes seam-label {
+        from {
+          transform: translate3d(0, 90px, 0);
+        }
+        to {
+          transform: translate3d(0, -90px, 0);
+        }
+      }
+      @media (prefers-reduced-motion: no-preference) {
+        .seam svg,
+        .seam-label {
+          will-change: transform;
+        }
+        @supports (animation-timeline: view()) {
+          .seam {
+            view-timeline: --seam block;
+          }
+          .seam .w1 {
+            animation: seam-w1 linear both;
+            animation-timeline: --seam;
+          }
+          .seam .w2 {
+            animation: seam-w2 linear both;
+            animation-timeline: --seam;
+          }
+          .seam .w3 {
+            animation: seam-w3 linear both;
+            animation-timeline: --seam;
+          }
+          .seam-label {
+            animation: seam-label linear both;
+            animation-timeline: --seam;
+          }
+        }
+      }
+      @media (max-width: 560px) {
+        .seam {
+          height: clamp(10rem, 26vh, 14rem);
+        }
+      }
+
       .tags {
         margin-top: 1rem;
         display: flex;
@@ -382,28 +812,43 @@
         font-size: 0.96rem;
         font-weight: 700;
       }
-      /* invisible hit-area expansion so text links and pills reach ~44px on touch */
-      .hero .links a,
-      .cta a,
-      .worlds a {
+      /* invisible hit-area expansion so text links reach ~44px on touch */
+      .site-top nav a,
+      .cta a {
         position: relative;
       }
-      .hero .links a::after,
+      .site-top nav a::after,
       .cta a::after {
         content: "";
         position: absolute;
         inset: -13px -8px;
-      }
-      .worlds a::after {
-        content: "";
-        position: absolute;
-        inset: -6px -4px;
       }
 
       .panel {
         background: color-mix(in srgb, var(--w-ink) 6%, transparent);
         border: 1px solid color-mix(in srgb, var(--w-ink) 15%, transparent);
         border-radius: 14px;
+      }
+      /* ---------- Takeaway: the plain-language translation line each
+         project carries for the owner/operator reader ---------- */
+      .takeaway {
+        margin-top: 1.25rem;
+        max-width: 62ch;
+        padding: 0.75rem 1.05rem;
+        border-left: 3px solid var(--w-accent);
+        border-radius: 0 12px 12px 0;
+        background: color-mix(in srgb, var(--w-accent) 9%, transparent);
+        font-size: 0.95rem;
+        text-wrap: pretty;
+      }
+      .takeaway .tk {
+        display: block;
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.09em;
+        text-transform: uppercase;
+        color: var(--w-accent);
+        margin-bottom: 0.15rem;
       }
       /* ---------- Lifted UI miniatures (real markup instead of screenshots) ---------- */
       .lift {
@@ -795,9 +1240,9 @@
 
       .cols {
         display: grid;
-        gap: clamp(1.5rem, 4vw, 3rem);
+        gap: clamp(1.5rem, 4vw, 3.5rem);
         align-items: start;
-        margin-top: 1.6rem;
+        margin-top: clamp(1.8rem, 5vh, 3rem);
       }
       @media (min-width: 880px) {
         .cols-fb {
@@ -993,7 +1438,7 @@
       .plate-grid {
         display: grid;
         gap: clamp(1.25rem, 3vw, 2rem);
-        margin-top: 1.7rem;
+        margin-top: clamp(2rem, 6vh, 3.5rem);
       }
       @media (min-width: 880px) {
         .plate-grid {
@@ -1086,7 +1531,7 @@
 
       /* ---------- ATLAS: terminal ---------- */
       .term {
-        margin-top: 1.7rem;
+        margin-top: clamp(2rem, 6vh, 3.5rem);
         background: #050a06;
         border: 1px solid color-mix(in srgb, var(--w-ink) 18%, transparent);
         border-radius: 14px;
@@ -1245,14 +1690,20 @@
       }
 
       footer {
-        padding-block: 0.5rem clamp(2.5rem, 6vh, 4rem);
+        /* extra bottom room so the folio pill never covers the credits */
+        padding-block: 0.5rem clamp(5rem, 10vh, 7rem);
         color: var(--muted);
         font-size: 0.85rem;
       }
 
       @media (prefers-reduced-motion: reduce) {
+        .site-top .inner > *,
         .hero .inner > *,
-        .hero .worlds li,
+        .scroll-cue,
+        .scroll-cue .arr,
+        .sec-label::before,
+        .sec-label .no,
+        .sec-label .nm,
         .live-dot,
         .t-caret,
         .wire.arrive,
@@ -1262,7 +1713,8 @@
         .duel button.swap .b-meta {
           animation: none;
         }
-        .worlds a,
+        .folio,
+        .folio .cur .car,
         .duel button,
         .macro .fill,
         .menu-list button {
@@ -1275,113 +1727,137 @@
     </style>
   </head>
   <body>
-    <header class="hero">
+    <header class="site-top">
       <div class="inner">
-        <h1>Brodie Lee</h1>
-        <p class="sub">
-          ClaudeMaxxing. Claude writes the code, I run it like an engineering
-          org, and the five products below all shipped.
-        </p>
-        <p class="sub">
-          Reach me at
-          <span class="email">bsl54 [ @ ] georgetown [ dot ] edu</span>.
-        </p>
-        <div class="links">
+        <span class="wordmark">Brodie Lee</span>
+        <nav aria-label="Profiles">
           <a href="https://github.com/BrodieL3">GitHub</a>
           <a href="https://www.linkedin.com/in/broderick-lee-054a5323b/"
             >LinkedIn</a
           >
-        </div>
-        <ul class="worlds" aria-label="Jump to a project">
-          <li style="--i: 0"><a class="p-atlas" href="#atlas">ATLAS</a></li>
-          <li style="--i: 1">
-            <a class="p-fb" href="#fieldbrief">Field Brief</a>
-          </li>
-          <li style="--i: 2"><a class="p-rounds" href="#rounds">Rounds</a></li>
-          <li style="--i: 3">
-            <a class="p-hh" href="#healthyhoyas">HealthyHoyas</a>
-          </li>
-          <li style="--i: 4"><a class="p-photon" href="#photon">Photon</a></li>
-        </ul>
+        </nav>
       </div>
     </header>
 
+    <section class="hero" aria-label="Introduction">
+      <div class="inner">
+        <h1>The boring half of your business can run itself.</h1>
+        <p class="sub">
+          I find where Claude saves you hours, then build the tooling that does
+          it. Five shipped products below prove the range.
+        </p>
+        <p class="sub hero-cta">
+          <a
+            class="book-btn"
+            href="https://calendar.app.google/Tm88PMMS9XpvFWh39"
+            >Book 20 minutes</a
+          >
+          <span
+            >or email
+            <span class="email">bsl54 [ @ ] georgetown [ dot ] edu</span></span
+          >
+        </p>
+      </div>
+      <a class="scroll-cue" href="#about"
+        >Scroll <span class="arr" aria-hidden="true">&darr;</span></a
+      >
+    </section>
+
     <main>
-      <!-- ============ About ============ -->
-      <section class="about" id="about" aria-label="About that subscription">
+      <!-- ============ The offer ============ -->
+      <section class="about" id="about" aria-label="How this works">
         <div class="inner">
-          <h2>About that subscription</h2>
+          <div class="sec-label">
+            <span class="no">001/</span><span class="nm">How this works</span>
+          </div>
+          <h2>How this works</h2>
           <p>
-            I don't "use AI." I run it like an engineering org. Every project
-            starts as product and design docs the agents build against. The
-            toolchain is customized: skills I've installed and written that make
-            Claude interview <em>me</em>, one question at a time, before it
-            writes a line of code; planning maps that slice work into
-            agent-sized tickets; review gates so nothing ships until it survives
-            a code review and a security pass. Claude writes most of the code. I
-            make it earn the merge.
+            It starts with a free 20-minute call about the most tedious work in
+            your week. If Claude can take real hours off your plate, I'll tell
+            you where. If it can't, I'll tell you that too.
           </p>
           <p>
-            We're ClaudeMaxxing brah. Slop factory that. Claude gets it done.
+            If it's worth going further, I do an audit for a flat fee we agree
+            on before I start. You get a short written plan in plain language:
+            the two or three places Claude saves you the most hours, and what
+            each would cost to build. That plan is yours to keep, and it's
+            useful even if you never hire me again.
           </p>
           <p>
-            Don't take my word for it: this page is the proof. Below is the
-            actual, verbatim prompt that kicked off the rewrite you're reading
-            right now.
+            Want the tools built? I build them, document them, and walk through
+            them with whoever will use them. You own everything outright — no
+            subscriptions to me, nothing that breaks when I leave.
           </p>
-          <figure class="prompt-box">
-            <div class="prompt-input">
-              <span class="prompt-caret" aria-hidden="true">&#10095;</span>
-              <p>
-                the project descriptions should loosely follow the format of
-                "Made this because [some personal non technical reason if any,
-                tell a story, don't be a robot] and because I wanted to learn
-                [the technologies used to make it]. Biggest accomplishment was
-                [something you're proud of achieving, for example 1000+ API
-                requests, stars on GitHub]. Biggest obstacle was [ideally
-                something technical, for example CORS was being a bitch] and I
-                overcame it by [however you did it]." Talk about how I came up
-                with the project idea. The first section of the page should be a
-                personal one talking about how I use Claude Code to make these
-                projects, so I want you to /grill-me on how to present that
-                information. Very briefly, I think ATLAS ought to be the hero
-                project as well.
-              </p>
-            </div>
-            <figcaption>verbatim: the prompt that wrote this page.</figcaption>
-          </figure>
+          <p>
+            I'm a Georgetown student. I live in these tools every day, I move
+            fast, and I cost a lot less than an agency. The five products below
+            carry the proof.
+          </p>
         </div>
       </section>
+
+      <div class="seam seam-about-atlas" aria-hidden="true">
+        <span class="seam-label">ATLAS</span>
+        <svg class="w3" viewBox="0 0 1200 400" preserveAspectRatio="none">
+          <path
+            transform="translate(1200 0) scale(-1 1)"
+            d="M0,120 C160,60 340,180 600,120 C860,60 1040,180 1200,110 L1200,400 L0,400 Z"
+          />
+        </svg>
+        <svg class="w2" viewBox="0 0 1200 400" preserveAspectRatio="none">
+          <path
+            transform="translate(1200 0) scale(-1 1)"
+            d="M0,140 C220,210 420,70 640,130 C880,200 1060,90 1200,150 L1200,400 L0,400 Z"
+          />
+        </svg>
+        <svg class="w1" viewBox="0 0 1200 400" preserveAspectRatio="none">
+          <path
+            transform="translate(1200 0) scale(-1 1)"
+            d="M0,118 C180,58 380,178 620,118 C860,58 1040,178 1200,108 L1200,400 L0,400 Z"
+          />
+          <path
+            class="pour"
+            transform="translate(1200 0) scale(-1 1)"
+            d="M0,124 C180,64 380,184 620,124 C860,64 1040,184 1200,114 L1200,400 L0,400 Z"
+          />
+        </svg>
+      </div>
 
       <!-- ============ ATLAS ============ -->
       <section class="world w-atlas" id="atlas" aria-label="ATLAS">
         <div class="inner">
-          <h2>
-            ATLAS <span class="kind">Multi-agent AI research system</span>
-          </h2>
+          <div class="sec-label">
+            <span class="no">002/</span
+            ><span class="nm">Multi-agent AI research system</span>
+          </div>
+          <h2>ATLAS</h2>
           <p>
-            Made this because I fell down the rabbit hole of Together's
-            Mixture-of-Agents paper and got stuck on one thought:
-            <strong
-              >everyone claims a team of models beats a single model, and
-              nobody's demo has a scoreboard.</strong
-            >
-            Stock trading has a scoreboard: the number goes up or it doesn't. So
-            I built a research collective to settle it for myself, and to learn
-            real multi-agent orchestration along the way: eight named agents
-            with specialized roles, a nine-phase deliberation, evidence-first
-            rules where every claim has to cite a source. Plus the Claude API
-            and Alpaca's paper-trading API.
+            I love Together's Mixture-of-Agents paper and its findings on MoA
+            performance made me wonder if quantitative finance could be a good
+            testbed for multi-agent research, so I built ATLAS, a multi-agent
+            research system for stock trading.
           </p>
           <p>
-            The thing I'm proudest of is the accountability ledger: being wrong
-            costs you here. Voting power gets reweighted by track record, and
-            roles are up for election. A quant that keeps missing gets outvoted,
-            then unseated. Biggest obstacle was the first real run dying with a
-            429: the morning data brief came out to 32K tokens against a 30K
-            limit, so my agents' reading list was literally too long for them to
-            read. A summarizer now compresses the raw dumps into tight digests
-            all eight agents can afford to read.
+            Stock trading has a clear scoreboard of the valuation of your
+            portfolio. So I built a research collective to settle it for myself
+            and learn a little bit about multi-agent orchestration along the
+            way. I set up eight named agents with research roles and a
+            nine-phase deliberation with evidence-first rules where every claim
+            has to cite a source.
+          </p>
+          <p>
+            The accountability ledger is really the backbone of the system:
+            being wrong costs the agent, so voting power gets reweighted by
+            track record, and roles are up for election. A quant that keeps
+            missing gets outvoted, then unseated. Biggest obstacle was the first
+            real run dying with a 429: the morning data brief came out to 32K
+            tokens against a 30K limit, so my agents' reading list was literally
+            too long for them to read. A summarizer now compresses the raw dumps
+            into tight digests all eight agents can afford to read.
+          </p>
+          <p class="takeaway">
+            <span class="tk">For your business</span>Agents that check each
+            other's work before anyone acts on it.
           </p>
           <div class="tags">
             <span class="tag">Python</span><span class="tag">Claude API</span
@@ -1456,39 +1932,64 @@
         </div>
       </section>
 
+      <div class="seam seam-atlas-fb" aria-hidden="true">
+        <span class="seam-label">Field Brief</span>
+        <svg class="w3" viewBox="0 0 1200 400" preserveAspectRatio="none">
+          <path
+            d="M0,120 C160,60 340,180 600,120 C860,60 1040,180 1200,110 L1200,400 L0,400 Z"
+          />
+        </svg>
+        <svg class="w2" viewBox="0 0 1200 400" preserveAspectRatio="none">
+          <path
+            d="M0,140 C220,210 420,70 640,130 C880,200 1060,90 1200,150 L1200,400 L0,400 Z"
+          />
+        </svg>
+        <svg class="w1" viewBox="0 0 1200 400" preserveAspectRatio="none">
+          <path
+            d="M0,118 C180,58 380,178 620,118 C860,58 1040,178 1200,108 L1200,400 L0,400 Z"
+          />
+          <path
+            class="pour"
+            d="M0,124 C180,64 380,184 620,124 C860,64 1040,184 1200,114 L1200,400 L0,400 Z"
+          />
+        </svg>
+      </div>
+
       <!-- ============ Field Brief ============ -->
       <section class="world w-fb" id="fieldbrief" aria-label="Field Brief">
         <div class="inner">
+          <div class="sec-label">
+            <span class="no">003/</span
+            ><span class="nm">Defense-tech news intelligence</span>
+          </div>
+          <h2>Field Brief</h2>
           <div class="cols cols-fb">
             <div>
-              <h2>
-                Field Brief
-                <span class="kind">Defense-tech news intelligence</span>
-              </h2>
               <p>
-                I wanted to learn more about the defense-tech industry, and the
-                fastest way to learn an industry is to ship something for it. So
-                I built the product I'd want on my own desk:
-                <strong
-                  >a news feed that reads fifteen niche defense outlets,
-                  clusters the coverage into stories, and pairs it with the
-                  money</strong
-                >: DoD contract awards, SAM.gov opportunities, prime-contractor
-                market data. I also had two things I wanted to learn: how to
-                render seriously data-dense pages in React, and how to run
-                Sanity as a real editorial surface with review queues and a
-                curation workflow.
+                I wanted to learn more about the defense-tech industry, so I
+                made Field Brief, which provides a continuous briefing of the
+                latest news and contract awards.
               </p>
               <p>
-                The accomplishment I keep coming back to: the paper assembles
-                itself. One cron fires every morning and the whole cycle runs,
-                from feed pull to entity extraction to clustering to publish. A
-                newspaper with zero staff, live at desem.vercel.app, and the
-                headlines below are served by its public API right now. The big
-                fight was story clustering: pure embedding similarity kept
-                fusing unrelated coverage into one mega-story while splitting a
-                single contract award into five. A hybrid score, word overlap
-                plus embeddings, finally snapped stories into shape.
+                Learned a lot about big data wrangling with DoD contract awards,
+                SAM.gov opportunities, prime-contractor market data. I also
+                wanted to learn how to render seriously data-dense pages in
+                React, and how to run Sanity as a real editorial surface with
+                review queues and a curation workflow which this project has in
+                spades.
+              </p>
+              <p>
+                On a technical level, one cron runs the whole cycle, from feed
+                pull to entity extraction to clustering to publish. Basically
+                it's a newspaper with zero staff. The big fight was story
+                clustering: pure embedding similarity kept fusing unrelated
+                coverage into one mega-story while splitting a single contract
+                award into five. A hybrid score, word overlap plus embeddings,
+                finally snapped stories into shape.
+              </p>
+              <p class="takeaway">
+                <span class="tk">For your business</span>A system that reads
+                hundreds of sources every morning and writes the brief.
               </p>
               <div class="tags">
                 <span class="tag">Next.js</span><span class="tag">Supabase</span
@@ -1583,9 +2084,41 @@
         </div>
       </section>
 
+      <div class="seam seam-fb-rounds" aria-hidden="true">
+        <span class="seam-label">Rounds</span>
+        <svg class="w3" viewBox="0 0 1200 400" preserveAspectRatio="none">
+          <path
+            transform="translate(1200 0) scale(-1 1)"
+            d="M0,120 C160,60 340,180 600,120 C860,60 1040,180 1200,110 L1200,400 L0,400 Z"
+          />
+        </svg>
+        <svg class="w2" viewBox="0 0 1200 400" preserveAspectRatio="none">
+          <path
+            transform="translate(1200 0) scale(-1 1)"
+            d="M0,140 C220,210 420,70 640,130 C880,200 1060,90 1200,150 L1200,400 L0,400 Z"
+          />
+        </svg>
+        <svg class="w1" viewBox="0 0 1200 400" preserveAspectRatio="none">
+          <path
+            transform="translate(1200 0) scale(-1 1)"
+            d="M0,118 C180,58 380,178 620,118 C860,58 1040,178 1200,108 L1200,400 L0,400 Z"
+          />
+          <path
+            class="pour"
+            transform="translate(1200 0) scale(-1 1)"
+            d="M0,124 C180,64 380,184 620,124 C860,64 1040,184 1200,114 L1200,400 L0,400 Z"
+          />
+        </svg>
+      </div>
+
       <!-- ============ Rounds ============ -->
       <section class="world w-rounds" id="rounds" aria-label="Rounds">
         <div class="inner">
+          <div class="sec-label">
+            <span class="no">004/</span
+            ><span class="nm">Social nightlife discovery</span>
+          </div>
+          <h2>Rounds</h2>
           <div class="cols cols-rounds">
             <div class="demo-col">
               <div class="duel panel">
@@ -1652,9 +2185,6 @@
               </div>
             </div>
             <div>
-              <h2>
-                Rounds <span class="kind">Social nightlife discovery</span>
-              </h2>
               <p>
                 My friends and I could never decide where to go out in Boston.
                 Everyone had opinions about every bar, and the apps that rank
@@ -1681,6 +2211,10 @@
                 membership, so that logic moved into trusted Cloud Functions,
                 with every rule under an emulator test suite.
               </p>
+              <p class="takeaway">
+                <span class="tk">For your business</span>Software that turns
+                messy human opinions into rankings people trust.
+              </p>
               <div class="tags">
                 <span class="tag">React Native / Expo</span
                 ><span class="tag">Firebase</span
@@ -1696,12 +2230,37 @@
         </div>
       </section>
 
+      <div class="seam seam-rounds-hh" aria-hidden="true">
+        <span class="seam-label">HealthyHoyas</span>
+        <svg class="w3" viewBox="0 0 1200 400" preserveAspectRatio="none">
+          <path
+            d="M0,120 C160,60 340,180 600,120 C860,60 1040,180 1200,110 L1200,400 L0,400 Z"
+          />
+        </svg>
+        <svg class="w2" viewBox="0 0 1200 400" preserveAspectRatio="none">
+          <path
+            d="M0,140 C220,210 420,70 640,130 C880,200 1060,90 1200,150 L1200,400 L0,400 Z"
+          />
+        </svg>
+        <svg class="w1" viewBox="0 0 1200 400" preserveAspectRatio="none">
+          <path
+            d="M0,118 C180,58 380,178 620,118 C860,58 1040,178 1200,108 L1200,400 L0,400 Z"
+          />
+          <path
+            class="pour"
+            d="M0,124 C180,64 380,184 620,124 C860,64 1040,184 1200,114 L1200,400 L0,400 Z"
+          />
+        </svg>
+      </div>
+
       <!-- ============ HealthyHoyas ============ -->
       <section class="world w-hh" id="healthyhoyas" aria-label="HealthyHoyas">
         <div class="inner">
-          <h2>
-            HealthyHoyas <span class="kind">Campus nutrition tracking</span>
-          </h2>
+          <div class="sec-label">
+            <span class="no">005/</span
+            ><span class="nm">Campus nutrition tracking</span>
+          </div>
+          <h2>HealthyHoyas</h2>
           <p class="lead">
             Made this because I was trying to hit my macros while eating every
             meal at a Georgetown dining hall, and MyFitnessPal had no idea what
@@ -1725,6 +2284,10 @@
             site failed at random. A 700+ item nutrition cache, cleaning passes,
             and retry logic tamed it, and it's been quietly shipping menus every
             morning since.
+          </p>
+          <p class="takeaway">
+            <span class="tk">For your business</span>A pipeline that scrapes
+            unreliable data on a schedule and keeps it clean.
           </p>
           <div class="tags">
             <span class="tag">Next.js</span><span class="tag">Supabase</span
@@ -1861,9 +2424,41 @@
         </div>
       </section>
 
+      <div class="seam seam-hh-photon" aria-hidden="true">
+        <span class="seam-label">Photon</span>
+        <svg class="w3" viewBox="0 0 1200 400" preserveAspectRatio="none">
+          <path
+            transform="translate(1200 0) scale(-1 1)"
+            d="M0,120 C160,60 340,180 600,120 C860,60 1040,180 1200,110 L1200,400 L0,400 Z"
+          />
+        </svg>
+        <svg class="w2" viewBox="0 0 1200 400" preserveAspectRatio="none">
+          <path
+            transform="translate(1200 0) scale(-1 1)"
+            d="M0,140 C220,210 420,70 640,130 C880,200 1060,90 1200,150 L1200,400 L0,400 Z"
+          />
+        </svg>
+        <svg class="w1" viewBox="0 0 1200 400" preserveAspectRatio="none">
+          <path
+            transform="translate(1200 0) scale(-1 1)"
+            d="M0,118 C180,58 380,178 620,118 C860,58 1040,178 1200,108 L1200,400 L0,400 Z"
+          />
+          <path
+            class="pour"
+            transform="translate(1200 0) scale(-1 1)"
+            d="M0,124 C180,64 380,184 620,124 C860,64 1040,184 1200,114 L1200,400 L0,400 Z"
+          />
+        </svg>
+      </div>
+
       <!-- ============ Photon ============ -->
       <section class="world w-photon" id="photon" aria-label="Photon">
         <div class="inner">
+          <div class="sec-label">
+            <span class="no">006/</span
+            ><span class="nm">In-browser photo editor</span>
+          </div>
+          <h2>Photon</h2>
           <div class="cols cols-photon">
             <div class="demo-col">
               <div class="ba" id="ba">
@@ -1897,7 +2492,6 @@
               </p>
             </div>
             <div>
-              <h2>Photon <span class="kind">In-browser photo editor</span></h2>
               <p>
                 I kept needing two dumb-simple things, background removal and
                 image-to-SVG, and every site that does them wants an account, an
@@ -1908,6 +2502,10 @@
                 honesty: it took one prompt to GPT-5, which came back with a
                 single HTML file. 2,266 lines, zero dependencies, works offline,
                 magic-wand flood fill included.
+              </p>
+              <p class="takeaway">
+                <span class="tk">For your business</span>Tools that run entirely
+                in the browser, with nothing to install.
               </p>
               <div class="tags">
                 <span class="tag">Vanilla JS</span
@@ -1984,17 +2582,28 @@
       </section>
 
       <!-- ============ Outro ============ -->
-      <section class="outro" aria-label="Get in touch">
+      <section class="outro" id="contact" aria-label="Get in touch">
         <div class="inner">
-          <h2>That's the whole demo floor.</h2>
+          <div class="sec-label">
+            <span class="no">007/</span><span class="nm">Contact</span>
+          </div>
+          <h2>What's the most tedious thing in your week?</h2>
           <p>
-            Five products, every one shipped and running. If you made it this
-            far, say hi. I read every email.
+            Tell me about it for 20 minutes. It's free, and you'll leave knowing
+            whether Claude can take it off your plate. Five products above,
+            every one shipped and running — I can build yours too. I read every
+            email.
           </p>
           <div class="big-links">
+            <a
+              class="book-btn"
+              href="https://calendar.app.google/Tm88PMMS9XpvFWh39"
+              >Book 20 minutes</a
+            >
             <span class="email">bsl54 [ @ ] georgetown [ dot ] edu</span>
             <a href="https://github.com/BrodieL3">GitHub</a>
           </div>
+          <div class="sr-status" id="copy-status" aria-live="polite"></div>
         </div>
       </section>
     </main>
@@ -2006,18 +2615,99 @@
       </div>
     </footer>
 
+    <nav class="folio" id="folio" aria-label="Sections">
+      <div class="menu" id="folio-menu">
+        <a href="#about" data-key="about" data-n="001" data-name="The offer"
+          ><span class="n">001/</span>The offer</a
+        >
+        <a href="#atlas" data-key="atlas" data-n="002" data-name="ATLAS"
+          ><span class="n">002/</span>ATLAS</a
+        >
+        <a href="#fieldbrief" data-key="fb" data-n="003" data-name="Field Brief"
+          ><span class="n">003/</span>Field Brief</a
+        >
+        <a href="#rounds" data-key="rounds" data-n="004" data-name="Rounds"
+          ><span class="n">004/</span>Rounds</a
+        >
+        <a
+          href="#healthyhoyas"
+          data-key="hh"
+          data-n="005"
+          data-name="HealthyHoyas"
+          ><span class="n">005/</span>HealthyHoyas</a
+        >
+        <a href="#photon" data-key="photon" data-n="006" data-name="Photon"
+          ><span class="n">006/</span>Photon</a
+        >
+        <a href="#contact" data-key="contact" data-n="007" data-name="Contact"
+          ><span class="n">007/</span>Contact</a
+        >
+      </div>
+      <button
+        type="button"
+        class="cur"
+        aria-expanded="false"
+        aria-controls="folio-menu"
+      >
+        <span class="prog" aria-hidden="true"></span>
+        <b class="n">001/</b><span class="l">The offer</span>
+        <span class="car" aria-hidden="true">&#9650;</span>
+      </button>
+    </nav>
+
     <script>
       (() => {
         const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-        /* ---------- Email: real mailto links, assembled here so the address
-           never sits scrapeable in the static HTML ---------- */
-        for (const el of document.querySelectorAll(".email")) {
-          const a = document.createElement("a");
-          a.className = "email";
-          a.href = "mailto:bsl54" + "@" + "george" + "town.edu";
-          a.textContent = "bsl54" + "@" + "george" + "town.edu";
-          el.replaceWith(a);
+        /* ---------- Email: click-to-copy buttons, assembled here so the
+           address never sits scrapeable in the static HTML ---------- */
+        {
+          const addr = "bsl54" + "@" + "george" + "town.edu";
+          const copyStatus = document.getElementById("copy-status");
+          const copyAddr = async () => {
+            try {
+              await navigator.clipboard.writeText(addr);
+              return true;
+            } catch (_) {
+              const ta = document.createElement("textarea");
+              ta.value = addr;
+              ta.setAttribute("readonly", "");
+              ta.style.position = "fixed";
+              ta.style.opacity = "0";
+              document.body.appendChild(ta);
+              ta.select();
+              let ok = false;
+              try {
+                ok = document.execCommand("copy");
+              } catch (_) {}
+              ta.remove();
+              return ok;
+            }
+          };
+          for (const el of document.querySelectorAll(".email")) {
+            const btn = document.createElement("button");
+            btn.type = "button";
+            btn.className = "email";
+            btn.title = "Copy email address";
+            btn.textContent = addr;
+            const tip = document.createElement("span");
+            tip.className = "copied-tip";
+            tip.setAttribute("aria-hidden", "true");
+            tip.textContent = "Copied";
+            btn.appendChild(tip);
+            let timer;
+            btn.addEventListener("click", async () => {
+              if (!(await copyAddr())) return;
+              btn.classList.add("copied");
+              if (copyStatus) copyStatus.textContent = "Copied email address";
+              clearTimeout(timer);
+              timer = setTimeout(() => {
+                btn.classList.remove("copied");
+                if (copyStatus) copyStatus.textContent = "";
+              }, 1700);
+            });
+            el.replaceWith(btn);
+          }
         }
 
         /* ---------- Field Brief live wire ---------- */
@@ -2313,6 +3003,140 @@
             );
             io.observe(document.getElementById("ba"));
           }
+        })();
+
+        /* ---------- Folio pill: floating directory with active-section
+           tracking and scroll progress. Appears once the hero is passed. */
+        (() => {
+          const folio = document.getElementById("folio");
+          const hero = document.querySelector(".hero");
+          if (!folio || !hero) return;
+          const btn = folio.querySelector(".cur");
+          const curN = btn.querySelector(".n");
+          const curL = btn.querySelector(".l");
+          const items = [...folio.querySelectorAll(".menu a")];
+          const sections = items
+            .map((a) => ({
+              a,
+              el: document.getElementById(a.getAttribute("href").slice(1)),
+            }))
+            .filter((s) => s.el);
+          if (!sections.length) return;
+
+          const close = () => {
+            folio.classList.remove("open");
+            btn.setAttribute("aria-expanded", "false");
+          };
+          btn.addEventListener("click", () => {
+            const open = folio.classList.toggle("open");
+            btn.setAttribute("aria-expanded", open ? "true" : "false");
+          });
+          for (const { a } of sections) a.addEventListener("click", close);
+          document.addEventListener("click", (e) => {
+            if (!folio.contains(e.target)) close();
+          });
+          document.addEventListener("keydown", (e) => {
+            if (e.key === "Escape") close();
+          });
+
+          let active = -1;
+          let ticking = false;
+          const paint = () => {
+            ticking = false;
+            const doc = document.documentElement;
+            folio.style.setProperty(
+              "--p",
+              (scrollY / Math.max(1, doc.scrollHeight - innerHeight)).toFixed(
+                4,
+              ),
+            );
+            const shown = scrollY > hero.offsetHeight * 0.5;
+            folio.classList.toggle("show", shown);
+            if (!shown && folio.classList.contains("open")) close();
+            const mid = innerHeight / 2;
+            let i = 0;
+            sections.forEach((s, k) => {
+              if (s.el.getBoundingClientRect().top <= mid) i = k;
+            });
+            if (i === active) return;
+            active = i;
+            const { a } = sections[i];
+            sections.forEach((s, k) => s.a.classList.toggle("on", k === i));
+            curN.textContent = a.dataset.n + "/";
+            curL.textContent = a.dataset.name;
+            folio.dataset.on = a.dataset.key;
+          };
+          const queue = () => {
+            if (ticking) return;
+            ticking = true;
+            requestAnimationFrame(paint);
+          };
+          addEventListener("scroll", queue, { passive: true });
+          addEventListener("resize", queue, { passive: true });
+          paint();
+        })();
+
+        /* ---------- Liquid Horizon seams: scroll-scrub fallback for browsers
+           without CSS scroll-driven animations (e.g. older Safari). Mirrors
+           the seam-w* / seam-label keyframes; writes transform only, so each
+           frame is style + composite with no layout or repaint. ---------- */
+        (() => {
+          if (reduced || CSS.supports("animation-timeline: view()")) return;
+          const KF = {
+            w1: [
+              [0, 96],
+              [-4, 0],
+            ],
+            w2: [
+              [0, 78],
+              [3, 0],
+            ],
+            w3: [
+              [0, 58],
+              [-2, 0],
+            ],
+          };
+          const bands = [...document.querySelectorAll(".seam")].map((el) => ({
+            el,
+            p: -1,
+            num: el.querySelector(".seam-label"),
+            waves: [...el.querySelectorAll("svg")].flatMap((s) => {
+              const kf = KF[[...s.classList].find((c) => KF[c])];
+              return kf ? [{ el: s, from: kf[0], to: kf[1] }] : [];
+            }),
+          }));
+          if (!bands.length) return;
+          let ticking = false;
+          const paint = () => {
+            ticking = false;
+            const vh = innerHeight;
+            for (const band of bands) {
+              const r = band.el.getBoundingClientRect();
+              const p = Math.min(
+                1,
+                Math.max(0, (vh - r.top) / (vh + r.height)),
+              );
+              if (p === band.p) continue;
+              band.p = p;
+              for (const { el, from, to } of band.waves) {
+                const x = from[0] + (to[0] - from[0]) * p;
+                const y = from[1] + (to[1] - from[1]) * p;
+                el.style.transform = "translate3d(" + x + "%, " + y + "%, 0)";
+              }
+              if (band.num) {
+                band.num.style.transform =
+                  "translate3d(0, " + (90 - 180 * p) + "px, 0)";
+              }
+            }
+          };
+          const queue = () => {
+            if (ticking) return;
+            ticking = true;
+            requestAnimationFrame(paint);
+          };
+          addEventListener("scroll", queue, { passive: true });
+          addEventListener("resize", queue, { passive: true });
+          queue();
         })();
       })();
     </script>
