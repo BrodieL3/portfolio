@@ -1,6 +1,6 @@
 ---
 name: Brodie Lee — Portfolio
-description: Five shipped products, each presented as a full-bleed world in its own product palette, with a working demo inside every one.
+description: The agentic-engineering Workshop plus five shipped products, each presented as a full-bleed world in its own palette, with a working demo inside every one.
 colors:
   canvas: "#fafaf8"
   canvas-dark: "#111113"
@@ -9,6 +9,8 @@ colors:
   muted: "#62625d"
   hairline: "#e5e5e0"
   shell-blue: "#2456d6"
+  workshop-black: "#140e0a"
+  workshop-clay: "#d97757"
   wire-black: "#0e0a16"
   wire-violet: "#bf81fe"
   signal-red: "#ff5c4d"
@@ -108,10 +110,10 @@ components:
 
 This portfolio is a trade-show floor where every booth is switched on and running. Visitors don't read about the five products — they touch them: live headlines stream in from a real API, a bar ranking re-sorts when you vote, a nutrition diary fills as you tap, a terminal types out an agent deliberation, a photo edit happens under your finger. The page is the sixth shipped product, and its craft is part of the pitch.
 
-The system is playful, energetic, and memorable — but every playful choice must survive the question "does this make the work look better?" Energy is carried by color commitment, characterful type, and working demos, never by decoration. Each of the five projects lives in a full-bleed **world**: a section drenched in that product's own shipped palette. The neutral shell (near-white in light mode, near-black in dark) exists to make the worlds land harder. This system explicitly rejects template portfolios, resume-speak, and the AI-generated look (gradient text, glassmorphism, cream backgrounds, tracked-uppercase eyebrows).
+The system is playful, energetic, and memorable — but every playful choice must survive the question "does this make the work look better?" Energy is carried by color commitment, characterful type, and working demos, never by decoration. The Workshop and each of the five projects live in a full-bleed **world**: a section drenched in that product's own shipped palette. The neutral shell (near-white in light mode, near-black in dark) exists to make the worlds land harder. This system explicitly rejects template portfolios, resume-speak, and the AI-generated look (gradient text, glassmorphism, cream backgrounds, tracked-uppercase eyebrows).
 
 **Key Characteristics:**
-- Five full-bleed color worlds on a neutral shell — full-palette strategy at section scale
+- Six full-bleed color worlds (the Workshop plus five products) on a neutral shell — full-palette strategy at section scale
 - One working, honest demo per world; proof over adjectives
 - A single characterful typeface (Bricolage Grotesque) carrying the whole voice
 - Hands-on, sturdy controls with visible borders and immediate feedback
@@ -123,6 +125,7 @@ The system is playful, energetic, and memorable — but every playful choice mus
 Each world's palette is lifted from its shipped product; the shell stays neutral so the worlds carry all the color.
 
 ### Primary
+- **Workshop Black** (#140e0a) with **Claude Clay** (#d97757): the Workshop's world — the agentic-engineering section that opens the page. A warm deep black with Claude's own clay accent; the shipped products here are Claude Code plugins, so per World Integrity the palette is Claude's. World ink #f4ede6, muted #baa89a. The representative triage digest reuses the terminal chrome on a deeper warm black (#0b0705) with severity keywords in clay. The folio index darkens the clay to #a84a24 on the light shell for contrast, back to #d97757 on dark.
 - **Wire Black** (#0e0a16) with **Wire Violet** (#bf81fe): Field Brief's world — black, white, and purple, sampled from the shipped product's own wordmark. The background carries a faint violet cast so it never reads as the same black as the adjacent Rounds world. Wire Violet is the accent for category labels, links, and CTAs; **Signal Red** (#ff5c4d) is reserved exclusively for the pulsing live-data dot.
 - **Last-Call Black** (#0b0c0e) with **Last-Call Lime** (#c8f169): Rounds' world — nightlife black with electric lime. Lime fills score pills (with Last-Call Black text) and highlights winning rows.
 - **Hilltop Navy** (#0a2a4e) with **Hilltop Blue** (#85b8f8): HealthyHoyas' world — Georgetown navy. Hilltop Blue fills macro bars and marks selected menu items.
@@ -139,7 +142,7 @@ Each world's palette is lifted from its shipped product; the shell stays neutral
 Every world also defines its own ink and muted (e.g. #f0edf7 / #a79fbd in Wire Black); all pairs are contrast-verified ≥4.5:1 — most exceed 7:1.
 
 ### Named Rules
-**The World Integrity Rule.** A world's colors come from its shipped product, never from taste. Adding a sixth world requires a sixth shipped product with its own palette.
+**The World Integrity Rule.** A world's colors come from its shipped product, never from taste. Adding a new world requires a shipped product with its own palette — the Workshop qualifies through its Claude Code plugins, which is why it wears Claude's clay.
 
 **The Neutral Shell Rule.** The shell never competes: chroma-zero neutrals plus one link accent. If the shell gets colorful, the worlds stop landing.
 
@@ -201,11 +204,14 @@ Component character: **hands-on and sturdy**. Controls look pressable and honest
 ### CTAs
 - **Style:** plain text links in the world accent, 700 weight, with a trailing ↗; underline on hover. Never buttons — the sturdy chrome is reserved for things that *do* something on the page.
 
+### The Editorial Index (page structure)
+Sections carry a `sec-label` (`008/ Contact`), seam dividers between worlds name the next section, and the `folio` nav mirrors the same numbered index with a per-world accent (`--dx`, darkened for light-shell contrast). **The Numbered Index Rule.** The numbers are one deliberate page-wide index, not per-section eyebrows — they exist in three synced places (sec-labels, seam labels, folio entries). Adding or reordering a section means renumbering all three or none; a mismatch between them is a shipped bug.
+
 ### Lifted Product Miniatures (signature components)
 Product UI is never shown as a raster screenshot — it is rebuilt as a small, crisp HTML/CSS recreation (`.lift-*`): Field Brief's front page (serif masthead, risk index with SVG sparklines), HealthyHoyas' landing (serif display + fanned nutrition-label cards), and Photon's editor chrome (toolbar, sliders, layers, real photo on canvas). Rounds has no miniature: its interactive head-to-head demo already depicts the app's core ranked list, and a second ranking card alongside it read as duplication. Miniatures are decorative depictions: `role="img"` with a descriptive `aria-label`, `pointer-events: none`, fixed product-true colors in both themes. **The Vector Chrome Rule.** If a product's UI appears on this page, it is lifted as markup, not pasted as pixels — the ATLAS terminal set the precedent.
 
 ### The Demos (signature components)
-Each world contains exactly one working artifact: the live wire (Field Brief), the head-to-head ranker with FLIP reorder + decaying winner highlight (Rounds), the build-a-plate macro counter with 280ms count-up tweens (HealthyHoyas), the self-typing terminal (ATLAS), and the before/after filter slider with a one-time drag-hint nudge (Photon). Demos are honest: real data where possible, labeled "representative" or "toy of the real thing" where not. All content prerenders in HTML; JS only adds behavior. Motion timing: feedback ≤300ms, entrances 550–650ms, all on `cubic-bezier(0.22, 1, 0.36, 1)`, all with reduced-motion alternatives.
+Each world contains exactly one working artifact: the static representative comms-triage digest in terminal chrome (Workshop), the live wire (Field Brief), the head-to-head ranker with FLIP reorder + decaying winner highlight (Rounds), the build-a-plate macro counter with 280ms count-up tweens (HealthyHoyas), the self-typing terminal (ATLAS), and the before/after filter slider with a one-time drag-hint nudge (Photon). Demos are honest: real data where possible, labeled "representative" or "toy of the real thing" where not. All content prerenders in HTML; JS only adds behavior. Motion timing: feedback ≤300ms, entrances 550–650ms, all on `cubic-bezier(0.22, 1, 0.36, 1)`, all with reduced-motion alternatives.
 
 ## 6. Do's and Don'ts
 
