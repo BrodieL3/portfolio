@@ -3,18 +3,18 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Brodie Lee — Projects</title>
+    <title>Brodie Lee — Operations and AI-assisted tools</title>
     <meta
       name="description"
-      content="Five shipped products: multi-agent AI research, defense-tech news intelligence, social nightlife rankings, campus nutrition, in-browser photo editing."
+      content="Georgetown mathematics graduate. Staff supervision, operational dashboards, and AI-assisted software. Explore my work and get in touch about opportunities."
     />
     <link rel="canonical" href="https://brodielee.vercel.app/" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://brodielee.vercel.app/" />
-    <meta property="og:title" content="Brodie Lee — Projects" />
+    <meta property="og:title" content="Brodie Lee — Operations and AI-assisted tools" />
     <meta
       property="og:description"
-      content="Five shipped products: multi-agent AI research, defense-tech news intelligence, social nightlife rankings, campus nutrition, in-browser photo editing."
+      content="Georgetown mathematics graduate. Staff supervision, operational dashboards, and AI-assisted software. Explore my work and get in touch about opportunities."
     />
     <meta
       property="og:image"
@@ -23,10 +23,10 @@
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Brodie Lee — Projects" />
+    <meta name="twitter:title" content="Brodie Lee — Operations and AI-assisted tools" />
     <meta
       name="twitter:description"
-      content="Five shipped products: multi-agent AI research, defense-tech news intelligence, social nightlife rankings, campus nutrition, in-browser photo editing."
+      content="Georgetown mathematics graduate. Staff supervision, operational dashboards, and AI-assisted software. Explore my work and get in touch about opportunities."
     />
     <meta
       name="twitter:image"
@@ -480,7 +480,15 @@
         }
       }
 
-      /* ---------- About: paying off the subscription ---------- */
+      .hiring-links { display: flex; flex-wrap: wrap; justify-content: center; gap: .5rem 1.5rem; margin-top: 1.5rem; font-weight: 650; }
+      .hiring-links a { display: inline-flex; align-items: center; min-height: 44px; }
+      .case-notes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2.5rem; margin-block: 2rem; }
+      .case-notes h3 { font-size: 1.2rem; line-height: 1.3; text-wrap: balance; }
+      @media (max-width: 640px) {
+        .case-notes { grid-template-columns: 1fr; gap: 1.5rem; }
+        .site-top nav { gap: .85rem; flex-wrap: wrap; }
+      }
+      /* ---------- About: Georgetown case study ---------- */
       .about {
         padding-block: clamp(3.5rem, 10vh, 6.5rem) clamp(4rem, 11vh, 7rem);
       }
@@ -1740,7 +1748,8 @@
       <div class="inner">
         <span class="wordmark">Brodie Lee</span>
         <nav aria-label="Profiles">
-          <a href="https://github.com/BrodieL3">GitHub</a>
+          <a href="#about">Experience</a>
+          <a href="#contact">Contact</a>
           <a href="https://www.linkedin.com/in/broderick-lee-054a5323b/"
             >LinkedIn</a
           >
@@ -1750,9 +1759,10 @@
 
     <section class="hero" aria-label="Introduction">
       <div class="inner">
-        <h1>Use Claude Smarter</h1>
-        <p class="sub">Brodie Lee builds agentic systems.</p>
-        <p class="sub">Better tools for Claude. Projects to prove it.</p>
+        <h1>Make the work<br />work better.</h1>
+        <p class="sub">I’m Brodie Lee. I organize people, untangle messy workflows, and build tools that help a team get things done.</p>
+        <p class="sub">Georgetown mathematics graduate. Operations experience. AI-assisted projects you can try.</p>
+        <p class="hiring-links"><a href="#about">See my Georgetown work ↘</a><a href="/Brodie-Lee-Resume.docx" download>Download résumé ↓</a></p>
         <p class="sub">
           Reach me at
           <span class="email">bsl54 [ @ ] georgetown [ dot ] edu</span>.
@@ -1893,19 +1903,27 @@
       </section>
 
       <!-- ============ About ============ -->
-      <section class="about" id="about" aria-label="What I'm up to">
+      <section class="about" id="about" aria-label="Georgetown operations experience">
         <div class="inner">
           <div class="sec-label">
             <span class="no">002/</span><span class="nm">About</span>
           </div>
-          <h2>What I'm up to</h2>
-          <p>
-            I build agentic systems: a four-harness Claude rig that remembers,
-            improves itself, and ships. The rig is detailed in the Workshop
-            above and open-sourced where it's useful. The five products below
-            are all live. This page is the working record; it's what I hand
-            out instead of a LinkedIn.
-          </p>
+          <h2>People, keys, rooms.<br />A lot to keep moving.</h2>
+          <p>As an Operations Specialist at Georgetown Residential Living in summer 2025, I supervised 4–6 inspectors and 2–4 keyroom helpers per shift. I assigned work, checked that it was done correctly, and followed up on errors.</p>
+          <div class="case-notes">
+            <article>
+              <h3>Give the team a shared picture</h3>
+              <p>Summer programs meant groups arriving and leaving on different schedules. I built Next.js dashboards backed by Supabase for approximately 24 housing staff to see arrivals, inspection failures, work orders, and keyroom visits in one place.</p>
+              <p>Custom CSV connectors brought 20,000+ inspection records from a Google Forms and Sheets workflow into Supabase. The housing data covered 3,000+ living spaces. I used AI to help write the code and translated the office’s needs into the workflows.</p>
+            </article>
+            <article>
+              <h3>Follow the problem to its source</h3>
+              <p>When a key went missing, I traced the inspector activity logs and found a handoff practice driven by conflicting instructions from another team. The key wasn’t recovered; the lock had to be changed. The investigation led to a revised shift-handoff procedure and a clearer operating SOP.</p>
+              <p>I also built a key-tracking application with Google authentication and selective user access. The point was practical: make responsibility easier to see.</p>
+            </article>
+          </div>
+          <p>Outside the keyroom, I served as Georgetown Rugby’s alumni chair and organized an alumni-weekend event for 50+ people that helped raise several thousand dollars for the team.</p>
+          <p><a href="/Brodie-Lee-Resume.docx" download>Download my résumé ↓</a> · B.A. Mathematics, Georgetown University, May 2026</p>
         </div>
       </section>
 
@@ -2680,19 +2698,20 @@
           <div class="sec-label">
             <span class="no">008/</span><span class="nm">Contact</span>
           </div>
-          <h2>That's the whole demo floor.</h2>
+          <h2>Have a team I should meet?</h2>
           <p>
-            Five products, every one shipped and running. If you made it this
-            far, say hi. I read every email.
+            I’m looking for a full-time role where I can take responsibility for
+            operations, coordinate people and projects, and improve how work gets done.
+            I’m open to relocation and frequent travel.
           </p>
           <p>
-            I also take on Claude-automation work for small businesses. If
-            something tedious eats your week, email me and we'll spend twenty
-            minutes on it.
+            Send me the role or the problem your team is working on. I can walk
+            you through what I built at Georgetown and the projects on this page.
           </p>
           <div class="big-links">
             <span class="email">bsl54 [ @ ] georgetown [ dot ] edu</span>
-            <a href="https://github.com/BrodieL3">GitHub</a>
+            <a href="mailto:bsl54@georgetown.edu?subject=Let%27s%20talk%20about%20a%20role">Email me ↗</a>
+            <a href="/Brodie-Lee-Resume.docx" download>Résumé ↓</a>
           </div>
           <div class="sr-status" id="copy-status" aria-live="polite"></div>
         </div>
