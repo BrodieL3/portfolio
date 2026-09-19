@@ -4,7 +4,7 @@ export const rooms = Object.freeze(statuses.map((status, i) => Object.freeze({
   id: String(101+i), status, inspector: `Inspector ${i%4+1}`,
   group: i<6 ? 'Program A' : 'Program B', arrival: i<6 ? '14:00' : '16:00',
   type: [3,10].includes(i) ? 'Shared kitchen' : 'Residence room',
-  note: i===3 ? 'Sink leak reported. Work order awaiting maintenance.' : i===10 ? 'Appliance fault reported. Work order awaiting maintenance.' : status==='pending' ? 'Inspection assigned. Completion has not been recorded.' : 'Inspection recorded as passed. Ready for arrival.'
+  note: i===3 ? 'The inspector reported a sink leak. The work order is awaiting maintenance.' : i===10 ? 'The inspector reported an appliance fault. The work order is awaiting maintenance.' : status==='pending' ? 'The inspector has an assignment but has not recorded a result.' : 'The room passed inspection and is ready for arrival.'
 })));
 export const labels = Object.freeze({ready:'Ready',pending:'To inspect',issue:'Needs attention'});
 export function filterRooms(status) { return status === 'all' ? [...rooms] : rooms.filter(room => room.status === status); }

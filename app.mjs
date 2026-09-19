@@ -5,9 +5,9 @@ let chapter = 0;
 let selected = '102';
 const colors = {ready:{floor:'#dce8df',side:'#bad0c2',dot:'#307b67'},pending:{floor:'#f0e8d5',side:'#d1c4a3',dot:'#9b701c'},issue:{floor:'#eedbd5',side:'#d5b5aa',dot:'#ac493e'}};
 const chapters = [
- {title:'Arrivals & assignments', instruction:'Select a room to see who’s assigned and when its group arrives.', narrative:'I assigned inspections around group arrivals, checked completion, and addressed reporting errors. The dashboard helped staff work from the same information.',next:'Next: inspections'},
- {title:'Inspection follow-through', instruction:'The two highlighted rooms need attention. Select one to see the reported issue.', narrative:'I brought inspection responses into a shared dashboard so staff could see failures and work orders. Here, the attention filter isolates the two sample rooms with reported issues.',next:'Next: key handoffs'},
- {title:'The key handoff', instruction:'The keyroom connected staff, keys, and responsibilities. Follow the investigation on the right or below.', narrative:'I traced a missing key through activity logs and uncovered conflicting instructions between teams. The investigation informed a revised shift-handoff procedure and a clearer SOP.',next:'Back to the shift'}
+ {title:'Arrivals & assignments', instruction:'Select a room to see who is assigned and when its group arrives.', narrative:'I used group arrival times to assign inspections, checked whether staff had finished them, and followed up on reporting errors.',next:'Next: inspections'},
+ {title:'Inspection results', instruction:'The two highlighted rooms need attention. Select one to see the reported issue.', narrative:'I imported inspection responses into a dashboard that showed failed inspections and work orders. Select either highlighted room to read its reported issue.',next:'Next: key handoffs'},
+ {title:'The key handoff', instruction:'The dashboard describes how I investigated a missing key and what we changed afterward.', narrative:'I checked the logs for a missing key and found that another team had given inspectors faulty instructions. We revised the written procedure for exchanging keys between shifts.',next:'Back to the shift'}
 ];
 function person(x,y,color='#416674') {return `<g class="person" transform="translate(${x} ${y})" aria-hidden="true"><ellipse cy="12" rx="7" ry="3" fill="#829d9850"/><path d="M-3 5l-1 7m7-7 1 7" stroke="#314852" stroke-width="2"/><path d="M-5-4Q0-8 5-4L4 6h-8Z" fill="${color}"/><circle cy="-10" r="4" fill="#bd9c80"/></g>`;}
 function tree(x,y,s=1){return `<g transform="translate(${x} ${y}) scale(${s})" aria-hidden="true"><ellipse cy="20" rx="22" ry="9" fill="#9aafa43d"/><path d="M0 6v15" stroke="#8f9586" stroke-width="5"/><ellipse cy="-6" rx="19" ry="24" fill="#a7bdb0"/><path d="M0-28Q-24-8 0 16" fill="#94af9e"/></g>`;}
@@ -16,7 +16,7 @@ function drawScene(){
  const col=i%4,row=Math.floor(i/4),x=330+(col-row)*91,y=87+(col+row)*44;
  const c=colors[room.status];
  return `<g class="room-target" data-room="${room.id}" tabindex="0" role="button" aria-label="Room ${room.id}, ${labels[room.status]}, ${room.inspector}" aria-pressed="false" transform="translate(${x} ${y})">
- <title>Room ${room.id} — ${labels[room.status]}</title>
+ <title>Room ${room.id}, ${labels[room.status]}</title>
  <path d="M0 0L87 42 0 84-87 42Z" fill="${c.floor}" class="room-floor" stroke="#c0c9c2"/>
  <path d="M-87 42L0 84v17l-87-42Z" fill="${c.side}" stroke="#afc0b7" stroke-width=".5"/><path d="M0 84l87-42v17L0 101Z" fill="#b0c2ba" stroke="#a2b7ad" stroke-width=".5"/>
  <path d="M-84 40V8L0-32v32Z" fill="#f6f5ec" stroke="#b8c5c0" stroke-width=".7"/><path d="M0-32L84 8v32L0 0Z" fill="#d7dfd8" stroke="#b8c5c0" stroke-width=".7"/>
@@ -67,11 +67,11 @@ function setChapter(index){
  chapter=index; const data=chapters[index];
  document.querySelectorAll('[data-chapter]').forEach(button=>{const active=Number(button.dataset.chapter)===index;button.classList.toggle('active',active);button.setAttribute('aria-pressed',String(active));});
  $('dashboard-title').textContent=data.title;$('model-instruction').textContent=data.instruction;$('chapter-narrative').textContent=data.narrative;
- $('note-number').textContent=`0${index+1} / MY ROLE`;$('next-label').textContent=data.next;
+ $('note-number').textContent='My work';$('next-label').textContent=data.next;
  $('inspection-view').hidden=index===2;$('key-view').hidden=index!==2;$('arrivals').hidden=index===1;
  $('scene').classList.toggle('key-mode',index===2);
  $('status-filter').value=index===1?'issue':'all';applyFilter();
- $('dashboard-footnote').textContent=index===1?'Sample totals: 12 rooms, including 2 reported maintenance issues.':'4 inspectors + 2 keyroom helpers in this fictional shift.';
+ $('dashboard-footnote').textContent=index===1?'Sample totals: 12 rooms, including 2 reported maintenance issues.':'This sample shift has 4 inspectors and 2 keyroom helpers.';
  $('status-announcement').textContent=`${data.title}. ${data.instruction}`;
 }
 drawScene();
