@@ -67,7 +67,7 @@ function setChapter(index){
  chapter=index; const data=chapters[index];
  document.querySelectorAll('[data-chapter]').forEach(button=>{const active=Number(button.dataset.chapter)===index;button.classList.toggle('active',active);button.setAttribute('aria-pressed',String(active));});
  $('dashboard-title').textContent=data.title;$('model-instruction').textContent=data.instruction;$('chapter-narrative').textContent=data.narrative;
- $('note-number').textContent=`0${index+1} / MY ROLE`;$('next-chapter').textContent=`${data.next} →`;
+ $('note-number').textContent=`0${index+1} / MY ROLE`;$('next-label').textContent=data.next;
  $('inspection-view').hidden=index===2;$('key-view').hidden=index!==2;$('arrivals').hidden=index===1;
  $('scene').classList.toggle('key-mode',index===2);
  $('status-filter').value=index===1?'issue':'all';applyFilter();
