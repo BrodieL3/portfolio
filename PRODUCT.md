@@ -18,3 +18,7 @@ Semantic text and native room/status selectors complement keyboard-operable SVG 
 
 ## Voice and presentation update
 The user approved a longer personal essay about explanations, testing ideas, and understanding instructions. Keep those four paragraphs and sign-off intact. Surrounding narrative uses a similarly conversational first-person voice, with longer sentences and commas where natural. Dashboard controls and numerical claims retain clarity. Distinct colored sections return from the earlier design, supported by matching isometric SVG illustrations rather than the old project gallery.
+
+
+## Illustration purpose
+The supporting SVGs must explain a relationship in the adjacent writing. Decorative furniture or props are not enough. Derive each visual brief from the section content, use schematic examples rather than invented historical evidence, and make the central idea readable at mobile size. Keep the main interactive housing model and the approved prose unchanged.

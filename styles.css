@@ -271,3 +271,7 @@ footer{border-top:1px solid #c9d7d2}
  .contact{padding-block:42px}
 }
 @media print{.work-world,.reading-world{background:white;color:#172e3c;--muted:#435b63;--line:#cad2ce;--ink:#172e3c}.desk-illustration,.reading-illustration{display:none}.work-world .method-note{background:#eef3f0}.about-letter p:not(.intro-label){color:#172e3c}}
+
+.story-figure{margin:0}
+.story-figure figcaption{font-size:12px;line-height:1.65;color:var(--muted);max-width:40ch;margin:14px auto 0;text-align:center}
+@media(max-width:760px){.story-figure figcaption{font-size:12px;margin-top:10px}}

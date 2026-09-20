@@ -21,3 +21,7 @@ This is a new reconstruction with synthetic data, not original production footag
 
 ## September 2026 thematic revision
 User requested the return of distinct visual themes while retaining the architectural model. Housing remains pale green. The factual work section uses #183c48 with #c7d8d7 body text and #f1f5ed headings. The personal reading section uses #dea884 with #302c2b body text. Matching isometric illustrations depict an operations desk and reading table, made as standalone SVGs by Luna Max agents, then reviewed by a stronger model for visual quality. The approved personal essay appears intact with a Brodie sign-off. Keep UI labels brief while surrounding prose is more conversational.
+
+
+## Purposeful SVG replacement
+Supporting images now explain the adjoining content. The work illustration connects arrivals, assignments, room checks and key handoffs on a schematic shift board. The personal illustration connects asking, trying and revising an idea. Preserve the isometric solid style and each section palette, but prioritize readable relationships over literal furniture. Short HTML captions and descriptive alt text accompany both. Content-derived generation briefs are in docs/svg-purpose-briefs.md.

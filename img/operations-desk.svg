@@ -1,121 +1,102 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="40 76 560 403" role="img" aria-labelledby="title desc">
-  <title id="title">Keyroom operations desk miniature</title>
-  <desc id="desc">An isometric architectural miniature of an operations desk with a schematic monitor, key rack, inspection clipboard, and chair.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 460" role="img" aria-labelledby="operations-title operations-desc" shape-rendering="geometricPrecision">
+  <title id="operations-title">Shift handoff system</title>
+  <desc id="operations-desc">An isometric routing board connects arrivals to staff assignments, room checks, and a key handoff loop.</desc>
 
   <defs>
-    <filter id="soft-shadow" x="-30%" y="-30%" width="160%" height="180%">
-      <feDropShadow dx="0" dy="9" stdDeviation="7" flood-color="#172e3c" flood-opacity=".14"/>
+    <filter id="operations-shadow" x="-25%" y="-40%" width="150%" height="190%">
+      <feDropShadow dx="0" dy="10" stdDeviation="8" flood-color="#071e27" flood-opacity=".32"/>
     </filter>
-    <filter id="small-shadow" x="-30%" y="-30%" width="160%" height="180%">
-      <feDropShadow dx="0" dy="4" stdDeviation="3" flood-color="#172e3c" flood-opacity=".18"/>
+    <filter id="station-shadow" x="-30%" y="-35%" width="160%" height="190%">
+      <feDropShadow dx="0" dy="5" stdDeviation="4" flood-color="#071e27" flood-opacity=".34"/>
     </filter>
+    <marker id="route-arrow" markerWidth="13" markerHeight="13" refX="10" refY="6.5" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M1 1 11 6.5 1 12Z" fill="#f1f5ed"/>
+    </marker>
+    <marker id="accent-arrow" markerWidth="13" markerHeight="13" refX="10" refY="6.5" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M1 1 11 6.5 1 12Z" fill="#e6aa7e"/>
+    </marker>
   </defs>
 
-  <!-- The small architectural plinth keeps the scene grounded while the background stays transparent. -->
-  <g id="plinth" stroke="#9bb1a8" stroke-linejoin="round">
-    <path d="M76 304 320 171 566 303 320 440Z" fill="#d6e1d8" stroke-width="1.2" filter="url(#soft-shadow)"/>
-    <path d="M76 304 320 440V456L76 320Z" fill="#b8cabe" stroke-width=".8"/>
-    <path d="M320 440 566 303V319L320 456Z" fill="#a9c0b4" stroke-width=".8"/>
-    <path d="M98 306 320 186 543 306 320 426Z" fill="#edf0e8" stroke="#b8c9bf" stroke-width=".7"/>
-    <path d="M118 307 320 197 522 307 320 416Z" fill="#d6e1d8" stroke="#bfd0c4" stroke-width=".6"/>
+  <g transform="translate(0 -55)">
+  <!-- The plinth keeps the diagram in the same small architectural world as the residence model. -->
+  <g id="plinth" stroke-linejoin="round">
+    <path d="M50 294 320 145 590 294 320 445Z" fill="#245361" stroke="#6f999c" stroke-width="1.4" filter="url(#operations-shadow)"/>
+    <path d="M50 294 320 445V458L50 307Z" fill="#123540" stroke="#102a34" stroke-width="1"/>
+    <path d="M320 445 590 294V307L320 458Z" fill="#102f3a" stroke="#102a34" stroke-width="1"/>
+    <path d="M72 294 320 158 568 294 320 430Z" fill="#2c606a" stroke="#8cb0ad" stroke-width=".9"/>
+    <path d="M93 294 320 171 547 294 320 417Z" fill="#214b59" stroke="#527f85" stroke-width=".75"/>
   </g>
 
-  <!-- Quiet cast shadows for the furniture. -->
-  <g aria-hidden="true" opacity=".25" fill="#6d8982">
-    <path d="M174 317 319 240 467 319 319 398Z"/>
-    <path d="M249 386 319 348 416 399 319 445Z"/>
+  <!-- Every rail has its own directional head. The return rail links the handoff back to staff assignment. -->
+  <g id="route" fill="none" stroke="#c7d8d7" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#route-arrow)">
+    <path d="M193 264 266 217"/>
+    <path d="M375 217 444 261"/>
+    <path d="M446 309 374 344"/>
+    <path d="M320 312V254" stroke="#e6aa7e" marker-end="url(#accent-arrow)"/>
   </g>
 
-  <!-- Desk frame and four simple supports. -->
-  <g id="desk-frame" stroke="#172e3c" stroke-linejoin="round">
-    <!-- rear supports, intentionally quieter behind the work surface -->
-    <path d="M227 261 240 268V344L227 337Z" fill="#315c6c" stroke-width=".9"/>
-    <path d="M402 258 415 251V329L402 337Z" fill="#214f68" stroke-width=".9"/>
-    <!-- front supports -->
-    <path d="M246 297 258 303V381L246 375Z" fill="#214f68" stroke-width="1"/>
-    <path d="M388 297 400 291V369L388 375Z" fill="#172e3c" stroke-width="1"/>
-    <path d="M246 375 258 381 258 389 246 383Z" fill="#172e3c" stroke-width=".7"/>
-    <path d="M388 369 400 363 400 371 388 377Z" fill="#172e3c" stroke-width=".7"/>
+  <!-- ARRIVALS: layered cards communicate a queue without inventing a schedule or count. -->
+  <g id="arrivals" filter="url(#station-shadow)" stroke-linejoin="round">
+    <path d="M84 268 145 234 206 268 145 302Z" fill="#f1f5ed" stroke="#183c48" stroke-width="1.5"/>
+    <path d="M84 268 145 302V319L84 285Z" fill="#9dbdbc" stroke="#183c48" stroke-width="1.2"/>
+    <path d="M145 302 206 268V285L145 319Z" fill="#789da0" stroke="#183c48" stroke-width="1.2"/>
+    <path d="M100 262 145 237 190 262 145 287Z" fill="#d9e7df" stroke="#7c9fa0" stroke-width=".8"/>
+    <path d="M109 259 145 240 181 259 145 279Z" fill="#c0d6d1" stroke="#6f9497" stroke-width=".65"/>
+    <path d="M122 257 145 245 168 257" fill="none" stroke="#183c48" stroke-width="2.2" stroke-linecap="round"/>
+    <circle cx="145" cy="262" r="5" fill="#e6aa7e" stroke="#183c48" stroke-width="1"/>
   </g>
 
-  <!-- Desktop: a thin isometric slab with two visible fascia planes. -->
-  <g id="desk-top" stroke="#172e3c" stroke-linejoin="round">
-    <path d="M197 267 320 200 444 267 320 335Z" fill="#f6f2e7" stroke-width="1.1"/>
-    <path d="M197 267 320 335V350L197 282Z" fill="#c5d4ca" stroke-width=".9"/>
-    <path d="M320 335 444 267V282L320 350Z" fill="#9db7b1" stroke-width=".9"/>
-    <path d="M210 267 320 207 430 267 320 327Z" fill="#e1e7de" stroke="#a9beb4" stroke-width=".55"/>
-  </g>
-
-  <!-- Freestanding key rack on the back-right corner of the desk. -->
-  <g id="key-rack" transform="translate(-30 25)" stroke="#172e3c" stroke-linejoin="round">
-    <path d="M382 207 453 245 462 240 391 202Z" fill="#172e3c" stroke-width=".8"/>
-    <path d="M382 207V121L453 159V245Z" fill="#214f68" stroke-width="1.1"/>
-    <path d="M453 159 462 154V240L453 245Z" fill="#172e3c" stroke-width=".9"/>
-    <path d="M382 121 391 116 462 154 453 159Z" fill="#315c6c" stroke-width=".9"/>
-    <path d="M391 147 445 176M391 170 445 199M391 193 445 222" fill="none" stroke="#77a0a0" stroke-width="1.6" stroke-linecap="round"/>
-    <path d="M398 137 445 162" fill="none" stroke="#d6e1d8" stroke-width="2.2" stroke-linecap="round" opacity=".75"/>
-    <!-- three large, simplified keys -->
-    <g fill="none" stroke="#f6f2e7" stroke-linecap="round" stroke-linejoin="round">
-      <circle cx="402" cy="154" r="4.6" stroke-width="2"/>
-      <path d="M406 157 428 169 431 166M421 164 425 172" stroke-width="2.1"/>
-      <circle cx="416" cy="181" r="4.6" stroke-width="2"/>
-      <path d="M420 184 442 196 445 193M435 192 439 200" stroke-width="2.1"/>
-      <circle cx="401" cy="205" r="4.6" stroke-width="2"/>
-      <path d="M405 208 427 220 430 217M420 216 424 224" stroke-width="2.1"/>
+  <!-- ASSIGN: staff tokens are routed to work, rather than shown as anonymous office furniture. -->
+  <g id="assign" filter="url(#station-shadow)" stroke-linejoin="round">
+    <path d="M255 190 320 154 385 190 320 226Z" fill="#f1f5ed" stroke="#183c48" stroke-width="1.5"/>
+    <path d="M255 190 320 226V243L255 207Z" fill="#9dbdbc" stroke="#183c48" stroke-width="1.2"/>
+    <path d="M320 226 385 190V207L320 243Z" fill="#789da0" stroke="#183c48" stroke-width="1.2"/>
+    <path d="M271 188 320 161 369 188 320 215Z" fill="#d9e7df" stroke="#7c9fa0" stroke-width=".8"/>
+    <g fill="#183c48" stroke="#f1f5ed" stroke-width="1.2">
+      <circle cx="296" cy="185" r="7"/><path d="M286 200Q296 190 306 200V207H286Z"/>
+      <circle cx="320" cy="172" r="7"/><path d="M310 187Q320 177 330 187V194H310Z"/>
+      <circle cx="344" cy="185" r="7"/><path d="M334 200Q344 190 354 200V207H334Z"/>
     </g>
-    <circle cx="443" cy="219" r="3.5" fill="#b75430" stroke="none"/>
+    <path d="M294 201 320 187 346 201" fill="none" stroke="#e6aa7e" stroke-width="3" stroke-linecap="round"/>
   </g>
 
-  <!-- Monitor with a schematic dashboard: bars, tiles, and a grid, without readable fake copy. -->
-  <g id="monitor" stroke="#172e3c" stroke-linejoin="round">
-    <path d="M262 229 353 276 363 270 272 223Z" fill="#172e3c" stroke-width=".8"/>
-    <path d="M262 229V173L353 220V276Z" fill="#172e3c" stroke-width="1.1"/>
-    <path d="M272 226V187L345 225V264Z" fill="#d6e1d8" stroke="#8ba7a3" stroke-width=".65"/>
-    <!-- All dashboard marks share the screen's plane and stay inside its bezel. -->
-    <g transform="matrix(1 .52 0 1 272 187)" stroke="none">
-      <rect x="7" y="5" width="59" height="3" fill="#214f68"/>
-      <rect x="7" y="13" width="11" height="13" fill="#b75430"/>
-      <rect x="22" y="17" width="11" height="9" fill="#6e958e"/>
-      <rect x="37" y="11" width="11" height="15" fill="#214f68"/>
-      <rect x="52" y="20" width="11" height="6" fill="#6e958e"/>
-      <path d="M7 30H66M7 34H66M25 30V34M46 30V34" fill="none" stroke="#567681" stroke-width=".8"/>
+  <!-- CHECK: a room tile, clear checkmark, and one exception marker keep verification concrete. -->
+  <g id="check" filter="url(#station-shadow)" stroke-linejoin="round">
+    <path d="M430 268 496 232 562 268 496 304Z" fill="#f1f5ed" stroke="#183c48" stroke-width="1.5"/>
+    <path d="M430 268 496 304V321L430 285Z" fill="#9dbdbc" stroke="#183c48" stroke-width="1.2"/>
+    <path d="M496 304 562 268V285L496 321Z" fill="#789da0" stroke="#183c48" stroke-width="1.2"/>
+    <path d="M448 266 496 240 544 266 496 292Z" fill="#c0d6d1" stroke="#7c9fa0" stroke-width=".8"/>
+    <path d="M469 263 488 274 520 254" fill="none" stroke="#183c48" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M532 258 542 263 532 268 522 263Z" fill="#e6aa7e" stroke="#183c48" stroke-width="1"/>
+  </g>
+
+  <!-- KEY HANDOFF: two handoff points and a key make the exception/procedure relationship visible. -->
+  <g id="key-handoff" filter="url(#station-shadow)" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M255 349 320 313 385 349 320 385Z" fill="#f1f5ed" stroke="#183c48" stroke-width="1.5"/>
+    <path d="M255 349 320 385V402L255 366Z" fill="#9dbdbc" stroke="#183c48" stroke-width="1.2"/>
+    <path d="M320 385 385 349V366L320 402Z" fill="#789da0" stroke="#183c48" stroke-width="1.2"/>
+    <path d="M270 348 320 320 370 348 320 376Z" fill="#d9e7df" stroke="#7c9fa0" stroke-width=".8"/>
+    <circle cx="291" cy="347" r="8" fill="#183c48" stroke="#f1f5ed" stroke-width="1.2"/>
+    <circle cx="349" cy="347" r="8" fill="#183c48" stroke="#f1f5ed" stroke-width="1.2"/>
+    <path d="M301 327H337" fill="none" stroke="#183c48" stroke-width="3"/>
+    <path d="M333 322 341 327 333 332Z" fill="#183c48"/>
+    <g fill="none" stroke="#183c48" stroke-width="4">
+      <circle cx="309" cy="349" r="8"/>
+      <path d="M317 349H339M331 349V356M339 349V354"/>
     </g>
-    <path d="M300 277 316 285V300L300 292Z" fill="#315c6c" stroke-width=".8"/>
-    <path d="M287 296 329 317 344 309 302 288Z" fill="#172e3c" stroke-width=".8"/>
-    <path d="M293 292 323 307" stroke="#d6e1d8" stroke-width="2.2" stroke-linecap="round"/>
   </g>
 
-  <!-- Clipboard on the near-left of the desk. -->
-  <g id="clipboard" stroke="#172e3c" stroke-linejoin="round">
-    <path d="M224 276 270 300 252 311 206 287Z" fill="#172e3c" stroke-width=".8"/>
-    <path d="M228 273 273 296 254 307 209 284Z" fill="#f6f2e7" stroke-width=".9"/>
-    <path d="M237 271 252 279 246 285 231 278Z" fill="#b75430" stroke-width=".8"/>
-    <path d="M220 285 259 305M224 280 263 300M228 289 243 297" fill="none" stroke="#567681" stroke-width="1.15" stroke-linecap="round"/>
-    <circle cx="250" cy="294" r="2.1" fill="#b75430" stroke="none"/>
+  <!-- Minimal registration marks reinforce the schematic quality without becoming fake data. -->
+  <g aria-hidden="true" fill="none" stroke="#8cb0ad" stroke-linecap="round" opacity=".65">
+    <path d="M110 322 320 438 530 322" stroke-width="1" stroke-dasharray="3 7"/>
+    <path d="M118 303 320 414 522 303" stroke-width=".8"/>
   </g>
-
-  <!-- Chair in front of the desk. -->
-  <g id="chair" stroke="#172e3c" stroke-linejoin="round">
-    <!-- rear-facing chair back -->
-    <path d="M279 334 337 364 347 358 289 328Z" fill="#172e3c" stroke-width=".8"/>
-    <path d="M279 334V276L337 306V364Z" fill="#b75430" stroke-width="1.1"/>
-    <path d="M337 306 347 300V358L337 364Z" fill="#8f412f" stroke-width=".9"/>
-    <path d="M287 321V289L329 311V343Z" fill="#d6a18b" stroke="#7a3d31" stroke-width=".7" opacity=".88"/>
-    <!-- seat -->
-    <path d="M270 351 319 325 369 351 320 378Z" fill="#b75430" stroke-width="1.1"/>
-    <path d="M270 351 320 378V388L270 360Z" fill="#8f412f" stroke-width=".8"/>
-    <path d="M320 378 369 351V361L320 388Z" fill="#74362b" stroke-width=".8"/>
-    <path d="M282 349 319 330 356 350 320 369Z" fill="#d6a18b" stroke="#7a3d31" stroke-width=".65"/>
-    <!-- two visible legs and a low stretcher -->
-    <path d="M282 363 294 369V417L282 411Z" fill="#214f68" stroke-width=".9"/>
-    <path d="M347 361 359 355V403L347 409Z" fill="#172e3c" stroke-width=".9"/>
-    <path d="M289 399 353 389" fill="none" stroke="#315c6c" stroke-width="4" stroke-linecap="round"/>
-    <path d="M280 411 295 418M344 409 360 402" fill="none" stroke="#172e3c" stroke-width="2.2" stroke-linecap="round"/>
+  <!-- Upright labels are separate from the miniature surfaces, so the words stay readable at mobile size. -->
+  <g font-family="Arial, sans-serif" font-size="28" font-weight="700" letter-spacing=".4" text-anchor="middle" fill="#f1f5ed">
+    <text x="145" y="225">ARRIVALS</text>
+    <text x="320" y="130">ASSIGN</text>
+    <text x="496" y="225">CHECK</text>
+    <text x="320" y="490">KEY HANDOFF</text>
   </g>
-
-  <!-- Small material accents at the base reinforce the architectural model language. -->
-  <g aria-hidden="true" fill="none" stroke="#7e9b98" stroke-width=".7" opacity=".7">
-    <path d="M124 307 320 414M514 307 320 414"/>
-    <path d="M151 289 320 381M488 289 320 381" stroke-dasharray="3 5"/>
   </g>
 </svg>
