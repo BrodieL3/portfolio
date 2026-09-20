@@ -17,3 +17,7 @@ Selecting a room synchronizes the outline, native selector, status, inspector, a
 
 ## Representation
 This is a new reconstruction with synthetic data, not original production footage or a campus floorplan. Keep the reconstruction labels beside the exhibit and the factual work narrative below. The page uses no 3D library or build step; SVG and small ES modules keep it lightweight.
+
+
+## September 2026 thematic revision
+User requested the return of distinct visual themes while retaining the architectural model. Housing remains pale green. The factual work section uses #183c48 with #c7d8d7 body text and #f1f5ed headings. The personal reading section uses #dea884 with #302c2b body text. Matching isometric illustrations depict an operations desk and reading table, made as standalone SVGs by Luna Max agents, then reviewed by a stronger model for visual quality. The approved personal essay appears intact with a Brodie sign-off. Keep UI labels brief while surrounding prose is more conversational.

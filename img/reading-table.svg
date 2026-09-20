@@ -1,0 +1,114 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="40 76 560 403" role="img" aria-labelledby="reading-table-title reading-table-desc" shape-rendering="geometricPrecision">
+  <title id="reading-table-title">Isometric reading table</title>
+  <desc id="reading-table-desc">A small architectural tabletop model with a clay table, three stacked books, an open book, a reading lamp, a coffee mug, and a simple chair.</desc>
+
+  <defs>
+    <filter id="soft-shadow" x="-25%" y="-80%" width="150%" height="260%">
+      <feGaussianBlur stdDeviation="8" />
+    </filter>
+    <filter id="small-shadow" x="-35%" y="-80%" width="170%" height="260%">
+      <feGaussianBlur stdDeviation="3" />
+    </filter>
+  </defs>
+
+  <!-- A restrained architectural plinth keeps the miniature grounded while leaving the outer field transparent. -->
+  <g id="plinth" stroke-linejoin="round">
+    <ellipse cx="320" cy="425" rx="214" ry="20" fill="#172e3c" fill-opacity=".12" filter="url(#soft-shadow)"/>
+    <path d="M76 304 320 171 566 303 320 440Z" fill="#d6e1d8" stroke="#9bb1a8" stroke-width="1.2"/>
+    <path d="M76 304 320 440V456L76 320Z" fill="#b8cabe" stroke="#9bb1a8" stroke-width=".8"/>
+    <path d="M320 440 566 303V319L320 456Z" fill="#a9c0b4" stroke="#9bb1a8" stroke-width=".8"/>
+    <path d="M98 306 320 186 543 306 320 426Z" fill="#e8eee7" stroke="#b8c9bf" stroke-width=".7"/>
+    <path d="M118 307 320 197 522 307 320 416Z" fill="#d6e1d8" stroke="#bfd0c4" stroke-width=".6"/>
+  </g>
+
+  <!-- A matching chair sits beside the table with all four feet on the plinth. -->
+  <g id="chair" transform="translate(210 0) scale(.75)" stroke="#172e3c" stroke-linejoin="round">
+    <!-- rear-facing chair back -->
+    <path d="M279 334 337 364 347 358 289 328Z" fill="#172e3c" stroke-width=".8"/>
+    <path d="M279 334V276L337 306V364Z" fill="#b75430" stroke-width="1.1"/>
+    <path d="M337 306 347 300V358L337 364Z" fill="#8f412f" stroke-width=".9"/>
+    <path d="M287 321V289L329 311V343Z" fill="#d6a18b" stroke="#7a3d31" stroke-width=".7" opacity=".88"/>
+    <!-- seat -->
+    <path d="M270 351 319 325 369 351 320 378Z" fill="#b75430" stroke-width="1.1"/>
+    <path d="M270 351 320 378V388L270 360Z" fill="#8f412f" stroke-width=".8"/>
+    <path d="M320 378 369 351V361L320 388Z" fill="#74362b" stroke-width=".8"/>
+    <path d="M282 349 319 330 356 350 320 369Z" fill="#d6a18b" stroke="#7a3d31" stroke-width=".65"/>
+    <!-- two visible legs and a low stretcher -->
+    <path d="M282 363 294 369V417L282 411Z" fill="#214f68" stroke-width=".9"/>
+    <path d="M347 361 359 355V403L347 409Z" fill="#172e3c" stroke-width=".9"/>
+    <path d="M289 399 353 389" fill="none" stroke="#315c6c" stroke-width="4" stroke-linecap="round"/>
+    <path d="M280 411 295 418M344 409 360 402" fill="none" stroke="#172e3c" stroke-width="2.2" stroke-linecap="round"/>
+  </g>
+
+  <!-- Soft contact shadow and the table's four simple architectural legs. -->
+  <g id="table-base" stroke="#172e3c" stroke-linejoin="round" stroke-linecap="round">
+    <ellipse cx="319" cy="347" rx="132" ry="24" fill="#172e3c" fill-opacity=".13" stroke="none" filter="url(#small-shadow)" />
+    <path d="m231 238 14 7-1 99-13-7Z" fill="#172e3c" stroke-width="1.75" />
+    <path d="m244 245 9-5-1 99-8 5Z" fill="#294856" stroke-width="1.25" />
+    <path d="m393 242 14-7v98l-14 8Z" fill="#172e3c" stroke-width="1.75" />
+    <path d="m407 235 8-4v98l-8 4Z" fill="#294856" stroke-width="1.25" />
+    <path d="m250 285 13 7-1 57-12-7Z" fill="#172e3c" stroke-width="1.25" />
+    <path d="m386 286 13-7v56l-13 8Z" fill="#172e3c" stroke-width="1.25" />
+  </g>
+
+  <!-- Thick table top: its two visible faces establish the same isometric construction as the portfolio model. -->
+  <g id="table-top" stroke="#172e3c" stroke-linejoin="round">
+    <path d="m202 230 118-61 118 59-118 61Z" fill="#c98c66" stroke-width="2.25" />
+    <path d="m202 230 118 59v16l-118-59Z" fill="#b75430" stroke-width="1.75" />
+    <path d="m320 289 118-61v16l-118 61Z" fill="#a4452c" stroke-width="1.75" />
+    <path d="m214 232 106-55 106 53" fill="none" stroke="#e0ae8a" stroke-width="1.25" opacity=".75" />
+    <path d="m218 238 101 50" fill="none" stroke="#8f3e28" stroke-width="1" opacity=".85" />
+  </g>
+
+  <!-- Reading lamp, set at the back right of the table. -->
+  <g id="lamp" stroke="#172e3c" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M400 172V217" fill="none" stroke-width="4"/>
+    <path d="M384 219 400 211 417 220 401 229Z" fill="#172e3c" stroke-width="1.5"/>
+    <path d="M390 143 378 173Q400 185 422 173L410 143Z" fill="#f0e4c7" stroke-width="1.6"/>
+    <path d="M400 147 400 179Q413 179 422 173L410 143Z" fill="#d5b991" stroke="none"/>
+    <ellipse cx="400" cy="143" rx="10" ry="4" fill="#d6e1d8" stroke-width="1.5"/>
+    <path d="M378 173Q400 185 422 173" fill="none" stroke-width="1.5"/>
+  </g>
+
+  <!-- Three unlabeled books, stacked as small offset prisms. -->
+  <g id="book-stack" stroke="#172e3c" stroke-linejoin="round" stroke-linecap="round">
+    <!-- bottom book -->
+    <path d="m235 211 45-23 50 25-44 24Z" fill="#172e3c" stroke-width="1.8" />
+    <path d="m235 211 51 26v10l-51-26Z" fill="#b75430" stroke-width="1.45" />
+    <path d="m286 237 44-24v10l-44 24Z" fill="#c98c66" stroke-width="1.45" />
+    <path d="m243 214 42 21" fill="none" stroke="#516a75" stroke-width="1" opacity=".8" />
+
+    <!-- middle book -->
+    <path d="m244 201 38-19 40 21-37 20Z" fill="#c98c66" stroke-width="1.7" />
+    <path d="m244 201 41 22v9l-41-21Z" fill="#d6e1d8" stroke-width="1.35" />
+    <path d="m285 223 37-20v9l-37 20Z" fill="#b75430" stroke-width="1.35" />
+    <path d="m252 203 33 17" fill="none" stroke="#e8c1a4" stroke-width="1" opacity=".8" />
+
+    <!-- top book -->
+    <path d="m255 190 27-14 35 18-28 18Z" fill="#d6e1d8" stroke-width="1.7" />
+    <path d="m255 190 34 18v8l-34-18Z" fill="#b75430" stroke-width="1.35" />
+    <path d="m289 208 28-18v8l-28 18Z" fill="#172e3c" stroke-width="1.35" />
+    <path d="m262 191 26 14" fill="none" stroke="#f2f6f1" stroke-width="1" opacity=".9" />
+  </g>
+
+  <!-- Open book in the foreground. Its pages are blank by design, with only quiet rule marks for scale. -->
+  <g id="open-book" transform="matrix(1 .5 -1 .5 320 249)" stroke="#172e3c" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M-33-23H33V24H-33Z" fill="#b75430" stroke-width="1.3"/>
+    <path d="M-31-21H0V21H-31Z" fill="#f7f4e9" stroke-width=".8"/>
+    <path d="M0-21H31V21H0Z" fill="#e9eee5" stroke-width=".8"/>
+    <path d="M0-21V21" fill="none" stroke-width="1.3"/>
+    <path d="M-24-12H-7M-24-5H-7M-24 2H-7M-24 9H-12M7-12H24M7-5H24M7 2H24M7 9H18" fill="none" stroke="#829a99" stroke-width="1" opacity=".7"/>
+    <path d="M-31 24H33" fill="none" stroke="#8f412f" stroke-width="2"/>
+  </g>
+
+  <!-- A simple ceramic coffee mug at the near right edge. -->
+  <g id="mug" transform="translate(-24 -12)" stroke="#172e3c" stroke-linejoin="round" stroke-linecap="round">
+    <path d="m417 243c14-5 22 3 16 10-4 4-10 5-16 4" fill="none" stroke-width="3.5" />
+    <path d="m393 238 14-7 15 7-15 8Z" fill="#d6e1d8" stroke-width="1.6" />
+    <path d="m397 237 10-5 10 5-10 5Z" fill="#172e3c" stroke-width="1" />
+    <path d="m393 238 14 8v21l-14-8Z" fill="#b8cdc1" stroke-width="1.6" />
+    <path d="m407 246 15-8v21l-15 8Z" fill="#c98c66" stroke-width="1.6" />
+    <path d="m397 242 10 6 11-6" fill="none" stroke="#edf3ee" stroke-width="1" opacity=".8" />
+    <path d="m407 249v23" fill="none" stroke="#9f5b3c" stroke-width="1" opacity=".72" />
+  </g>
+</svg>

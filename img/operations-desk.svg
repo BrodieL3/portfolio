@@ -1,0 +1,121 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="40 76 560 403" role="img" aria-labelledby="title desc">
+  <title id="title">Keyroom operations desk miniature</title>
+  <desc id="desc">An isometric architectural miniature of an operations desk with a schematic monitor, key rack, inspection clipboard, and chair.</desc>
+
+  <defs>
+    <filter id="soft-shadow" x="-30%" y="-30%" width="160%" height="180%">
+      <feDropShadow dx="0" dy="9" stdDeviation="7" flood-color="#172e3c" flood-opacity=".14"/>
+    </filter>
+    <filter id="small-shadow" x="-30%" y="-30%" width="160%" height="180%">
+      <feDropShadow dx="0" dy="4" stdDeviation="3" flood-color="#172e3c" flood-opacity=".18"/>
+    </filter>
+  </defs>
+
+  <!-- The small architectural plinth keeps the scene grounded while the background stays transparent. -->
+  <g id="plinth" stroke="#9bb1a8" stroke-linejoin="round">
+    <path d="M76 304 320 171 566 303 320 440Z" fill="#d6e1d8" stroke-width="1.2" filter="url(#soft-shadow)"/>
+    <path d="M76 304 320 440V456L76 320Z" fill="#b8cabe" stroke-width=".8"/>
+    <path d="M320 440 566 303V319L320 456Z" fill="#a9c0b4" stroke-width=".8"/>
+    <path d="M98 306 320 186 543 306 320 426Z" fill="#edf0e8" stroke="#b8c9bf" stroke-width=".7"/>
+    <path d="M118 307 320 197 522 307 320 416Z" fill="#d6e1d8" stroke="#bfd0c4" stroke-width=".6"/>
+  </g>
+
+  <!-- Quiet cast shadows for the furniture. -->
+  <g aria-hidden="true" opacity=".25" fill="#6d8982">
+    <path d="M174 317 319 240 467 319 319 398Z"/>
+    <path d="M249 386 319 348 416 399 319 445Z"/>
+  </g>
+
+  <!-- Desk frame and four simple supports. -->
+  <g id="desk-frame" stroke="#172e3c" stroke-linejoin="round">
+    <!-- rear supports, intentionally quieter behind the work surface -->
+    <path d="M227 261 240 268V344L227 337Z" fill="#315c6c" stroke-width=".9"/>
+    <path d="M402 258 415 251V329L402 337Z" fill="#214f68" stroke-width=".9"/>
+    <!-- front supports -->
+    <path d="M246 297 258 303V381L246 375Z" fill="#214f68" stroke-width="1"/>
+    <path d="M388 297 400 291V369L388 375Z" fill="#172e3c" stroke-width="1"/>
+    <path d="M246 375 258 381 258 389 246 383Z" fill="#172e3c" stroke-width=".7"/>
+    <path d="M388 369 400 363 400 371 388 377Z" fill="#172e3c" stroke-width=".7"/>
+  </g>
+
+  <!-- Desktop: a thin isometric slab with two visible fascia planes. -->
+  <g id="desk-top" stroke="#172e3c" stroke-linejoin="round">
+    <path d="M197 267 320 200 444 267 320 335Z" fill="#f6f2e7" stroke-width="1.1"/>
+    <path d="M197 267 320 335V350L197 282Z" fill="#c5d4ca" stroke-width=".9"/>
+    <path d="M320 335 444 267V282L320 350Z" fill="#9db7b1" stroke-width=".9"/>
+    <path d="M210 267 320 207 430 267 320 327Z" fill="#e1e7de" stroke="#a9beb4" stroke-width=".55"/>
+  </g>
+
+  <!-- Freestanding key rack on the back-right corner of the desk. -->
+  <g id="key-rack" transform="translate(-30 25)" stroke="#172e3c" stroke-linejoin="round">
+    <path d="M382 207 453 245 462 240 391 202Z" fill="#172e3c" stroke-width=".8"/>
+    <path d="M382 207V121L453 159V245Z" fill="#214f68" stroke-width="1.1"/>
+    <path d="M453 159 462 154V240L453 245Z" fill="#172e3c" stroke-width=".9"/>
+    <path d="M382 121 391 116 462 154 453 159Z" fill="#315c6c" stroke-width=".9"/>
+    <path d="M391 147 445 176M391 170 445 199M391 193 445 222" fill="none" stroke="#77a0a0" stroke-width="1.6" stroke-linecap="round"/>
+    <path d="M398 137 445 162" fill="none" stroke="#d6e1d8" stroke-width="2.2" stroke-linecap="round" opacity=".75"/>
+    <!-- three large, simplified keys -->
+    <g fill="none" stroke="#f6f2e7" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="402" cy="154" r="4.6" stroke-width="2"/>
+      <path d="M406 157 428 169 431 166M421 164 425 172" stroke-width="2.1"/>
+      <circle cx="416" cy="181" r="4.6" stroke-width="2"/>
+      <path d="M420 184 442 196 445 193M435 192 439 200" stroke-width="2.1"/>
+      <circle cx="401" cy="205" r="4.6" stroke-width="2"/>
+      <path d="M405 208 427 220 430 217M420 216 424 224" stroke-width="2.1"/>
+    </g>
+    <circle cx="443" cy="219" r="3.5" fill="#b75430" stroke="none"/>
+  </g>
+
+  <!-- Monitor with a schematic dashboard: bars, tiles, and a grid, without readable fake copy. -->
+  <g id="monitor" stroke="#172e3c" stroke-linejoin="round">
+    <path d="M262 229 353 276 363 270 272 223Z" fill="#172e3c" stroke-width=".8"/>
+    <path d="M262 229V173L353 220V276Z" fill="#172e3c" stroke-width="1.1"/>
+    <path d="M272 226V187L345 225V264Z" fill="#d6e1d8" stroke="#8ba7a3" stroke-width=".65"/>
+    <!-- All dashboard marks share the screen's plane and stay inside its bezel. -->
+    <g transform="matrix(1 .52 0 1 272 187)" stroke="none">
+      <rect x="7" y="5" width="59" height="3" fill="#214f68"/>
+      <rect x="7" y="13" width="11" height="13" fill="#b75430"/>
+      <rect x="22" y="17" width="11" height="9" fill="#6e958e"/>
+      <rect x="37" y="11" width="11" height="15" fill="#214f68"/>
+      <rect x="52" y="20" width="11" height="6" fill="#6e958e"/>
+      <path d="M7 30H66M7 34H66M25 30V34M46 30V34" fill="none" stroke="#567681" stroke-width=".8"/>
+    </g>
+    <path d="M300 277 316 285V300L300 292Z" fill="#315c6c" stroke-width=".8"/>
+    <path d="M287 296 329 317 344 309 302 288Z" fill="#172e3c" stroke-width=".8"/>
+    <path d="M293 292 323 307" stroke="#d6e1d8" stroke-width="2.2" stroke-linecap="round"/>
+  </g>
+
+  <!-- Clipboard on the near-left of the desk. -->
+  <g id="clipboard" stroke="#172e3c" stroke-linejoin="round">
+    <path d="M224 276 270 300 252 311 206 287Z" fill="#172e3c" stroke-width=".8"/>
+    <path d="M228 273 273 296 254 307 209 284Z" fill="#f6f2e7" stroke-width=".9"/>
+    <path d="M237 271 252 279 246 285 231 278Z" fill="#b75430" stroke-width=".8"/>
+    <path d="M220 285 259 305M224 280 263 300M228 289 243 297" fill="none" stroke="#567681" stroke-width="1.15" stroke-linecap="round"/>
+    <circle cx="250" cy="294" r="2.1" fill="#b75430" stroke="none"/>
+  </g>
+
+  <!-- Chair in front of the desk. -->
+  <g id="chair" stroke="#172e3c" stroke-linejoin="round">
+    <!-- rear-facing chair back -->
+    <path d="M279 334 337 364 347 358 289 328Z" fill="#172e3c" stroke-width=".8"/>
+    <path d="M279 334V276L337 306V364Z" fill="#b75430" stroke-width="1.1"/>
+    <path d="M337 306 347 300V358L337 364Z" fill="#8f412f" stroke-width=".9"/>
+    <path d="M287 321V289L329 311V343Z" fill="#d6a18b" stroke="#7a3d31" stroke-width=".7" opacity=".88"/>
+    <!-- seat -->
+    <path d="M270 351 319 325 369 351 320 378Z" fill="#b75430" stroke-width="1.1"/>
+    <path d="M270 351 320 378V388L270 360Z" fill="#8f412f" stroke-width=".8"/>
+    <path d="M320 378 369 351V361L320 388Z" fill="#74362b" stroke-width=".8"/>
+    <path d="M282 349 319 330 356 350 320 369Z" fill="#d6a18b" stroke="#7a3d31" stroke-width=".65"/>
+    <!-- two visible legs and a low stretcher -->
+    <path d="M282 363 294 369V417L282 411Z" fill="#214f68" stroke-width=".9"/>
+    <path d="M347 361 359 355V403L347 409Z" fill="#172e3c" stroke-width=".9"/>
+    <path d="M289 399 353 389" fill="none" stroke="#315c6c" stroke-width="4" stroke-linecap="round"/>
+    <path d="M280 411 295 418M344 409 360 402" fill="none" stroke="#172e3c" stroke-width="2.2" stroke-linecap="round"/>
+  </g>
+
+  <!-- Small material accents at the base reinforce the architectural model language. -->
+  <g aria-hidden="true" fill="none" stroke="#7e9b98" stroke-width=".7" opacity=".7">
+    <path d="M124 307 320 414M514 307 320 414"/>
+    <path d="M151 289 320 381M488 289 320 381" stroke-dasharray="3 5"/>
+  </g>
+</svg>
