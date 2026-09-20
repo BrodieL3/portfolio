@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 460" role="img" aria-labelledby="operations-title operations-desc" shape-rendering="geometricPrecision">
+  <title id="operations-title">Shift handoff system</title>
+  <desc id="operations-desc">An isometric routing board connects arrivals to staff assignments, room checks, and a key handoff loop.</desc>
+
+  <defs>
+    <filter id="operations-shadow" x="-25%" y="-40%" width="150%" height="190%">
+      <feDropShadow dx="0" dy="10" stdDeviation="8" flood-color="#071e27" flood-opacity=".32"/>
+    </filter>
+    <filter id="station-shadow" x="-30%" y="-35%" width="160%" height="190%">
+      <feDropShadow dx="0" dy="5" stdDeviation="4" flood-color="#071e27" flood-opacity=".34"/>
+    </filter>
+    <marker id="route-arrow" markerWidth="13" markerHeight="13" refX="10" refY="6.5" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M1 1 11 6.5 1 12Z" fill="#f1f5ed"/>
+    </marker>
+    <marker id="accent-arrow" markerWidth="13" markerHeight="13" refX="10" refY="6.5" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M1 1 11 6.5 1 12Z" fill="#e6aa7e"/>
+    </marker>
+  </defs>
+
+  <g transform="translate(0 -55)">
+  <!-- The plinth keeps the diagram in the same small architectural world as the residence model. -->
+  <g id="plinth" stroke-linejoin="round">
+    <path d="M50 294 320 145 590 294 320 445Z" fill="#245361" stroke="#6f999c" stroke-width="1.4" filter="url(#operations-shadow)"/>
+    <path d="M50 294 320 445V458L50 307Z" fill="#123540" stroke="#102a34" stroke-width="1"/>
+    <path d="M320 445 590 294V307L320 458Z" fill="#102f3a" stroke="#102a34" stroke-width="1"/>
+    <path d="M72 294 320 158 568 294 320 430Z" fill="#2c606a" stroke="#8cb0ad" stroke-width=".9"/>
+    <path d="M93 294 320 171 547 294 320 417Z" fill="#214b59" stroke="#527f85" stroke-width=".75"/>
+  </g>
+
+  <!-- Every rail has its own directional head. The return rail links the handoff back to staff assignment. -->
+  <g id="route" fill="none" stroke="#c7d8d7" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#route-arrow)">
+    <path d="M193 264 266 217"/>
+    <path d="M375 217 444 261"/>
+    <path d="M446 309 374 344"/>
+    <path d="M320 312V254" stroke="#e6aa7e" marker-end="url(#accent-arrow)"/>
+  </g>
+
+  <!-- ARRIVALS: layered cards communicate a queue without inventing a schedule or count. -->
+  <g id="arrivals" filter="url(#station-shadow)" stroke-linejoin="round">
+    <path d="M84 268 145 234 206 268 145 302Z" fill="#f1f5ed" stroke="#183c48" stroke-width="1.5"/>
+    <path d="M84 268 145 302V319L84 285Z" fill="#9dbdbc" stroke="#183c48" stroke-width="1.2"/>
+    <path d="M145 302 206 268V285L145 319Z" fill="#789da0" stroke="#183c48" stroke-width="1.2"/>
+    <path d="M100 262 145 237 190 262 145 287Z" fill="#d9e7df" stroke="#7c9fa0" stroke-width=".8"/>
+    <path d="M109 259 145 240 181 259 145 279Z" fill="#c0d6d1" stroke="#6f9497" stroke-width=".65"/>
+    <path d="M122 257 145 245 168 257" fill="none" stroke="#183c48" stroke-width="2.2" stroke-linecap="round"/>
+    <circle cx="145" cy="262" r="5" fill="#e6aa7e" stroke="#183c48" stroke-width="1"/>
+  </g>
+
+  <!-- ASSIGN: staff tokens are routed to work, rather than shown as anonymous office furniture. -->
+  <g id="assign" filter="url(#station-shadow)" stroke-linejoin="round">
+    <path d="M255 190 320 154 385 190 320 226Z" fill="#f1f5ed" stroke="#183c48" stroke-width="1.5"/>
+    <path d="M255 190 320 226V243L255 207Z" fill="#9dbdbc" stroke="#183c48" stroke-width="1.2"/>
+    <path d="M320 226 385 190V207L320 243Z" fill="#789da0" stroke="#183c48" stroke-width="1.2"/>
+    <path d="M271 188 320 161 369 188 320 215Z" fill="#d9e7df" stroke="#7c9fa0" stroke-width=".8"/>
+    <g fill="#183c48" stroke="#f1f5ed" stroke-width="1.2">
+      <circle cx="296" cy="185" r="7"/><path d="M286 200Q296 190 306 200V207H286Z"/>
+      <circle cx="320" cy="172" r="7"/><path d="M310 187Q320 177 330 187V194H310Z"/>
+      <circle cx="344" cy="185" r="7"/><path d="M334 200Q344 190 354 200V207H334Z"/>
+    </g>
+    <path d="M294 201 320 187 346 201" fill="none" stroke="#e6aa7e" stroke-width="3" stroke-linecap="round"/>
+  </g>
+
+  <!-- CHECK: a room tile, clear checkmark, and one exception marker keep verification concrete. -->
+  <g id="check" filter="url(#station-shadow)" stroke-linejoin="round">
+    <path d="M430 268 496 232 562 268 496 304Z" fill="#f1f5ed" stroke="#183c48" stroke-width="1.5"/>
+    <path d="M430 268 496 304V321L430 285Z" fill="#9dbdbc" stroke="#183c48" stroke-width="1.2"/>
+    <path d="M496 304 562 268V285L496 321Z" fill="#789da0" stroke="#183c48" stroke-width="1.2"/>
+    <path d="M448 266 496 240 544 266 496 292Z" fill="#c0d6d1" stroke="#7c9fa0" stroke-width=".8"/>
+    <path d="M469 263 488 274 520 254" fill="none" stroke="#183c48" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M532 258 542 263 532 268 522 263Z" fill="#e6aa7e" stroke="#183c48" stroke-width="1"/>
+  </g>
+
+  <!-- KEY HANDOFF: two handoff points and a key make the exception/procedure relationship visible. -->
+  <g id="key-handoff" filter="url(#station-shadow)" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M255 349 320 313 385 349 320 385Z" fill="#f1f5ed" stroke="#183c48" stroke-width="1.5"/>
+    <path d="M255 349 320 385V402L255 366Z" fill="#9dbdbc" stroke="#183c48" stroke-width="1.2"/>
+    <path d="M320 385 385 349V366L320 402Z" fill="#789da0" stroke="#183c48" stroke-width="1.2"/>
+    <path d="M270 348 320 320 370 348 320 376Z" fill="#d9e7df" stroke="#7c9fa0" stroke-width=".8"/>
+    <circle cx="291" cy="347" r="8" fill="#183c48" stroke="#f1f5ed" stroke-width="1.2"/>
+    <circle cx="349" cy="347" r="8" fill="#183c48" stroke="#f1f5ed" stroke-width="1.2"/>
+    <path d="M301 327H337" fill="none" stroke="#183c48" stroke-width="3"/>
+    <path d="M333 322 341 327 333 332Z" fill="#183c48"/>
+    <g fill="none" stroke="#183c48" stroke-width="4">
+      <circle cx="309" cy="349" r="8"/>
+      <path d="M317 349H339M331 349V356M339 349V354"/>
+    </g>
+  </g>
+
+  <!-- Minimal registration marks reinforce the schematic quality without becoming fake data. -->
+  <g aria-hidden="true" fill="none" stroke="#8cb0ad" stroke-linecap="round" opacity=".65">
+    <path d="M110 322 320 438 530 322" stroke-width="1" stroke-dasharray="3 7"/>
+    <path d="M118 303 320 414 522 303" stroke-width=".8"/>
+  </g>
+  <!-- Upright labels are separate from the miniature surfaces, so the words stay readable at mobile size. -->
+  <g font-family="Arial, sans-serif" font-size="28" font-weight="700" letter-spacing=".4" text-anchor="middle" fill="#f1f5ed">
+    <text x="145" y="225">ARRIVALS</text>
+    <text x="320" y="130">ASSIGN</text>
+    <text x="496" y="225">CHECK</text>
+    <text x="320" y="490">KEY HANDOFF</text>
+  </g>
+  </g>
+</svg>

@@ -1,35 +1,24 @@
-# Product
+# Product: Brodie Lee portfolio
 
-## Register
+## Purpose and audience
+Help a recruiter or hiring manager understand Brodie’s real operations work in 30–90 seconds. The approved September 2026 redesign replaces the old project gallery with a Georgetown summer housing case study and interactive architectural reconstruction.
 
-Unfiltered first person — the personality is the brand. Copy tells true stories in Brodie's own voice (profanity allowed, jokes allowed) and never sands itself down for recruiters. No AI-voice tics: no reflexive "not X, but Y" constructions, no resume-speak.
+## Experience
+A fixed isometric residence-hall model connects to a contextual dashboard. Three chapters explain staff and arrival coordination, inspection follow-through, and key handoffs. Room selection and status filtering demonstrate the relationship between physical work and operational data. A readable case study, résumé, and contact links stand alone without interaction.
 
-## Users
+## Evidence and voice
+Use concrete first-person statements grounded in Brodie’s account. Clearly label all demo rooms, people, schedules, metrics, and geometry as synthetic. Surviving code informs the reconstruction but does not prove deployment. Do not claim measured time savings, continued adoption, recovered keys, or implementation of the proposed assignment heuristic. The 20,000+ figure describes imported inspection records, not custom-created events. Explain AI assistance without implying unaided programming expertise.
 
-Recruiters and hiring managers who hit this link from a job application (it replaces LinkedIn there). They give it 30–90 seconds and decide whether to click deeper. Secondary audience: engineers and founders who click through to GitHub repos and live apps to judge the work itself.
+## Success
+Visitors can explain what Brodie coordinated, what his tools made visible, and what changed in the key handoff process, then contact him or download his résumé.
 
-## Product Purpose
+## Accessibility
+Semantic text and native room/status selectors complement keyboard-operable SVG rooms. Respect reduced motion. Preserve readable content without JavaScript and stack the model and dashboard on mobile.
 
-A portfolio hub at brodielee.vercel.app linking five shipped products (Field Brief, Rounds, HealthyHoyas, ATLAS, Photon). It exists to prove one claim: Brodie sizes up a market, builds the product end-to-end, ships it, and instruments whether it works. Success = the visitor clicks through to at least one live project or repo and comes away thinking "this person ships real things."
 
-## Brand Personality
+## Voice and presentation update
+The user approved a longer personal essay about explanations, testing ideas, and understanding instructions. Keep those four paragraphs and sign-off intact. Surrounding narrative uses a similarly conversational first-person voice, with longer sentences and commas where natural. Dashboard controls and numerical claims retain clarity. Distinct colored sections return from the earlier design, supported by matching isometric SVG illustrations rather than the old project gallery.
 
-Playful, energetic, memorable. The page should be genuinely fun to scroll — a recruiter sees hundreds of portfolios and this one should stick. The energy is grounded, not decorative: real screenshots, live data, working links, and honest first-person stories keep the playfulness credible rather than flashy.
 
-## Anti-references
-
-- **Template portfolios**: Linktree/carrd-style link piles, generic dev-portfolio themes, identical project-card grids with stock hero copy.
-- **Corporate LinkedIn clone**: resume-speak, buzzwords, headshot-and-timeline layouts, "results-driven" voice.
-- **The AI-generated look**: gradient text, glassmorphism, cream body backgrounds, uppercase tracked eyebrows on every section, hero-metric templates.
-
-## Design Principles
-
-1. **The site is the sixth project.** Its craft is itself evidence of shipping quality — every detail is part of the pitch.
-2. **Show working systems, don't claim them.** Live data (like the Field Brief feed pulling real headlines) beats adjectives. Prefer proof that renders.
-3. **Every project tells its story.** Each description covers, loosely and in first person, why the project exists (a real personal reason), what Brodie set out to learn, the accomplishment he's proudest of, and the hardest technical fight — a loose template, never a mad-lib. True stories differentiate this from a list of side projects; the "About that subscription" section extends the same honesty to how the work gets made.
-4. **Memorable beats safe.** Personality, motion, and distinctive layout are features, not risks, as long as they never slow the page or bury the links.
-5. **Energy with substance.** Playful choices must survive the question "does this make the work look better?" — if not, cut them.
-
-## Accessibility & Inclusion
-
-WCAG AA: ≥4.5:1 body-text contrast in both light and dark themes, all motion behind `prefers-reduced-motion` alternatives, semantic HTML, keyboard-navigable links. No known specialized user needs beyond that.
+## Illustration purpose
+The supporting SVGs must explain a relationship in the adjacent writing. Decorative furniture or props are not enough. Derive each visual brief from the section content, use schematic examples rather than invented historical evidence, and make the central idea readable at mobile size. Keep the main interactive housing model and the approved prose unchanged.
