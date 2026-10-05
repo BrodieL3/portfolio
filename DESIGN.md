@@ -29,3 +29,7 @@ Supporting images now explain the adjoining content. The work illustration conne
 
 ## October 2026 motion
 MotionSite gallery references informed scene-led presentation. Housing rooms settle into place in a staggered, finite entrance; staff follow. Supporting diagrams lift stations in workflow order and draw connecting rails. Replay controls restart each finite sequence. Dashboard and room details use short directional transitions. Viewport observation runs each entrance once; reduced-motion disables sequences and hides replay buttons. No scroll capture or new dependencies.
+
+
+## Approved scroll exhibit
+The overhead shift board replaces the isometric model and dashboard. Native scrolling moves inspector tokens, reveals inspection exceptions and connects the key handoff. Three narrative stages remain static without JavaScript, under reduced motion or below 650px viewport height. Supporting SVGs loop only while visible, with persistent pause controls and hidden-tab suspension.
