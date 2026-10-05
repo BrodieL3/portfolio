@@ -39,7 +39,7 @@
      <svg id="scene" viewBox="0 0 800 520" role="group" aria-label="Interactive architectural model of a fictional residence hall. Twelve sample rooms and a keyroom."><title>A sample summer shift</title><desc>Use the room selector below to explore room status, assignments, and arrival times.</desc></svg>
      <noscript><p class="no-js">The interactive model needs JavaScript. The full case study below works without it.</p></noscript>
     </div>
-    <div class="scene-bottom"><span><i class="legend-dot ready"></i> Ready</span><span><i class="legend-dot pending"></i> To inspect</span><span><i class="legend-dot issue"></i> Needs attention</span><span class="scene-scale">Schematic · Not to scale</span></div>
+    <div class="scene-bottom"><button class="replay-scene" type="button" aria-label="Replay the housing model entrance">Replay <span aria-hidden="true">↻</span></button><span><i class="legend-dot ready"></i> Ready</span><span><i class="legend-dot pending"></i> To inspect</span><span><i class="legend-dot issue"></i> Needs attention</span><span class="scene-scale">Schematic · Not to scale</span></div>
    </div>
    <aside class="dashboard" aria-label="Reconstructed operational dashboard">
     <div class="dashboard-heading"><div><span class="dashboard-eyebrow">The office view</span><h2 id="dashboard-title">Arrivals &amp; assignments</h2></div><span class="sample-tag">SAMPLE</span></div>
@@ -58,7 +58,109 @@
  </section>
  <div class="work-world">
  <section class="case-study wrap" id="case-study" aria-labelledby="case-title">
-  <div class="section-heading"><p class="intro-label"><span class="small-line"></span> Behind the model</p><h2 id="case-title">Someone has to<br>keep track.</h2><p>Operations Specialist, Georgetown Residential Living<br>May to September 2025</p><figure class="story-figure"><img class="desk-illustration" src="/img/operations-desk.svg" width="640" height="460" loading="lazy" alt="A schematic shift board connects arrivals, inspection assignments, room checks, and key handoffs."><figcaption>The parts of a shift I needed to keep track of, shown as a schematic.</figcaption></figure></div>
+  <div class="section-heading"><p class="intro-label"><span class="small-line"></span> Behind the model</p><h2 id="case-title">Someone has to<br>keep track.</h2><p>Operations Specialist, Georgetown Residential Living<br>May to September 2025</p><figure class="story-figure"><svg class="desk-illustration motion-diagram" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 460" role="img" aria-labelledby="operations-desk-operations-title operations-desk-operations-desc" shape-rendering="geometricPrecision">
+  <title id="operations-desk-operations-title">Shift handoff system</title>
+  <desc id="operations-desk-operations-desc">An isometric routing board connects arrivals to staff assignments, room checks, and a key handoff loop.</desc>
+
+  <defs>
+    <filter id="operations-desk-operations-shadow" x="-25%" y="-40%" width="150%" height="190%">
+      <feDropShadow dx="0" dy="10" stdDeviation="8" flood-color="#071e27" flood-opacity=".32"/>
+    </filter>
+    <filter id="operations-desk-station-shadow" x="-30%" y="-35%" width="160%" height="190%">
+      <feDropShadow dx="0" dy="5" stdDeviation="4" flood-color="#071e27" flood-opacity=".34"/>
+    </filter>
+    <marker id="operations-desk-route-arrow" markerWidth="13" markerHeight="13" refX="10" refY="6.5" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M1 1 11 6.5 1 12Z" fill="#f1f5ed"/>
+    </marker>
+    <marker id="operations-desk-accent-arrow" markerWidth="13" markerHeight="13" refX="10" refY="6.5" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M1 1 11 6.5 1 12Z" fill="#e6aa7e"/>
+    </marker>
+  </defs>
+
+  <g transform="translate(0 -55)">
+  <!-- The plinth keeps the diagram in the same small architectural world as the residence model. -->
+  <g id="operations-desk-plinth" stroke-linejoin="round">
+    <path d="M50 294 320 145 590 294 320 445Z" fill="#245361" stroke="#6f999c" stroke-width="1.4" filter="url(#operations-desk-operations-shadow)"/>
+    <path d="M50 294 320 445V458L50 307Z" fill="#123540" stroke="#102a34" stroke-width="1"/>
+    <path d="M320 445 590 294V307L320 458Z" fill="#102f3a" stroke="#102a34" stroke-width="1"/>
+    <path d="M72 294 320 158 568 294 320 430Z" fill="#2c606a" stroke="#8cb0ad" stroke-width=".9"/>
+    <path d="M93 294 320 171 547 294 320 417Z" fill="#214b59" stroke="#527f85" stroke-width=".75"/>
+  </g>
+
+  <!-- Every rail has its own directional head. The return rail links the handoff back to staff assignment. -->
+  <g id="operations-desk-route" class="flow-rails" fill="none" stroke="#c7d8d7" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#operations-desk-route-arrow)">
+    <path d="M193 264 266 217"/>
+    <path d="M375 217 444 261"/>
+    <path d="M446 309 374 344"/>
+    <path d="M320 312V254" stroke="#e6aa7e" marker-end="url(#operations-desk-accent-arrow)"/>
+  </g>
+
+  <!-- ARRIVALS: layered cards communicate a queue without inventing a schedule or count. -->
+  <g id="operations-desk-arrivals" class="flow-station" style="--step:0" filter="url(#operations-desk-station-shadow)" stroke-linejoin="round">
+    <path d="M84 268 145 234 206 268 145 302Z" fill="#f1f5ed" stroke="#183c48" stroke-width="1.5"/>
+    <path d="M84 268 145 302V319L84 285Z" fill="#9dbdbc" stroke="#183c48" stroke-width="1.2"/>
+    <path d="M145 302 206 268V285L145 319Z" fill="#789da0" stroke="#183c48" stroke-width="1.2"/>
+    <path d="M100 262 145 237 190 262 145 287Z" fill="#d9e7df" stroke="#7c9fa0" stroke-width=".8"/>
+    <path d="M109 259 145 240 181 259 145 279Z" fill="#c0d6d1" stroke="#6f9497" stroke-width=".65"/>
+    <path d="M122 257 145 245 168 257" fill="none" stroke="#183c48" stroke-width="2.2" stroke-linecap="round"/>
+    <circle cx="145" cy="262" r="5" fill="#e6aa7e" stroke="#183c48" stroke-width="1"/>
+  </g>
+
+  <!-- ASSIGN: staff tokens are routed to work, rather than shown as anonymous office furniture. -->
+  <g id="operations-desk-assign" class="flow-station" style="--step:1" filter="url(#operations-desk-station-shadow)" stroke-linejoin="round">
+    <path d="M255 190 320 154 385 190 320 226Z" fill="#f1f5ed" stroke="#183c48" stroke-width="1.5"/>
+    <path d="M255 190 320 226V243L255 207Z" fill="#9dbdbc" stroke="#183c48" stroke-width="1.2"/>
+    <path d="M320 226 385 190V207L320 243Z" fill="#789da0" stroke="#183c48" stroke-width="1.2"/>
+    <path d="M271 188 320 161 369 188 320 215Z" fill="#d9e7df" stroke="#7c9fa0" stroke-width=".8"/>
+    <g fill="#183c48" stroke="#f1f5ed" stroke-width="1.2">
+      <circle cx="296" cy="185" r="7"/><path d="M286 200Q296 190 306 200V207H286Z"/>
+      <circle cx="320" cy="172" r="7"/><path d="M310 187Q320 177 330 187V194H310Z"/>
+      <circle cx="344" cy="185" r="7"/><path d="M334 200Q344 190 354 200V207H334Z"/>
+    </g>
+    <path d="M294 201 320 187 346 201" fill="none" stroke="#e6aa7e" stroke-width="3" stroke-linecap="round"/>
+  </g>
+
+  <!-- CHECK: a room tile, clear checkmark, and one exception marker keep verification concrete. -->
+  <g id="operations-desk-check" class="flow-station" style="--step:2" filter="url(#operations-desk-station-shadow)" stroke-linejoin="round">
+    <path d="M430 268 496 232 562 268 496 304Z" fill="#f1f5ed" stroke="#183c48" stroke-width="1.5"/>
+    <path d="M430 268 496 304V321L430 285Z" fill="#9dbdbc" stroke="#183c48" stroke-width="1.2"/>
+    <path d="M496 304 562 268V285L496 321Z" fill="#789da0" stroke="#183c48" stroke-width="1.2"/>
+    <path d="M448 266 496 240 544 266 496 292Z" fill="#c0d6d1" stroke="#7c9fa0" stroke-width=".8"/>
+    <path d="M469 263 488 274 520 254" fill="none" stroke="#183c48" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M532 258 542 263 532 268 522 263Z" fill="#e6aa7e" stroke="#183c48" stroke-width="1"/>
+  </g>
+
+  <!-- KEY HANDOFF: two handoff points and a key make the exception/procedure relationship visible. -->
+  <g id="operations-desk-key-handoff" class="flow-station" style="--step:3" filter="url(#operations-desk-station-shadow)" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M255 349 320 313 385 349 320 385Z" fill="#f1f5ed" stroke="#183c48" stroke-width="1.5"/>
+    <path d="M255 349 320 385V402L255 366Z" fill="#9dbdbc" stroke="#183c48" stroke-width="1.2"/>
+    <path d="M320 385 385 349V366L320 402Z" fill="#789da0" stroke="#183c48" stroke-width="1.2"/>
+    <path d="M270 348 320 320 370 348 320 376Z" fill="#d9e7df" stroke="#7c9fa0" stroke-width=".8"/>
+    <circle cx="291" cy="347" r="8" fill="#183c48" stroke="#f1f5ed" stroke-width="1.2"/>
+    <circle cx="349" cy="347" r="8" fill="#183c48" stroke="#f1f5ed" stroke-width="1.2"/>
+    <path d="M301 327H337" fill="none" stroke="#183c48" stroke-width="3"/>
+    <path d="M333 322 341 327 333 332Z" fill="#183c48"/>
+    <g fill="none" stroke="#183c48" stroke-width="4">
+      <circle cx="309" cy="349" r="8"/>
+      <path d="M317 349H339M331 349V356M339 349V354"/>
+    </g>
+  </g>
+
+  <!-- Minimal registration marks reinforce the schematic quality without becoming fake data. -->
+  <g aria-hidden="true" fill="none" stroke="#8cb0ad" stroke-linecap="round" opacity=".65">
+    <path d="M110 322 320 438 530 322" stroke-width="1" stroke-dasharray="3 7"/>
+    <path d="M118 303 320 414 522 303" stroke-width=".8"/>
+  </g>
+  <!-- Upright labels are separate from the miniature surfaces, so the words stay readable at mobile size. -->
+  <g font-family="Arial, sans-serif" font-size="28" font-weight="700" letter-spacing=".4" text-anchor="middle" fill="#f1f5ed">
+    <text x="145" y="225">ARRIVALS</text>
+    <text x="320" y="130">ASSIGN</text>
+    <text x="496" y="225">CHECK</text>
+    <text x="320" y="490">KEY HANDOFF</text>
+  </g>
+  </g>
+</svg>
+<button class="replay-flow" type="button">Replay the sequence <span aria-hidden="true">↻</span></button><figcaption>The parts of a shift I needed to keep track of, shown as a schematic.</figcaption></figure></div>
   <div class="case-content">
    <article><span class="case-number">01</span><div><h3>Managing the shift</h3><p>I managed 4 to 6 inspectors and 2 to 4 keyroom helpers on a shift, which meant figuring out who was going where, checking that inspections had actually been finished, and following up when the reports didn't match what we needed.</p></div></article>
    <article><span class="case-number">02</span><div><h3>Building the dashboards</h3><p>There were about 24 of us using the tools. I built the dashboards in Next.js, with Supabase underneath, so we could look at arrival times, failed inspections, work orders, and keyroom visits without having to piece the whole picture together ourselves.</p><p>The inspection responses started in Google Forms, landed in Sheets, and came into Supabase through CSV connectors I wrote. The biggest table had more than 20,000 inspection records, and the housing data covered more than 3,000 living spaces. Those are records and rooms, not thousands of people using my app.</p></div></article>
@@ -69,7 +171,103 @@
  </div>
  <div class="reading-world">
  <section class="about-me wrap" aria-labelledby="about-title">
-  <div class="about-scene"><p class="intro-label">A little more about me</p><h2 id="about-title">How I Think</h2><figure class="story-figure"><img class="reading-illustration" src="/img/reading-table.svg" width="640" height="460" loading="lazy" alt="A schematic feedback loop connects asking a question, trying a small test, and revising an idea."><figcaption>A question, a small test, and a reason to change my mind.</figcaption></figure></div>
+  <div class="about-scene"><p class="intro-label">A little more about me</p><h2 id="about-title">How I Think</h2><figure class="story-figure"><svg class="reading-illustration motion-diagram" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 460" role="img" aria-labelledby="reading-table-reading-title reading-table-reading-desc" shape-rendering="geometricPrecision">
+  <title id="reading-table-reading-title">A theory tested in conversation</title>
+  <desc id="reading-table-reading-desc">An isometric feedback loop links a question, a small test, and a revised idea through conversation.</desc>
+
+  <defs>
+    <filter id="reading-table-reading-shadow" x="-25%" y="-40%" width="150%" height="190%">
+      <feDropShadow dx="0" dy="10" stdDeviation="8" flood-color="#3b241c" flood-opacity=".22"/>
+    </filter>
+    <filter id="reading-table-tile-shadow" x="-30%" y="-35%" width="160%" height="190%">
+      <feDropShadow dx="0" dy="5" stdDeviation="4" flood-color="#3b241c" flood-opacity=".27"/>
+    </filter>
+    <marker id="reading-table-feedback-arrow" markerWidth="13" markerHeight="13" refX="10" refY="6.5" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M1 1 11 6.5 1 12Z" fill="#302c2b"/>
+    </marker>
+    <marker id="reading-table-warm-arrow" markerWidth="13" markerHeight="13" refX="10" refY="6.5" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M1 1 11 6.5 1 12Z" fill="#183c48"/>
+    </marker>
+  </defs>
+
+  <g transform="translate(0 -55)">
+  <!-- Shared isometric plinth: a quiet platform for the idea/test/revision relationship. -->
+  <g id="reading-table-plinth" stroke-linejoin="round">
+    <path d="M50 294 320 145 590 294 320 445Z" fill="#ce8f6d" stroke="#713f2d" stroke-width="1.4" filter="url(#reading-table-reading-shadow)"/>
+    <path d="M50 294 320 445V458L50 307Z" fill="#a76047" stroke="#713f2d" stroke-width="1"/>
+    <path d="M320 445 590 294V307L320 458Z" fill="#94513e" stroke="#713f2d" stroke-width="1"/>
+    <path d="M72 294 320 158 568 294 320 430Z" fill="#e4aa87" stroke="#b87558" stroke-width=".9"/>
+    <path d="M93 294 320 171 547 294 320 417Z" fill="#d89a78" stroke="#b87558" stroke-width=".75"/>
+  </g>
+
+  <!-- The route is a loop: ask, try, revise, and return with a better question. -->
+  <g id="reading-table-feedback-route" class="flow-rails" fill="none" stroke-linecap="round" stroke-linejoin="round">
+
+    <path d="M193 273 258 229" stroke="#f7eee6" stroke-width="7" marker-end="url(#reading-table-feedback-arrow)"/>
+    <path d="M382 229 447 273" stroke="#f7eee6" stroke-width="7" marker-end="url(#reading-table-feedback-arrow)"/>
+    <path d="M447 323 376 371 264 371 193 323" stroke="#713f2d" stroke-width="16" opacity=".75"/>
+    <path d="M447 323 376 371 264 371 193 323" stroke="#f7eee6" stroke-width="7" marker-end="url(#reading-table-feedback-arrow)"/>
+  </g>
+
+  <!-- A loose hypothesis card enters the conversation before any certainty is claimed. -->
+  <g id="reading-table-idea-card" filter="url(#reading-table-tile-shadow)" stroke-linejoin="round">
+    <path d="M91 205 140 178 189 205 140 232Z" fill="#f7eee6" stroke="#302c2b" stroke-width="1.5"/>
+    <path d="M91 205 140 232V246L91 219Z" fill="#d9a17f" stroke="#302c2b" stroke-width="1.1"/>
+    <path d="M140 232 189 205V219L140 246Z" fill="#b87356" stroke="#302c2b" stroke-width="1.1"/>
+    <path d="M106 204 140 185 174 204 140 223Z" fill="#fdf7f0" stroke="#b87558" stroke-width=".7"/>
+    <path d="M119 202 140 191 161 202" fill="none" stroke="#713f2d" stroke-width="2" stroke-linecap="round"/>
+    <path d="M93 233 73 246V273" fill="none" stroke="#183c48" stroke-width="4" marker-end="url(#reading-table-warm-arrow)"/>
+  </g>
+
+  <!-- ASK: two differently directed speech bubbles make interpretation visible. -->
+  <g id="reading-table-ask" class="flow-station" style="--step:0" filter="url(#reading-table-tile-shadow)" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M76 284 144 247 212 284 144 321Z" fill="#f7eee6" stroke="#302c2b" stroke-width="1.5"/>
+    <path d="M76 284 144 321V338L76 301Z" fill="#d9a17f" stroke="#302c2b" stroke-width="1.1"/>
+    <path d="M144 321 212 284V301L144 338Z" fill="#b87356" stroke="#302c2b" stroke-width="1.1"/>
+    <path d="M92 282 144 254 196 282 144 310Z" fill="#e4d1c5" stroke="#b87558" stroke-width=".8"/>
+    <path d="M103 275 128 262 151 275 132 285 120 289 123 279Z" fill="#183c48"/>
+    <path d="M163 276 185 287 173 292 165 300 165 291 153 285Z" fill="#713f2d"/>
+    <path d="M130 276 145 268M171 283 182 289" fill="none" stroke="#f7eee6" stroke-width="2"/>
+  </g>
+
+  <!-- TRY: a small two-ended bridge expresses a reversible experiment rather than a finished answer. -->
+  <g id="reading-table-try" class="flow-station" style="--step:1" filter="url(#reading-table-tile-shadow)" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M253 192 320 155 387 192 320 229Z" fill="#f7eee6" stroke="#302c2b" stroke-width="1.5"/>
+    <path d="M253 192 320 229V246L253 209Z" fill="#d9a17f" stroke="#302c2b" stroke-width="1.1"/>
+    <path d="M320 229 387 192V209L320 246Z" fill="#b87356" stroke="#302c2b" stroke-width="1.1"/>
+    <path d="M270 191 320 163 370 191 320 219Z" fill="#e4d1c5" stroke="#b87558" stroke-width=".8"/>
+    <circle cx="291" cy="191" r="9" fill="#183c48" stroke="#f7eee6" stroke-width="2"/>
+    <circle cx="349" cy="191" r="9" fill="#713f2d" stroke="#f7eee6" stroke-width="2"/>
+    <path d="M304 190H336" stroke="#183c48" stroke-width="4" marker-end="url(#reading-table-warm-arrow)"/>
+    <path d="M320 172V208" stroke="#e4aa84" stroke-width="3" stroke-dasharray="2 5"/>
+  </g>
+
+  <!-- REVISE: a folded card and returning arrow show that the explanation can change. -->
+  <g id="reading-table-revise" class="flow-station" style="--step:2" filter="url(#reading-table-tile-shadow)" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M428 284 496 247 564 284 496 321Z" fill="#f7eee6" stroke="#302c2b" stroke-width="1.5"/>
+    <path d="M428 284 496 321V338L428 301Z" fill="#d9a17f" stroke="#302c2b" stroke-width="1.1"/>
+    <path d="M496 321 564 284V301L496 338Z" fill="#b87356" stroke="#302c2b" stroke-width="1.1"/>
+    <path d="M444 282 496 254 548 282 496 310Z" fill="#e4d1c5" stroke="#b87558" stroke-width=".8"/>
+    <path d="M480 274 496 266 512 274 496 282Z" fill="#183c48"/>
+    <path d="M469 288 496 302 523 288" fill="none" stroke="#713f2d" stroke-width="3"/>
+    <path d="M531 272Q548 284 531 296" fill="none" stroke="#183c48" stroke-width="3" marker-end="url(#reading-table-warm-arrow)"/>
+  </g>
+
+  <!-- Quiet registration lines keep the object tactile without pretending to be a literal desk. -->
+  <g aria-hidden="true" fill="none" stroke="#f7eee6" stroke-linecap="round" opacity=".6">
+    <path d="M110 323 320 438 530 323" stroke-width="1" stroke-dasharray="3 7"/>
+    <path d="M118 304 320 414 522 304" stroke-width=".8"/>
+  </g>
+  <!-- Upright labels are separate from the miniature surfaces, so the words stay readable at mobile size. -->
+  <g font-family="Arial, sans-serif" font-size="28" font-weight="700" letter-spacing=".4" text-anchor="middle" fill="#302c2b">
+    <text x="140" y="164">IDEA</text>
+    <text x="144" y="370">ASK</text>
+    <text x="320" y="131">TRY</text>
+    <text x="496" y="370">REVISE</text>
+  </g>
+  </g>
+</svg>
+<button class="replay-flow" type="button">Replay the sequence <span aria-hidden="true">↻</span></button><figcaption>A question, a small test, and a reason to change my mind.</figcaption></figure></div>
   <div class="about-letter">
    <p>I read a lot about why people do things and then catch myself doing whatever the book said people do. Usually after deciding that part doesn't apply to me. I like having an explanation for things, which gets me into trouble when I find one I like and stop looking.</p>
    <p>That's part of why I like The Lean Startup. You can spend an afternoon reading about a problem and feel like you've done something about it. Eventually you have to try something. Preferably something small enough that being wrong won't ruin your week. I find that harder once I've explained an idea to a few people and started feeling like I owe it a defense.</p>

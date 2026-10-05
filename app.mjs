@@ -15,7 +15,7 @@ function drawScene(){
  const roomShapes=rooms.map((room,i)=>{
  const col=i%4,row=Math.floor(i/4),x=330+(col-row)*91,y=87+(col+row)*44;
  const c=colors[room.status];
- return `<g class="room-target" data-room="${room.id}" tabindex="0" role="button" aria-label="Room ${room.id}, ${labels[room.status]}, ${room.inspector}" aria-pressed="false" transform="translate(${x} ${y})">
+ return `<g class="room-target" style="--room-step:${i}" data-room="${room.id}" tabindex="0" role="button" aria-label="Room ${room.id}, ${labels[room.status]}, ${room.inspector}" aria-pressed="false" transform="translate(${x} ${y})">
  <title>Room ${room.id}, ${labels[room.status]}</title>
  <path d="M0 0L87 42 0 84-87 42Z" fill="${c.floor}" class="room-floor" stroke="#c0c9c2"/>
  <path d="M-87 42L0 84v17l-87-42Z" fill="${c.side}" stroke="#afc0b7" stroke-width=".5"/><path d="M0 84l87-42v17L0 101Z" fill="#b0c2ba" stroke="#a2b7ad" stroke-width=".5"/>
@@ -54,6 +54,7 @@ function selectRoom(id,announce=true){
  $('room-inspector').textContent=room.inspector; $('room-arrival').textContent=`${room.group} · ${room.arrival}`;
  $('room-type').textContent=room.type; $('room-note').textContent=room.note;
  $('scene').querySelectorAll('[data-room]').forEach(el=>{const isSelected=el.dataset.room===id;el.classList.toggle('selected',isSelected);el.setAttribute('aria-pressed',String(isSelected));});
+ if(announce)animateOnce($('room-detail'), 'detail-change');
  if(announce)$('status-announcement').textContent=`Room ${room.id}. ${labels[room.status]}. ${room.inspector}. ${room.note}`;
 }
 function applyFilter(){
@@ -65,6 +66,7 @@ function applyFilter(){
 }
 function setChapter(index){
  chapter=index; const data=chapters[index];
+ animateOnce(document.querySelector('.dashboard'), 'dashboard-change');
  document.querySelectorAll('[data-chapter]').forEach(button=>{const active=Number(button.dataset.chapter)===index;button.classList.toggle('active',active);button.setAttribute('aria-pressed',String(active));});
  $('dashboard-title').textContent=data.title;$('model-instruction').textContent=data.instruction;$('chapter-narrative').textContent=data.narrative;
  $('note-number').textContent='My work';$('next-label').textContent=data.next;
@@ -81,3 +83,31 @@ $('room-select').addEventListener('change',event=>selectRoom(event.target.value)
 document.querySelectorAll('[data-chapter]').forEach(button=>button.addEventListener('click',()=>setChapter(Number(button.dataset.chapter))));
 $('next-chapter').addEventListener('click',()=>setChapter((chapter+1)%3));
 applyFilter();
+
+// Bounded sequences explain a flow, then settle. Nothing loops while someone reads.
+const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+function animateOnce(element, name) {
+ if (!element || reducedMotion.matches) return;
+ element.classList.remove(name);
+ void element.getBoundingClientRect();
+ element.classList.add(name);
+}
+const scene = $('scene');
+const diagrams = document.querySelectorAll('.motion-diagram');
+const entrances = new IntersectionObserver(entries => {
+ for (const entry of entries) {
+  if (!entry.isIntersecting) continue;
+  animateOnce(entry.target, entry.target === scene ? 'scene-enter' : 'flow-play');
+  entrances.unobserve(entry.target);
+ }
+}, {threshold: 0.25});
+entrances.observe(scene);
+diagrams.forEach(diagram => entrances.observe(diagram));
+document.querySelector('.replay-scene').addEventListener('click', () => animateOnce(scene, 'scene-enter'));
+document.querySelectorAll('.replay-flow').forEach(button => button.addEventListener('click', () => animateOnce(button.previousElementSibling, 'flow-play')));
+function updateMotionPreference() {
+ document.querySelectorAll('.replay-flow, .replay-scene').forEach(button => {button.hidden = reducedMotion.matches;});
+ if (reducedMotion.matches) document.querySelectorAll('.scene-enter, .flow-play, .dashboard-change, .detail-change').forEach(element => element.classList.remove('scene-enter', 'flow-play', 'dashboard-change', 'detail-change'));
+}
+reducedMotion.addEventListener('change', updateMotionPreference);
+updateMotionPreference();

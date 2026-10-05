@@ -25,3 +25,7 @@ User requested the return of distinct visual themes while retaining the architec
 
 ## Purposeful SVG replacement
 Supporting images now explain the adjoining content. The work illustration connects arrivals, assignments, room checks and key handoffs on a schematic shift board. The personal illustration connects asking, trying and revising an idea. Preserve the isometric solid style and each section palette, but prioritize readable relationships over literal furniture. Short HTML captions and descriptive alt text accompany both. Content-derived generation briefs are in docs/svg-purpose-briefs.md.
+
+
+## October 2026 motion
+MotionSite gallery references informed scene-led presentation. Housing rooms settle into place in a staggered, finite entrance; staff follow. Supporting diagrams lift stations in workflow order and draw connecting rails. Replay controls restart each finite sequence. Dashboard and room details use short directional transitions. Viewport observation runs each entrance once; reduced-motion disables sequences and hides replay buttons. No scroll capture or new dependencies.
