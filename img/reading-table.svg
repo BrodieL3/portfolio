@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 460" role="img" aria-labelledby="reading-title reading-desc" shape-rendering="geometricPrecision">
+  <title id="reading-title">A theory tested in conversation</title>
+  <desc id="reading-desc">An isometric feedback loop links a question, a small test, and a revised idea through conversation.</desc>
+
+  <defs>
+    <filter id="reading-shadow" x="-25%" y="-40%" width="150%" height="190%">
+      <feDropShadow dx="0" dy="10" stdDeviation="8" flood-color="#3b241c" flood-opacity=".22"/>
+    </filter>
+    <filter id="tile-shadow" x="-30%" y="-35%" width="160%" height="190%">
+      <feDropShadow dx="0" dy="5" stdDeviation="4" flood-color="#3b241c" flood-opacity=".27"/>
+    </filter>
+    <marker id="feedback-arrow" markerWidth="13" markerHeight="13" refX="10" refY="6.5" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M1 1 11 6.5 1 12Z" fill="#302c2b"/>
+    </marker>
+    <marker id="warm-arrow" markerWidth="13" markerHeight="13" refX="10" refY="6.5" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M1 1 11 6.5 1 12Z" fill="#183c48"/>
+    </marker>
+  </defs>
+
+  <g transform="translate(0 -55)">
+  <!-- Shared isometric plinth: a quiet platform for the idea/test/revision relationship. -->
+  <g id="plinth" stroke-linejoin="round">
+    <path d="M50 294 320 145 590 294 320 445Z" fill="#ce8f6d" stroke="#713f2d" stroke-width="1.4" filter="url(#reading-shadow)"/>
+    <path d="M50 294 320 445V458L50 307Z" fill="#a76047" stroke="#713f2d" stroke-width="1"/>
+    <path d="M320 445 590 294V307L320 458Z" fill="#94513e" stroke="#713f2d" stroke-width="1"/>
+    <path d="M72 294 320 158 568 294 320 430Z" fill="#e4aa87" stroke="#b87558" stroke-width=".9"/>
+    <path d="M93 294 320 171 547 294 320 417Z" fill="#d89a78" stroke="#b87558" stroke-width=".75"/>
+  </g>
+
+  <!-- The route is a loop: ask, try, revise, and return with a better question. -->
+  <g id="feedback-route" fill="none" stroke-linecap="round" stroke-linejoin="round">
+
+    <path d="M193 273 258 229" stroke="#f7eee6" stroke-width="7" marker-end="url(#feedback-arrow)"/>
+    <path d="M382 229 447 273" stroke="#f7eee6" stroke-width="7" marker-end="url(#feedback-arrow)"/>
+    <path d="M447 323 376 371 264 371 193 323" stroke="#713f2d" stroke-width="16" opacity=".75"/>
+    <path d="M447 323 376 371 264 371 193 323" stroke="#f7eee6" stroke-width="7" marker-end="url(#feedback-arrow)"/>
+  </g>
+
+  <!-- A loose hypothesis card enters the conversation before any certainty is claimed. -->
+  <g id="idea-card" filter="url(#tile-shadow)" stroke-linejoin="round">
+    <path d="M91 205 140 178 189 205 140 232Z" fill="#f7eee6" stroke="#302c2b" stroke-width="1.5"/>
+    <path d="M91 205 140 232V246L91 219Z" fill="#d9a17f" stroke="#302c2b" stroke-width="1.1"/>
+    <path d="M140 232 189 205V219L140 246Z" fill="#b87356" stroke="#302c2b" stroke-width="1.1"/>
+    <path d="M106 204 140 185 174 204 140 223Z" fill="#fdf7f0" stroke="#b87558" stroke-width=".7"/>
+    <path d="M119 202 140 191 161 202" fill="none" stroke="#713f2d" stroke-width="2" stroke-linecap="round"/>
+    <path d="M93 233 73 246V273" fill="none" stroke="#183c48" stroke-width="4" marker-end="url(#warm-arrow)"/>
+  </g>
+
+  <!-- ASK: two differently directed speech bubbles make interpretation visible. -->
+  <g id="ask" filter="url(#tile-shadow)" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M76 284 144 247 212 284 144 321Z" fill="#f7eee6" stroke="#302c2b" stroke-width="1.5"/>
+    <path d="M76 284 144 321V338L76 301Z" fill="#d9a17f" stroke="#302c2b" stroke-width="1.1"/>
+    <path d="M144 321 212 284V301L144 338Z" fill="#b87356" stroke="#302c2b" stroke-width="1.1"/>
+    <path d="M92 282 144 254 196 282 144 310Z" fill="#e4d1c5" stroke="#b87558" stroke-width=".8"/>
+    <path d="M103 275 128 262 151 275 132 285 120 289 123 279Z" fill="#183c48"/>
+    <path d="M163 276 185 287 173 292 165 300 165 291 153 285Z" fill="#713f2d"/>
+    <path d="M130 276 145 268M171 283 182 289" fill="none" stroke="#f7eee6" stroke-width="2"/>
+  </g>
+
+  <!-- TRY: a small two-ended bridge expresses a reversible experiment rather than a finished answer. -->
+  <g id="try" filter="url(#tile-shadow)" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M253 192 320 155 387 192 320 229Z" fill="#f7eee6" stroke="#302c2b" stroke-width="1.5"/>
+    <path d="M253 192 320 229V246L253 209Z" fill="#d9a17f" stroke="#302c2b" stroke-width="1.1"/>
+    <path d="M320 229 387 192V209L320 246Z" fill="#b87356" stroke="#302c2b" stroke-width="1.1"/>
+    <path d="M270 191 320 163 370 191 320 219Z" fill="#e4d1c5" stroke="#b87558" stroke-width=".8"/>
+    <circle cx="291" cy="191" r="9" fill="#183c48" stroke="#f7eee6" stroke-width="2"/>
+    <circle cx="349" cy="191" r="9" fill="#713f2d" stroke="#f7eee6" stroke-width="2"/>
+    <path d="M304 190H336" stroke="#183c48" stroke-width="4" marker-end="url(#warm-arrow)"/>
+    <path d="M320 172V208" stroke="#e4aa84" stroke-width="3" stroke-dasharray="2 5"/>
+  </g>
+
+  <!-- REVISE: a folded card and returning arrow show that the explanation can change. -->
+  <g id="revise" filter="url(#tile-shadow)" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M428 284 496 247 564 284 496 321Z" fill="#f7eee6" stroke="#302c2b" stroke-width="1.5"/>
+    <path d="M428 284 496 321V338L428 301Z" fill="#d9a17f" stroke="#302c2b" stroke-width="1.1"/>
+    <path d="M496 321 564 284V301L496 338Z" fill="#b87356" stroke="#302c2b" stroke-width="1.1"/>
+    <path d="M444 282 496 254 548 282 496 310Z" fill="#e4d1c5" stroke="#b87558" stroke-width=".8"/>
+    <path d="M480 274 496 266 512 274 496 282Z" fill="#183c48"/>
+    <path d="M469 288 496 302 523 288" fill="none" stroke="#713f2d" stroke-width="3"/>
+    <path d="M531 272Q548 284 531 296" fill="none" stroke="#183c48" stroke-width="3" marker-end="url(#warm-arrow)"/>
+  </g>
+
+  <!-- Quiet registration lines keep the object tactile without pretending to be a literal desk. -->
+  <g aria-hidden="true" fill="none" stroke="#f7eee6" stroke-linecap="round" opacity=".6">
+    <path d="M110 323 320 438 530 323" stroke-width="1" stroke-dasharray="3 7"/>
+    <path d="M118 304 320 414 522 304" stroke-width=".8"/>
+  </g>
+  <!-- Upright labels are separate from the miniature surfaces, so the words stay readable at mobile size. -->
+  <g font-family="Arial, sans-serif" font-size="28" font-weight="700" letter-spacing=".4" text-anchor="middle" fill="#302c2b">
+    <text x="140" y="164">IDEA</text>
+    <text x="144" y="370">ASK</text>
+    <text x="320" y="131">TRY</text>
+    <text x="496" y="370">REVISE</text>
+  </g>
+  </g>
+</svg>
